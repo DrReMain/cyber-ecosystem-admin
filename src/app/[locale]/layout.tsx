@@ -12,7 +12,9 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { getLangDir } from 'rtl-detect';
 
+import TailwindIndicator from '@/components/base/tailwind-indicator';
 import { routing } from '@/i18n/routing';
+import MinimumProvider from '@/providers/minimum.provider';
 
 export function generateStaticParams() {
   return routing.locales.map(locale => ({ locale }));
@@ -59,7 +61,10 @@ export default async function I18NLayout({ children, params }: Readonly<PropsWit
   return (
     <html lang={locale} dir={getLangDir(locale)} suppressHydrationWarning>
       <body className={clsx('antialiased', GeistSans.variable, GeistMono.variable)}>
-        {children}
+        <TailwindIndicator />
+        <MinimumProvider>
+          {children}
+        </MinimumProvider>
       </body>
       {/* <Script async src="" /> */}
     </html>

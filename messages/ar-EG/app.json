@@ -1,3 +1,26 @@
 {
-  "app": {}
+  "app": {
+    "title": "CyberEcosystem",
+    "template": "%s - CyberEcosystem",
+    "description": "",
+    "applicationName": "",
+    "keywords": "",
+
+    "switcher": {
+      "locale": "{locale, select, zh_CN {简体中文} ar_EG {العربية} other {Unknown}}"
+    },
+
+    "500": {
+      "title": "خطأ في النظام",
+      "content": "إذا استمرت المشكلة، يرجى التواصل مع المسؤول.",
+      "retry": "إعادة المحاولة",
+      "home": "العودة إلى الصفحة الرئيسية"
+    },
+    "404": {
+      "title": "الصفحة غير موجودة",
+      "content": "عذرًا، الصفحة التي تبحث عنها غير موجودة أو قد تم حذفها.",
+      "home": "العودة إلى الصفحة الرئيسية",
+      "back": "الرجوع"
+    }
+  }
 }

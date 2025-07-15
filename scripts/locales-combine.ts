@@ -3,14 +3,13 @@ import { glob } from 'glob';
 import fs from 'node:fs';
 import nodePath from 'node:path';
 
-import { routing } from '@/i18n/routing';
-
 type DeepPartial<T> = T extends object ? { [P in keyof T]?: DeepPartial<T[P]>; } : T;
 
 const MESSAGES_DIR = nodePath.resolve(process.cwd(), 'messages');
 const TARGET_DIR = nodePath.resolve(process.cwd(), 'messages', '@target');
-const DEFAULT_LOCALE = routing.defaultLocale;
-const SUPPORTED_LOCALES = routing.locales;
+const DEFAULT_LOCALE = process.env.NEXT_PUBLIC_I18N_DEFAULT || '';
+const SUPPORTED_LOCALES = process.env.NEXT_PUBLIC_I18N_LOCALES?.split(',') || [];
+const ROUTING_FILE = nodePath.resolve(process.cwd(), 'src', 'i18n', 'routing.ts');
 
 const COLORS = {
   reset: '\x1B[0m',
@@ -292,6 +291,51 @@ async function processLocaleFiles(locale: string): Promise<Record<string, any>> 
   return combined;
 }
 
+// Helper: update routing file with new locale configuration
+function updateRoutingFile(): void {
+  console.log(`${COLORS.cyan}Updating routing file...${COLORS.reset}`);
+
+  if (!fs.existsSync(ROUTING_FILE)) {
+    console.warn(`${COLORS.yellow}Warning: Routing file not found at ${ROUTING_FILE}${COLORS.reset}`);
+    return;
+  }
+
+  try {
+    const content = fs.readFileSync(ROUTING_FILE, 'utf8');
+
+    // Generate the locales array string
+    const localesString = `[${SUPPORTED_LOCALES.map(locale => `'${locale}'`).join(', ')}]`;
+
+    // Update locales array - matches both single and multi-line formats
+    let updatedContent = content.replace(
+      /locales:\s*\[[\s\S]*?\]/,
+      `locales: ${localesString}`,
+    );
+
+    // Update defaultLocale
+    updatedContent = updatedContent.replace(
+      /defaultLocale:\s*'[^']*'/,
+      `defaultLocale: '${DEFAULT_LOCALE}'`,
+    );
+
+    // Check if any changes were made
+    if (updatedContent === content) {
+      console.log(`${COLORS.blue}No changes needed in routing file.${COLORS.reset}`);
+      return;
+    }
+
+    // Write the updated content back to the file
+    fs.writeFileSync(ROUTING_FILE, updatedContent);
+
+    console.log(`${COLORS.green}✓ Updated routing file with:${COLORS.reset}`);
+    console.log(`  - locales: ${localesString}`);
+    console.log(`  - defaultLocale: '${DEFAULT_LOCALE}'`);
+  }
+  catch (error) {
+    console.error(`${COLORS.red}Error updating routing file:${COLORS.reset}`, error);
+  }
+}
+
 // Main function
 async function combineLocaleFiles(): Promise<void> {
   console.log(`${COLORS.cyan}Starting locale file merge...${COLORS.reset}`);
@@ -320,6 +364,8 @@ async function combineLocaleFiles(): Promise<void> {
     console.error(`${COLORS.red}Error writing default locale file:${COLORS.reset}`, error);
     return;
   }
+
+  let allLocalesProcessed = true;
 
   for (const locale of SUPPORTED_LOCALES) {
     if (locale === DEFAULT_LOCALE)
@@ -351,7 +397,16 @@ async function combineLocaleFiles(): Promise<void> {
     }
     catch (error) {
       console.error(`${COLORS.red}Error writing locale file ${outputFile}:${COLORS.reset}`, error);
+      allLocalesProcessed = false;
     }
+  }
+
+  // Update routing file only if all locales were processed successfully
+  if (allLocalesProcessed) {
+    updateRoutingFile();
+  }
+  else {
+    console.warn(`${COLORS.yellow}Skipping routing file update due to errors in locale processing.${COLORS.reset}`);
   }
 
   console.log(`${COLORS.cyan}Locale file merge complete.${COLORS.reset}`);
