@@ -4,6 +4,27 @@
 
 Cyber Ecosystem Admin 是一个现代化、可扩展的管理后台模板，基于 Next.js、TypeScript 和 Ant Design 构建。它为企业级管理面板、管理系统和内部工具提供了强大的基础。
 
+## Cyber Ecosystem 全家桶
+
+1. [ ] [CyberEcosystem Server](https://github.com/DrReMain/cyber-ecosystem-server) ------- 后端项目 (基于 go-zero + tonic 的微服务)
+2. [ ] [CyberEcosystem Admin](https://github.com/DrReMain/cyber-ecosystem-admin) -------- 管理系统 (基于Next.js的Web应用)
+
+[//]: # (3. [ ] [CyberEcosystem Android]&#40;https://github.com/DrReMain/cyber-ecosystem-android&#41; -- --- Large-scale Android App &#40;主要: Kotlin + jetpack compose, 次要: flutter&#41;)
+
+[//]: # (4. [ ] [CyberEcosystem iOS]&#40;https://github.com/DrReMain/cyber-ecosystem-iOS&#41; --------- - Large-scale iOS App &#40;主要: Kotlin + jetpack compose, 次要: flutter&#41;)
+
+[//]: # (5. [ ] [CyberEcosystem RN]&#40;https://github.com/DrReMain/cyber-ecosystem-rn&#41; ----------- small-to-medium-sized App &#40;主要: ReactNative, 次要: Native&#41;)
+
+[//]: # (6. [ ] [CyberEcosystem Mini]&#40;https://github.com/DrReMain/cyber-ecosystem-mini&#41; ---------- 小程序)
+
+[//]: # (7. [ ] [CyberEcosystem SaaS]&#40;https://github.com/DrReMain/cyber-ecosystem-saas&#41; -------- 多租户SaaS化Web应用)
+
+[//]: # (8. [ ] [CyberEcosystem tauri]&#40;https://github.com/DrReMain/cyber-ecosystem-tauri&#41; ----------跨系统桌面应用)
+
+[//]: # (9. [ ] [CyberEcosystem UAV]&#40;https://github.com/DrReMain/cyber-ecosystem-uav&#41; ----------无人机嵌入式与物联网)
+
+[//]: # ()
+
 ## 概览
 
 本项目旨在帮助开发者快速构建现代化的管理界面，主要特点包括：

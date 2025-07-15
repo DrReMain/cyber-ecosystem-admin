@@ -4,6 +4,27 @@
 
 Cyber Ecosystem Admin is a modern, extensible admin dashboard template built with Next.js, TypeScript, and Ant Design. It provides a robust foundation for building enterprise-level admin panels, management systems, and internal tools.
 
+## Cyber Ecosystem Stack
+
+1. [ ] [CyberEcosystem Server](https://github.com/DrReMain/cyber-ecosystem-server) ------- Backend services (Microservices based on go-zero + tonic)
+2. [ ] [CyberEcosystem Admin](https://github.com/DrReMain/cyber-ecosystem-admin) -------- Admin dashboard (Web app built with Next.js)
+
+[//]: # (3. [ ] [CyberEcosystem Android]&#40;https://github.com/DrReMain/cyber-ecosystem-android&#41; -- --- Large-scale Android app &#40;Primary: Kotlin + Jetpack Compose, Secondary: Flutter&#41;)
+
+[//]: # (4. [ ] [CyberEcosystem iOS]&#40;https://github.com/DrReMain/cyber-ecosystem-iOS&#41; --------- - Large-scale iOS app &#40;Primary: Swift + UIKit or SwiftUI, Secondary: Flutter&#41;)
+
+[//]: # (5. [ ] [CyberEcosystem RN]&#40;https://github.com/DrReMain/cyber-ecosystem-rn&#41; ----------- Small to medium-sized app &#40;Primary: React Native, Secondary: Native modules&#41;)
+
+[//]: # (6. [ ] [CyberEcosystem Mini]&#40;https://github.com/DrReMain/cyber-ecosystem-mini&#41; ---------- Mini programs &#40;WeChat, Alipay, etc.&#41;)
+
+[//]: # (7. [ ] [CyberEcosystem SaaS]&#40;https://github.com/DrReMain/cyber-ecosystem-saas&#41; -------- Multi-tenant SaaS web application)
+
+[//]: # (8. [ ] [CyberEcosystem Tauri]&#40;https://github.com/DrReMain/cyber-ecosystem-tauri&#41; ---------- Cross-platform desktop app &#40;based on Tauri&#41;)
+
+[//]: # (9. [ ] [CyberEcosystem UAV]&#40;https://github.com/DrReMain/cyber-ecosystem-uav&#41; ---------- Embedded systems & IoT for drones)
+
+[//]: # ()
+
 ## Overview
 
 This project is designed to help developers quickly build modern admin interfaces with the following highlights:
