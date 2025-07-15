@@ -10,3 +10,5 @@ export const colors = [
   '#ec4899',
   '#f43f5e',
 ];
+
+export default colors;
