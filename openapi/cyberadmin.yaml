@@ -1,0 +1,1461 @@
+openapi: 3.0.3
+
+info:
+  title: Cyber Ecosystem - Common Admin
+  description: |-
+    <u>Cyber Ecosystem</u> 通用管理后台接口，遵循OAS3。
+    包含基本的**菜单**，**角色**，**用户**，**职位**，**部门**，**登录**。
+    并且本YAML也是一个模板。
+    1. 注意自引用导致faker产生无限递归，使用mapper特殊处理，由于mapper匹配规则必须是单独的字段名，所以所有能匹配上的字段都会使用该规则！！！
+    2. 所有名称都使用`lowerCamelCase`，不然会和生成的代码产生冲突
+    3. 如果字段类型是 `string` 并且是 `enum`， 枚举值需要引号包裹，不然UI工具无法正确识别
+    4. examples只在UI工具中有效，`@faker-js/faker` 不会利用
+    5. 本项目业务错误使用200 + success:false + code，非200不进一步区分一律认为未知错误
+    6. request参数字段任何情况下不能定义`nullable: true`，go会反序列化null为nil与未传性质一样，且不传可以减小报文
+    7. path参数必须是required的
+    8. query字段如果是数组，元素必须是基本类型，不能是对象
+    9. response必须返回所有字段，但可以为null，除了数组，可以是空数组
+    10. 特别注意任何情况都不应该让数组元素为null
+    ------
+    links:
+    - [Swagger](https://swagger.io/specification/)
+  contact:
+    name: DrReMain
+    email: 51071534@qq.com
+  version: v1
+
+servers:
+  - url: http://192.168.50.208:9000
+
+tags:
+  - name: system
+    description: 系统基础和文件
+  - name: account
+    description: 登录相关
+  - name: menu
+    description: 系统菜单
+  - name: role
+    description: 系统角色
+  - name: department
+    description: 部门
+  - name: position
+    description: 职位
+  - name: user
+    description: 系统用户
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  responses:
+    unknownError:
+      description: 未知错误
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/commonRes"
+
+    commonSuccess:
+      description: 非查询返回
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/commonRes"
+              - type: object
+                required: [ data ]
+                properties:
+                  data:
+                    type: string
+
+  parameters:
+    idPath:
+      in: path
+      name: id
+      description: ""
+      required: true
+      schema:
+        type: string
+        minLength: 20
+        maxLength: 20
+
+    pageNo:
+      in: query
+      name: page_no
+      schema:
+        type: integer
+        format: int64
+        minimum: 0
+
+    pageSize:
+      in: query
+      name: page_size
+      schema:
+        type: integer
+        format: int64
+        minimum: 0
+
+    createdAt:
+      in: query
+      name: created_at
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+        maxItems: 2
+
+    updatedAt:
+      in: query
+      name: updated_at
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+        maxItems: 2
+
+  schemas:
+    emptyRes:
+      type: object
+
+    # 每个接口返回值都有的字段
+    commonRes:
+      type: object
+      required: [ t, success, code, msg ]
+      properties:
+        t:
+          description: 响应时间戳
+          type: string
+          example: "0000000000000"
+        success:
+          description: 业务是否成功
+          type: boolean
+          example: true
+        code:
+          description: 业务代码，会用于提示多语言
+          type: string
+          enum:
+            - "000000" # EMPTY
+            - "000001" # 操作成功
+            - "000002" # 操作失败
+            - "100000" # 系统错误
+            - "200000" # 未知错误
+            - "400001" # 登录令牌无效
+            - "400002" # 刷新令牌失败
+            - "400003" # 当前资源无权限
+            - "400004" # 参数校验失败
+            - "500001" # 用户被禁用
+            - "500002" # 密码错误
+          example: "000000"
+        msg:
+          description: 响应信息
+          type: string
+          maxLength: 200
+          example: ""
+
+    # 分页接口返回值都有的字段
+    commonPageRes:
+      type: object
+      required: [ page_no, page_size, total, more ]
+      properties:
+        page_no:
+          description: 页码
+          type: integer
+          format: int64
+        page_size:
+          description: 每页条目
+          type: integer
+          format: int64
+        total:
+          description: 总条目
+          type: integer
+          format: int64
+        more:
+          description: 是否还有更多
+          type: boolean
+
+    #
+    idsReq:
+      type: object
+      required: [ ids ]
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
+            minLength: 20
+            maxLength: 20
+          minItems: 1
+
+    ####################################################################################################################
+
+    menuRes:
+      type: object
+      required: [ id, created_at, updated_at, sort, status, title, icon, code, code_path, parent_id, menu_type, menu_path, level, properties, resources, children ]
+      properties:
+        id:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+        updated_at:
+          type: integer
+          format: int64
+        sort:
+          type: integer
+          format: int32
+        status:
+          type: integer
+          format: int8
+        title:
+          type: string
+        icon:
+          type: string
+        code:
+          type: string
+        code_path:
+          type: string
+        parent_id:
+          type: string
+        menu_type:
+          type: string
+        menu_path:
+          type: string
+        level:
+          type: integer
+          format: int32
+        properties:
+          type: string
+        resources:
+          type: array
+          items:
+            $ref: "#/components/schemas/resource"
+        children:
+          type: array
+          items:
+            $ref: "#/components/schemas/menuRes"
+
+    roleRes:
+      type: object
+      required: [ id, created_at, updated_at, sort, role_name, code, remark, menu_ids ]
+      properties:
+        id:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+        updated_at:
+          type: integer
+          format: int64
+        sort:
+          type: integer
+          format: int32
+        role_name:
+          type: string
+        code:
+          type: string
+        remark:
+          type: string
+        menu_ids:
+          type: array
+          items:
+            type: string
+
+    departmentRes:
+      type: object
+      required: [ id, created_at, updated_at, sort, department_name, remark, parent_id, path, level, children ]
+      properties:
+        id:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+        updated_at:
+          type: integer
+          format: int64
+        sort:
+          type: integer
+          format: int32
+        department_name:
+          type: string
+        remark:
+          type: string
+        parent_id:
+          type: string
+        path:
+          type: string
+        level:
+          type: integer
+          format: int32
+        children:
+          type: array
+          items:
+            $ref: "#/components/schemas/departmentRes"
+
+    positionRes:
+      type: object
+      required: [ id, created_at, updated_at, sort, position_name, code, remark ]
+      properties:
+        id:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+        updated_at:
+          type: integer
+          format: int64
+        sort:
+          type: integer
+          format: int32
+        position_name:
+          type: string
+        code:
+          type: string
+        remark:
+          type: string
+
+    userRes:
+      type: object
+      required: [ id, created_at, updated_at, status, email, name, nickname, phone, avatar, remark, department, positions, roles ]
+      properties:
+        id:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+        updated_at:
+          type: integer
+          format: int64
+        status:
+          type: integer
+          format: int8
+        email:
+          type: string
+        name:
+          type: string
+        nickname:
+          type: string
+        phone:
+          type: string
+        avatar:
+          type: string
+        remark:
+          type: string
+        department:
+          $ref: "#/components/schemas/departmentRes"
+        positions:
+          type: array
+          items:
+            $ref: "#/components/schemas/positionRes"
+        roles:
+          type: array
+          items:
+            $ref: "#/components/schemas/roleRes"
+
+    ####################################################################################################################
+
+    resource:
+      type: object
+      required: [ method, path ]
+      properties:
+        method:
+          type: string
+          maxLength: 32
+        path:
+          type: string
+          maxLength: 512
+
+    jwtResponse:
+      type: object
+      required: [ access_token, access_expire, refresh_token, refresh_expire ]
+      properties:
+        access_token:
+          description: 访问令牌
+          type: string
+        access_expire:
+          description: 访问令牌过期时间戳
+          type: number
+          minimum: 0
+        refresh_token:
+          description: 刷新令牌
+          type: string
+        refresh_expire:
+          description: 刷新令牌过期时间戳
+          type: number
+          minimum: 0
+
+paths:
+  # 基础接口
+  /api/v1/admin_system/base/init:
+    post:
+      tags: [ system ]
+      summary: 初始化系统
+      description: 主要是数据库和基本数据
+      operationId: baseInit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/emptyRes"
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/commonRes"
+
+  # 账号登录
+  /api/v1/admin_system/account/login_password:
+    post:
+      tags: [ account ]
+      summary: 使用邮箱密码登录
+      description: ""
+      operationId: accountLoginPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ email, password ]
+              properties:
+                email:
+                  description: 邮箱
+                  type: string
+                  format: email
+                password:
+                  description: 密码
+                  type: string
+                  format: password
+                  minLength: 6
+                  maxLength: 20
+            examples:
+              success:
+                summary: 正确参数
+                description: ""
+                value:
+                  email: "super@cyber-dancer.com"
+                  password: "123456"
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/commonRes"
+                  - type: object
+                    required: [ data ]
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/jwtResponse"
+
+  /api/v1/admin_system/account/refresh:
+    post:
+      tags: [ account ]
+      summary: 刷新access_token
+      description: 使用refresh_token刷新access_token
+      operationId: accountRefresh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ refresh_token ]
+              properties:
+                refresh_token:
+                  type: string
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/commonRes"
+                  - type: object
+                    required: [ data ]
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/jwtResponse"
+
+  # 菜单管理
+  /api/v1/admin_system/menu:
+    post:
+      tags: [ menu ]
+      summary: 新增菜单
+      description: ""
+      operationId: adminSystemMenuPost
+      security:
+        - BearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ title, code, menu_type ]
+              properties:
+                sort:
+                  type: integer
+                  format: int32
+                  minimum: 0
+                title:
+                  type: string
+                  maxLength: 255
+                icon:
+                  type: string
+                  maxLength: 512
+                code:
+                  type: string
+                  maxLength: 255
+                parent_id:
+                  type: string
+                  minLength: 20
+                  maxLength: 20
+                menu_type:
+                  type: string
+                  enum: [ page, button ]
+                menu_path:
+                  type: string
+                  maxLength: 255
+                properties:
+                  type: string
+                  maxLength: 2048
+                resources:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/resource"
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+    get:
+      tags: [ menu ]
+      summary: 查询多个菜单
+      description: ""
+      operationId: adminSystemMenusQuery
+      security:
+        - BearerAuth: [ ]
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/commonRes"
+                  - type: object
+                    required: [ data ]
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          list:
+                            type: array
+                            items:
+                              $ref: "#/components/schemas/menuRes"
+
+  /api/v1/admin_system/menu/delete:
+    post:
+      tags: [ menu ]
+      summary: 删除多个菜单
+      description: ""
+      operationId: adminSystemMenusDelete
+      security:
+        - BearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/idsReq"
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+  /api/v1/admin_system/manu/{id}:
+    delete:
+      tags: [ menu ]
+      summary: 删除单个菜单
+      description: ""
+      operationId: adminSystemMenuDelete
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/idPath"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/emptyRes"
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+    put:
+      tags: [ menu ]
+      summary: 修改菜单
+      description: ""
+      operationId: adminSystemMenuPut
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/idPath"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sort:
+                  type: integer
+                  format: int32
+                  minimum: 0
+                status:
+                  description: "状态: 1正常 2禁用"
+                  type: integer
+                  format: int8
+                  enum: [ 1, 2 ]
+                title:
+                  type: string
+                  maxLength: 255
+                icon:
+                  type: string
+                  maxLength: 512
+                properties:
+                  type: string
+                  maxLength: 2048
+                resources:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/resource"
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+    get:
+      tags: [ menu ]
+      summary: 查询菜单
+      description: ""
+      operationId: adminSystemMenuGet
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/idPath"
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/commonRes"
+                  - type: object
+                    required: [ data ]
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/menuRes"
+
+  # 角色管理
+  /api/v1/admin_system/role:
+    post:
+      tags: [ role ]
+      summary: 新增角色
+      description: ""
+      operationId: adminSystemRolePost
+      security:
+        - BearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ role_name, code ]
+              properties:
+                sort:
+                  type: integer
+                  format: int32
+                  minimum: 0
+                role_name:
+                  type: string
+                  maxLength: 255
+                code:
+                  type: string
+                  maxLength: 255
+                remark:
+                  type: string
+                  maxLength: 255
+                menu_ids:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+    get:
+      tags: [ role ]
+      summary: 查询多个角色
+      description: ""
+      operationId: adminSystemRolesQuery
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/pageNo"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/createdAt"
+        - $ref: "#/components/parameters/updatedAt"
+        - in: query
+          name: role_name
+          schema:
+            type: string
+        - in: query
+          name: code
+          schema:
+            type: string
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/commonRes"
+                  - type: object
+                    required: [ data ]
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: "#/components/schemas/commonPageRes"
+                          - type: object
+                            required: [ list ]
+                            properties:
+                              list:
+                                type: array
+                                items:
+                                  $ref: "#/components/schemas/roleRes"
+
+  /api/v1/admin_system/role/delete:
+    post:
+      tags: [ role ]
+      summary: 删除多个角色
+      description: ""
+      operationId: adminSystemRolesDelete
+      security:
+        - BearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/idsReq"
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+  /api/v1/admin_system/role/{id}:
+    delete:
+      tags: [ role ]
+      summary: 删除单个角色
+      description: ""
+      operationId: adminSystemRoleDelete
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/idPath"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/emptyRes"
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+    put:
+      tags: [ role ]
+      summary: 修改角色
+      description: ""
+      operationId: adminSystemRolePut
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/idPath"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sort:
+                  type: integer
+                  format: int32
+                  minimum: 0
+                role_name:
+                  type: string
+                  maxLength: 255
+                code:
+                  type: string
+                  maxLength: 255
+                remark:
+                  type: string
+                  maxLength: 255
+                menu_ids:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+    get:
+      tags: [ role ]
+      summary: 查询角色
+      description: ""
+      operationId: adminSystemRoleGet
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/idPath"
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/commonRes"
+                  - type: object
+                    required: [ data ]
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/roleRes"
+
+  # 部门管理
+  /api/v1/admin_system/department:
+    post:
+      tags: [ department ]
+      summary: 新增部门
+      description: ""
+      operationId: adminSystemDepartmentPost
+      security:
+        - BearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ department_name ]
+              properties:
+                sort:
+                  type: integer
+                  format: int32
+                  minimum: 0
+                department_name:
+                  type: string
+                  maxLength: 255
+                remark:
+                  type: string
+                  maxLength: 255
+                parent_id:
+                  type: string
+                  minLength: 20
+                  maxLength: 20
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+    get:
+      tags: [ department ]
+      summary: 查询多个部门
+      description: ""
+      operationId: adminSystemDepartmentsQuery
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/pageNo"
+        - $ref: "#/components/parameters/pageSize"
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/commonRes"
+                  - type: object
+                    required: [ data ]
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: "#/components/schemas/commonPageRes"
+                          - type: object
+                            required: [ list ]
+                            properties:
+                              list:
+                                type: array
+                                items:
+                                  $ref: "#/components/schemas/departmentRes"
+
+  /api/v1/admin_system/department/delete:
+    post:
+      tags: [ department ]
+      summary: 删除多个部门
+      description: ""
+      operationId: adminSystemDepartmentsDelete
+      security:
+        - BearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/idsReq"
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+  /api/v1/admin_system/department/{id}:
+    delete:
+      tags: [ department ]
+      summary: 删除单个部门
+      description: ""
+      operationId: adminSystemDepartmentDelete
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/idPath"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/emptyRes"
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+    put:
+      tags: [ department ]
+      summary: 修改部门
+      description: ""
+      operationId: adminSystemDepartmentPut
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/idPath"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sort:
+                  type: integer
+                  format: int32
+                  minimum: 0
+                department_name:
+                  type: string
+                  maxLength: 255
+                remark:
+                  type: string
+                  maxLength: 255
+                parent_id:
+                  type: string
+                  minLength: 20
+                  maxLength: 20
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+    get:
+      tags: [ department ]
+      summary: 查询部门
+      description: ""
+      operationId: adminSystemDepartmentGet
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/idPath"
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/commonRes"
+                  - type: object
+                    required: [ data ]
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/departmentRes"
+
+  # 职位管理
+  /api/v1/admin_system/position:
+    post:
+      tags: [ position ]
+      summary: 新增职位
+      description: ""
+      operationId: adminSystemPositionPost
+      security:
+        - BearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ position_name, code ]
+              properties:
+                sort:
+                  type: integer
+                  format: int32
+                  minimum: 0
+                position_name:
+                  type: string
+                  maxLength: 255
+                code:
+                  type: string
+                  maxLength: 255
+                remark:
+                  type: string
+                  maxLength: 255
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+    get:
+      tags: [ position ]
+      summary: 查询多个职位
+      description: ""
+      operationId: adminSystemPositionsQuery
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/pageNo"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/createdAt"
+        - $ref: "#/components/parameters/updatedAt"
+        - in: query
+          name: position_name
+          schema:
+            type: string
+        - in: query
+          name: code
+          schema:
+            type: string
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/commonRes"
+                  - type: object
+                    required: [ data ]
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: "#/components/schemas/commonPageRes"
+                          - type: object
+                            required: [ list ]
+                            properties:
+                              list:
+                                type: array
+                                items:
+                                  $ref: "#/components/schemas/positionRes"
+
+  /api/v1/admin_system/position/delete:
+    post:
+      tags: [ position ]
+      summary: 删除多个职位
+      description: ""
+      operationId: adminSystemPositionsDelete
+      security:
+        - BearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/idsReq"
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+  /api/v1/admin_system/position/{id}:
+    delete:
+      tags: [ position ]
+      summary: 删除单个职位
+      description: ""
+      operationId: adminSystemPositionDelete
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/idPath"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/emptyRes"
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+    put:
+      tags: [ position ]
+      summary: 修改职位
+      description: ""
+      operationId: adminSystemPositionPut
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/idPath"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sort:
+                  type: integer
+                  format: int32
+                  minimum: 0
+                position_name:
+                  type: string
+                  maxLength: 255
+                code:
+                  type: string
+                  maxLength: 255
+                remark:
+                  type: string
+                  maxLength: 255
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+    get:
+      tags: [ position ]
+      summary: 查询职位
+      description: ""
+      operationId: adminSystemPositionGet
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/idPath"
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/commonRes"
+                  - type: object
+                    required: [ data ]
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/positionRes"
+
+  # 用户管理
+  /api/v1/admin_system/user:
+    post:
+      tags: [ user ]
+      summary: 新增用户
+      description: ""
+      operationId: adminSystemUserPost
+      security:
+        - BearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ email, password, confirm ]
+              properties:
+                password:
+                  type: string
+                  format: password
+                  minLength: 6
+                confirm:
+                  type: string
+                  format: password
+                  minLength: 6
+                email:
+                  type: string
+                  format: email
+                  maxLength: 255
+                name:
+                  type: string
+                  maxLength: 255
+                nickname:
+                  type: string
+                  maxLength: 255
+                phone:
+                  type: string
+                avatar:
+                  type: string
+                  maxLength: 1024
+                remark:
+                  type: string
+                  maxLength: 255
+                department_id:
+                  type: string
+                  minLength: 20
+                  maxLength: 20
+                position_ids:
+                  type: array
+                  items:
+                    type: string
+                role_ids:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+    get:
+      tags: [ user ]
+      summary: 查询多个用户
+      description: ""
+      operationId: adminSystemUsersQuery
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/pageNo"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/createdAt"
+        - $ref: "#/components/parameters/updatedAt"
+        - in: query
+          name: status
+          schema:
+            type: integer
+            format: int8
+            enum: [ 1, 2 ]
+        - in: query
+          name: email
+          schema:
+            type: string
+        - in: query
+          name: name
+          schema:
+            type: string
+        - in: query
+          name: nickname
+          schema:
+            type: string
+        - in: query
+          name: phone
+          schema:
+            type: string
+        - in: query
+          name: department_ids
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: position_ids
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: role_ids
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/commonRes"
+                  - type: object
+                    required: [ data ]
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: "#/components/schemas/commonPageRes"
+                          - type: object
+                            required: [ list ]
+                            properties:
+                              list:
+                                type: array
+                                items:
+                                  $ref: "#/components/schemas/userRes"
+
+  /api/v1/admin_system/user/delete:
+    post:
+      tags: [ user ]
+      summary: 删除多个用户
+      description: ""
+      operationId: adminSystemUsersDelete
+      security:
+        - BearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/idsReq"
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+  /api/v1/admin_system/user/{id}:
+    delete:
+      tags: [ user ]
+      summary: 删除单个用户
+      description: ""
+      operationId: adminSystemUserDelete
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/idPath"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/emptyRes"
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+    put:
+      tags: [ user ]
+      summary: 修改用户
+      description: ""
+      operationId: adminSystemUserPut
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/idPath"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: integer
+                  format: int8
+                  enum: [ 1, 2 ]
+                password:
+                  type: string
+                  minLength: 6
+                confirm:
+                  type: string
+                  minLength: 6
+                email:
+                  type: string
+                  format: email
+                  maxLength: 255
+                name:
+                  type: string
+                  maxLength: 255
+                nickname:
+                  type: string
+                  maxLength: 255
+                phone:
+                  type: string
+                  pattern: "^[0-9]+$"
+                avatar:
+                  type: string
+                  maxLength: 1024
+                remark:
+                  type: string
+                  maxLength: 255
+                department_id:
+                  type: string
+                  minLength: 20
+                  maxLength: 20
+                position_ids:
+                  type: array
+                  items:
+                    type: string
+                role_ids:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "200":
+          $ref: "#/components/responses/commonSuccess"
+
+    get:
+      tags: [ user ]
+      summary: 查询用户
+      description: ""
+      operationId: adminSystemUserGet
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: "#/components/parameters/idPath"
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/commonRes"
+                  - type: object
+                    required: [ data ]
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/userRes"
+
+  /api/v1/admin_system/user/byemail:
+    get:
+      tags: [ user ]
+      summary: 查询用户通过email
+      description: ""
+      operationId: adminSystemUserGetByEmail
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - in: query
+          name: email
+          required: true
+          schema:
+            type: string
+            format: email
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/commonRes"
+                  - type: object
+                    required: [ data ]
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/userRes"

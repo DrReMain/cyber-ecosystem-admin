@@ -1,0 +1,17 @@
+:root {
+  --background: 0 0% 100%;
+  --background-deep: 216 20.11% 95.47%;
+  --foreground: 210 6% 21%;
+}
+
+.dark {
+  --background: 222.32 10.43% 12.27%;
+  --background-deep: 220 13.06 9%;
+  --foreground: 0 0% 95%;
+}
+
+html,
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
