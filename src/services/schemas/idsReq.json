@@ -1,0 +1,1 @@
+{ "type": "object", "required": ["ids"], "properties": { "ids": { "type": "array", "items": { "type": "string", "minLength": 20, "maxLength": 20 }, "minItems": 1 } }, "x-readme-ref-name": "idsReq" }

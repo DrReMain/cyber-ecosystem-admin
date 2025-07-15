@@ -3,4 +3,20 @@
  * Do not edit manually.
  */
 
-export const handlers = [] as const;
+import { accountLoginPasswordHandler } from './accountController/accountLoginPasswordHandler';
+import { adminSystemDepartmentDeleteHandler } from './departmentController/adminSystemDepartmentDeleteHandler';
+import { adminSystemDepartmentGetHandler } from './departmentController/adminSystemDepartmentGetHandler';
+import { adminSystemDepartmentPostHandler } from './departmentController/adminSystemDepartmentPostHandler';
+import { adminSystemDepartmentPutHandler } from './departmentController/adminSystemDepartmentPutHandler';
+import { adminSystemDepartmentsDeleteHandler } from './departmentController/adminSystemDepartmentsDeleteHandler';
+import { adminSystemDepartmentsQueryHandler } from './departmentController/adminSystemDepartmentsQueryHandler';
+
+export const handlers = [
+  accountLoginPasswordHandler(),
+  adminSystemDepartmentPostHandler(),
+  adminSystemDepartmentsQueryHandler(),
+  adminSystemDepartmentsDeleteHandler(),
+  adminSystemDepartmentDeleteHandler(),
+  adminSystemDepartmentPutHandler(),
+  adminSystemDepartmentGetHandler(),
+] as const;
