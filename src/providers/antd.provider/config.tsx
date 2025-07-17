@@ -11,7 +11,7 @@ import { theme as antdTheme, App, ConfigProvider } from 'antd';
 import { useAtomValue } from 'jotai';
 import { AnimatePresence, motion } from 'motion/react';
 import { useTheme } from 'next-themes';
-import { useLayoutEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import Loading from '@/components/base/loading';
 import useI18n from '@/providers/antd.provider/i18n.hook';
@@ -46,9 +46,8 @@ export default function AntdConfig({ children, locale, theme }: Readonly<PropsWi
   }, [theme, resolvedTheme]);
 
   const [needMask, setNeedMask] = useState(theme === undefined || theme === 'system');
-  useLayoutEffect(() => {
-    if (resolvedTheme)
-      setNeedMask(false);
+  useEffect(() => {
+    resolvedTheme && setNeedMask(false);
   }, [resolvedTheme]);
 
   return (

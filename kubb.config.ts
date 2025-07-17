@@ -44,7 +44,7 @@ export default defineConfig({
         type: 'tag',
         name: ({ group }) => `${group}Service`,
       },
-      importPath: '@/utils/ky-client',
+      importPath: '@/request/restful/client',
       operations: true,
       dataReturnType: 'full',
       paramsType: 'object',
