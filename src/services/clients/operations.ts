@@ -4,9 +4,65 @@
  */
 
 export const operations = {
+  baseInit: {
+    path: '/api/v1/admin_system/base/init',
+    method: 'post',
+  },
   accountLoginPassword: {
     path: '/api/v1/admin_system/account/login_password',
     method: 'post',
+  },
+  accountRefresh: {
+    path: '/api/v1/admin_system/account/refresh',
+    method: 'post',
+  },
+  adminSystemMenuPost: {
+    path: '/api/v1/admin_system/menu',
+    method: 'post',
+  },
+  adminSystemMenusQuery: {
+    path: '/api/v1/admin_system/menu',
+    method: 'get',
+  },
+  adminSystemMenusDelete: {
+    path: '/api/v1/admin_system/menu/delete',
+    method: 'post',
+  },
+  adminSystemMenuDelete: {
+    path: '/api/v1/admin_system/manu/:id',
+    method: 'delete',
+  },
+  adminSystemMenuPut: {
+    path: '/api/v1/admin_system/manu/:id',
+    method: 'put',
+  },
+  adminSystemMenuGet: {
+    path: '/api/v1/admin_system/manu/:id',
+    method: 'get',
+  },
+  adminSystemRolePost: {
+    path: '/api/v1/admin_system/role',
+    method: 'post',
+  },
+  adminSystemRolesQuery: {
+    path: '/api/v1/admin_system/role',
+    method: 'get',
+  },
+  adminSystemRolesDelete: {
+    path: '/api/v1/admin_system/role/delete',
+    method: 'post',
+  },
+  adminSystemRoleDelete: {
+    path: '/api/v1/admin_system/role/:id',
+    method: 'delete',
+  },
+  adminSystemRolePut: {
+    path: '/api/v1/admin_system/role/:id',
+    method: 'put',
+  },
+  adminSystemRoleGet: {
+    path: '/api/v1/admin_system/role/:id',
+    method: 'get',
   },
   adminSystemDepartmentPost: {
     path: '/api/v1/admin_system/department',
@@ -30,6 +86,58 @@ export const operations = {
   },
   adminSystemDepartmentGet: {
     path: '/api/v1/admin_system/department/:id',
+    method: 'get',
+  },
+  adminSystemPositionPost: {
+    path: '/api/v1/admin_system/position',
+    method: 'post',
+  },
+  adminSystemPositionsQuery: {
+    path: '/api/v1/admin_system/position',
+    method: 'get',
+  },
+  adminSystemPositionsDelete: {
+    path: '/api/v1/admin_system/position/delete',
+    method: 'post',
+  },
+  adminSystemPositionDelete: {
+    path: '/api/v1/admin_system/position/:id',
+    method: 'delete',
+  },
+  adminSystemPositionPut: {
+    path: '/api/v1/admin_system/position/:id',
+    method: 'put',
+  },
+  adminSystemPositionGet: {
+    path: '/api/v1/admin_system/position/:id',
+    method: 'get',
+  },
+  adminSystemUserPost: {
+    path: '/api/v1/admin_system/user',
+    method: 'post',
+  },
+  adminSystemUsersQuery: {
+    path: '/api/v1/admin_system/user',
+    method: 'get',
+  },
+  adminSystemUsersDelete: {
+    path: '/api/v1/admin_system/user/delete',
+    method: 'post',
+  },
+  adminSystemUserDelete: {
+    path: '/api/v1/admin_system/user/:id',
+    method: 'delete',
+  },
+  adminSystemUserPut: {
+    path: '/api/v1/admin_system/user/:id',
+    method: 'put',
+  },
+  adminSystemUserGet: {
+    path: '/api/v1/admin_system/user/:id',
+    method: 'get',
+  },
+  adminSystemUserGetByEmail: {
+    path: '/api/v1/admin_system/user/byemail',
     method: 'get',
   },
 } as const;

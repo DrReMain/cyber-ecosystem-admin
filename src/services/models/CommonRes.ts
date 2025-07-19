@@ -3,22 +3,6 @@
  * Do not edit manually.
  */
 
-export const commonResCodeEnum = {
-  '000000': '000000',
-  '000001': '000001',
-  '000002': '000002',
-  '100000': '100000',
-  '200000': '200000',
-  '400001': '400001',
-  '400002': '400002',
-  '400003': '400003',
-  '400004': '400004',
-  '500001': '500001',
-  '500002': '500002',
-} as const;
-
-export type CommonResCodeEnum = (typeof commonResCodeEnum)[keyof typeof commonResCodeEnum];
-
 export interface CommonRes {
   /**
    * @description 响应时间戳
@@ -31,10 +15,10 @@ export interface CommonRes {
    */
   success: boolean;
   /**
-   * @description 业务代码，会用于提示多语言
+   * @description 业务code
    * @type string
    */
-  code: CommonResCodeEnum;
+  code: string;
   /**
    * @description 响应信息
    * @maxLength 200

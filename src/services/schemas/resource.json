@@ -1,0 +1,1 @@
+{ "type": "object", "required": ["method", "path"], "properties": { "method": { "type": "string", "maxLength": 32 }, "path": { "type": "string", "maxLength": 512 } }, "x-readme-ref-name": "resource" }

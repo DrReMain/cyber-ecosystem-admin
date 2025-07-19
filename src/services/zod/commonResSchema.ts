@@ -8,9 +8,7 @@ import { z } from 'zod/v4';
 export const commonResSchema = z.object({
   t: z.string().describe('响应时间戳'),
   success: z.boolean().describe('业务是否成功'),
-  code: z
-    .enum(['000000', '000001', '000002', '100000', '200000', '400001', '400002', '400003', '400004', '500001', '500002'])
-    .describe('业务代码，会用于提示多语言'),
+  code: z.string().describe('业务code'),
   msg: z.string().max(200).describe('响应信息'),
 });
 

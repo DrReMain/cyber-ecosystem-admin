@@ -4,19 +4,73 @@
  */
 
 import { accountLoginPasswordHandler } from './accountController/accountLoginPasswordHandler';
+import { accountRefreshHandler } from './accountController/accountRefreshHandler';
 import { adminSystemDepartmentDeleteHandler } from './departmentController/adminSystemDepartmentDeleteHandler';
 import { adminSystemDepartmentGetHandler } from './departmentController/adminSystemDepartmentGetHandler';
 import { adminSystemDepartmentPostHandler } from './departmentController/adminSystemDepartmentPostHandler';
 import { adminSystemDepartmentPutHandler } from './departmentController/adminSystemDepartmentPutHandler';
 import { adminSystemDepartmentsDeleteHandler } from './departmentController/adminSystemDepartmentsDeleteHandler';
 import { adminSystemDepartmentsQueryHandler } from './departmentController/adminSystemDepartmentsQueryHandler';
+import { adminSystemMenuDeleteHandler } from './menuController/adminSystemMenuDeleteHandler';
+import { adminSystemMenuGetHandler } from './menuController/adminSystemMenuGetHandler';
+import { adminSystemMenuPostHandler } from './menuController/adminSystemMenuPostHandler';
+import { adminSystemMenuPutHandler } from './menuController/adminSystemMenuPutHandler';
+import { adminSystemMenusDeleteHandler } from './menuController/adminSystemMenusDeleteHandler';
+import { adminSystemMenusQueryHandler } from './menuController/adminSystemMenusQueryHandler';
+import { adminSystemPositionDeleteHandler } from './positionController/adminSystemPositionDeleteHandler';
+import { adminSystemPositionGetHandler } from './positionController/adminSystemPositionGetHandler';
+import { adminSystemPositionPostHandler } from './positionController/adminSystemPositionPostHandler';
+import { adminSystemPositionPutHandler } from './positionController/adminSystemPositionPutHandler';
+import { adminSystemPositionsDeleteHandler } from './positionController/adminSystemPositionsDeleteHandler';
+import { adminSystemPositionsQueryHandler } from './positionController/adminSystemPositionsQueryHandler';
+import { adminSystemRoleDeleteHandler } from './roleController/adminSystemRoleDeleteHandler';
+import { adminSystemRoleGetHandler } from './roleController/adminSystemRoleGetHandler';
+import { adminSystemRolePostHandler } from './roleController/adminSystemRolePostHandler';
+import { adminSystemRolePutHandler } from './roleController/adminSystemRolePutHandler';
+import { adminSystemRolesDeleteHandler } from './roleController/adminSystemRolesDeleteHandler';
+import { adminSystemRolesQueryHandler } from './roleController/adminSystemRolesQueryHandler';
+import { baseInitHandler } from './systemController/baseInitHandler';
+import { adminSystemUserDeleteHandler } from './userController/adminSystemUserDeleteHandler';
+import { adminSystemUserGetByEmailHandler } from './userController/adminSystemUserGetByEmailHandler';
+import { adminSystemUserGetHandler } from './userController/adminSystemUserGetHandler';
+import { adminSystemUserPostHandler } from './userController/adminSystemUserPostHandler';
+import { adminSystemUserPutHandler } from './userController/adminSystemUserPutHandler';
+import { adminSystemUsersDeleteHandler } from './userController/adminSystemUsersDeleteHandler';
+import { adminSystemUsersQueryHandler } from './userController/adminSystemUsersQueryHandler';
 
 export const handlers = [
+  baseInitHandler(),
   accountLoginPasswordHandler(),
+  accountRefreshHandler(),
+  adminSystemMenuPostHandler(),
+  adminSystemMenusQueryHandler(),
+  adminSystemMenusDeleteHandler(),
+  adminSystemMenuDeleteHandler(),
+  adminSystemMenuPutHandler(),
+  adminSystemMenuGetHandler(),
+  adminSystemRolePostHandler(),
+  adminSystemRolesQueryHandler(),
+  adminSystemRolesDeleteHandler(),
+  adminSystemRoleDeleteHandler(),
+  adminSystemRolePutHandler(),
+  adminSystemRoleGetHandler(),
   adminSystemDepartmentPostHandler(),
   adminSystemDepartmentsQueryHandler(),
   adminSystemDepartmentsDeleteHandler(),
   adminSystemDepartmentDeleteHandler(),
   adminSystemDepartmentPutHandler(),
   adminSystemDepartmentGetHandler(),
+  adminSystemPositionPostHandler(),
+  adminSystemPositionsQueryHandler(),
+  adminSystemPositionsDeleteHandler(),
+  adminSystemPositionDeleteHandler(),
+  adminSystemPositionPutHandler(),
+  adminSystemPositionGetHandler(),
+  adminSystemUserPostHandler(),
+  adminSystemUsersQueryHandler(),
+  adminSystemUsersDeleteHandler(),
+  adminSystemUserDeleteHandler(),
+  adminSystemUserPutHandler(),
+  adminSystemUserGetHandler(),
+  adminSystemUserGetByEmailHandler(),
 ] as const;

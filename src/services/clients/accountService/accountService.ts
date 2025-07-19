@@ -4,7 +4,8 @@
  */
 
 import { accountLoginPassword } from './accountLoginPassword';
+import { accountRefresh } from './accountRefresh';
 
 export function accountService() {
-  return { accountLoginPassword };
+  return { accountLoginPassword, accountRefresh };
 }
