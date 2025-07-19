@@ -31,9 +31,11 @@ export default defineConfig({
     pluginZod({
       output: { path: 'zod' },
       group: { type: 'tag' },
-      dateType: 'stringOffset',
-      inferred: true,
       typed: false,
+      inferred: true,
+      dateType: false,
+      unknownType: 'any',
+      coercion: false,
       operations: false,
       version: '4',
     }),

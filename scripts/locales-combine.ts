@@ -192,6 +192,7 @@ function compareTranslationStructure(
   translations: Record<string, any>,
   locale: string,
   keyPath = '',
+  loggedMissingKeys = new Set<string>(), // Add this parameter to track logged keys
 ): { missing: Record<string, any>; extra: string[] } {
   const missing: Record<string, any> = {};
   const extra: string[] = [];
@@ -200,10 +201,14 @@ function compareTranslationStructure(
     const currentPath = keyPath ? `${keyPath}.${key}` : key;
 
     if (!(key in translations)) {
-      console.warn(
-        `${COLORS.yellow}Warning: Missing translation for key "${currentPath}" in locale "${locale}".${COLORS.reset}\n`
-        + `  Using fallback value from default locale (${DEFAULT_LOCALE}).`,
-      );
+      // Only log if we haven't logged this path before
+      if (!loggedMissingKeys.has(currentPath)) {
+        console.warn(
+          `${COLORS.yellow}Warning: Missing translation for key "${currentPath}" in locale "${locale}".${COLORS.reset}\n`
+          + `  Using fallback value from default locale (${DEFAULT_LOCALE}).`,
+        );
+        loggedMissingKeys.add(currentPath);
+      }
       missing[key] = defaultTranslations[key];
     }
     else if (
@@ -217,6 +222,7 @@ function compareTranslationStructure(
         translations[key],
         locale,
         currentPath,
+        loggedMissingKeys, // Pass the set to recursive calls
       );
       if (Object.keys(nested.missing).length > 0) {
         missing[key] = nested.missing;
@@ -246,6 +252,7 @@ function compareTranslationStructure(
         translations[key],
         locale,
         currentPath,
+        loggedMissingKeys, // Pass the set to recursive calls
       );
       extra.push(...nested.extra);
     }

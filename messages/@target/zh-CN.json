@@ -19,6 +19,19 @@
     "keywords": "",
     "switcher": {
       "locale": "{locale, select, zh_CN {简体中文} ar_EG {العربية} other {Unknown}}"
+    },
+    "error": {
+      "unknown": "未知网络错误",
+      "abort": "取消网络请求",
+      "timeout": "网络请求超时",
+      "http": "未知请求错误",
+      "zod": "参数或返回值校验失败",
+      "zodField": "以下字段校验失败: {fields}"
+    },
+    "request_toast": {
+      "loading": "请求中...",
+      "success": "请求成功",
+      "error": "请求失败"
     }
   }
 }

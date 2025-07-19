@@ -19,6 +19,19 @@
     "keywords": "",
     "switcher": {
       "locale": "{locale, select, zh_CN {简体中文} ar_EG {العربية} other {Unknown}}"
+    },
+    "error": {
+      "unknown": "خطأ غير معروف في الشبكة",
+      "abort": "تم إلغاء طلب الشبكة",
+      "timeout": "انتهت مهلة طلب الشبكة",
+      "http": "خطأ غير معروف في الطلب",
+      "zod": "فشل التحقق من المعلمات أو القيم المرجعة",
+      "zodField": "فشلت التحقق من الحقول التالية: {fields}"
+    },
+    "request_toast": {
+      "loading": "جارٍ المعالجة...",
+      "success": "تم الطلب بنجاح",
+      "error": "فشل الطلب"
     }
   }
 }
