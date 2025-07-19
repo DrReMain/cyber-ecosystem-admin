@@ -1,0 +1,19 @@
+{
+  "login": {
+    "meta": {
+      "title": "登录",
+      "description": ""
+    },
+
+    "page": {
+      "h1": "大型中后台管理系统",
+      "sub": "这是副标题或者一段说明文字",
+      "welcome": "欢迎使用",
+      "explain": "使用邮箱和密码进行登录",
+
+      "emailPlaceholder": "邮箱",
+      "passwdPlaceholder": "密码",
+      "submit": "登录"
+    }
+  }
+}

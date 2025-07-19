@@ -25,6 +25,13 @@ Cyber Ecosystem Admin 是一个现代化、可扩展的管理后台模板，基�
 
 [//]: # ()
 
+## 预览
+
+|       | light                                  | dark                                  |
+|-------|----------------------------------------|---------------------------------------|
+| zh-CN | ![](docs/assets/login-zh-CN_light.png) | ![](docs/assets/login-zh-CN_dark.png) |
+| ar-EG | ![](docs/assets/login-ar-EG_light.png) | ![](docs/assets/login-ar-EG_dark.png) |
+
 ## 概览
 
 本项目旨在帮助开发者快速构建现代化的管理界面，主要特点包括：

@@ -25,6 +25,13 @@ Cyber Ecosystem Admin is a modern, extensible admin dashboard template built wit
 
 [//]: # ()
 
+## Preview
+
+|       | light                                  | dark                                  |
+|-------|----------------------------------------|---------------------------------------|
+| zh-CN | ![](docs/assets/login-zh-CN_light.png) | ![](docs/assets/login-zh-CN_dark.png) |
+| ar-EG | ![](docs/assets/login-ar-EG_light.png) | ![](docs/assets/login-ar-EG_dark.png) |
+
 ## Overview
 
 This project is designed to help developers quickly build modern admin interfaces with the following highlights:
