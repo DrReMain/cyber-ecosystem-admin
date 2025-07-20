@@ -10,8 +10,6 @@ import { user_tokenAtom } from '@/store/user/store';
 // Types
 // ============================================================================
 
-type RequestFunction<Args, Config, Res> = (args: Args, config?: Config) => Promise<Res>;
-
 interface ToastOptions<Res> {
   loading?: boolean | string;
   success?: boolean | ((res: Res) => string);
@@ -28,6 +26,10 @@ interface TOpts<Res> {
   toast?: boolean | ToastOptions<Res>;
   format?: Record<string, string>;
 }
+
+type ConfigOnlyFunction<Config, Res> = (config?: Config) => Promise<Res>;
+type ArgsFunction<Args, Config, Res> = (args: Args, config?: Config) => Promise<Res>;
+type ApiFunction = ConfigOnlyFunction<any, any> | ArgsFunction<any, any, any>;
 
 // ============================================================================
 // Utility Functions
@@ -130,14 +132,14 @@ export default function useRequest() {
   /**
    * Inject authorization headers into request config
    */
-  function injectHeaders<Config>(config: Config): Config {
+  function injectHeaders<Config extends Record<string, any> | undefined>(config?: Config): Config extends undefined ? { headers: Record<string, string> } : Config {
     return {
+      ...(config || {}),
       headers: {
         ...(token?.access_token ? { Authorization: `Bearer ${token.access_token}` } : {}),
-        ...((config as any)?.headers ?? {}),
+        ...(config?.headers ?? {}),
       },
-      ...config,
-    } as Config;
+    } as any;
   }
 
   /**
@@ -213,36 +215,63 @@ export default function useRequest() {
 
   return {
     /**
-     * Higher-order function for mutation operations
-     * Returns a curried function that accepts config first, then args
+     * Higher-order function for mutation operations with improved type handling
      */
-    mutateHOF<Args, Config, Res>(
-      fn: RequestFunction<Args, Config, Res>,
-      opts?: TOpts<Res>,
+    mutateHOF: function mutateHOF<Fn extends ApiFunction>(
+      fn: Fn,
+      opts?: TOpts<Awaited<ReturnType<Fn>>>,
     ) {
-      return (config?: Config) =>
-        async (args: Args): Promise<Res> => {
-          const basePromise = fn(args, injectHeaders(config))
-            .then(res => handleResponse(res, opts))
-            .catch(e => handleError(e, opts));
-          return applyToast(basePromise, opts?.toast);
+      if (fn.length === 0) {
+        return (config?: Parameters<Fn>[0]) => {
+          return async (): Promise<Awaited<ReturnType<Fn>>> => {
+            const basePromise = (fn as any)(injectHeaders(config))
+              .then((res: any) => handleResponse(res, opts))
+              .catch((e: any) => handleError(e, opts));
+            return applyToast(basePromise, opts?.toast);
+          };
         };
+      }
+      else {
+        return (config?: Parameters<Fn>[1]) => {
+          return async (args: Parameters<Fn>[0]): Promise<Awaited<ReturnType<Fn>>> => {
+            const basePromise = (fn as any)(args, injectHeaders(config))
+              .then((res: any) => handleResponse(res, opts))
+              .catch((e: any) => handleError(e, opts));
+            return applyToast(basePromise, opts?.toast);
+          };
+        };
+      }
+    } as {
+      <Config, Res>(fn: ConfigOnlyFunction<Config, Res>, opts?: TOpts<Res>): (config?: Config) => () => Promise<Res>;
+      <Args, Config, Res>(fn: ArgsFunction<Args, Config, Res>, opts?: TOpts<Res>): (config?: Config) => (args: Args) => Promise<Res>;
     },
 
     /**
-     * Higher-order function for query operations
-     * Returns a function that accepts args and optional config
+     * Higher-order function for query operations with improved type handling
      */
-    queryHOF<Args, Config, Res>(
-      fn: RequestFunction<Args, Config, Res>,
-      opts?: TOpts<Res>,
+    queryHOF: function queryHOF<Fn extends ApiFunction>(
+      fn: Fn,
+      opts?: TOpts<Awaited<ReturnType<Fn>>>,
     ) {
-      return async (args: Args, config?: Config): Promise<Res> => {
-        const basePromise = fn(args, injectHeaders(config))
-          .then(res => handleResponse(res, opts))
-          .catch(e => handleError(e, opts));
-        return applyToast(basePromise, opts?.toast);
-      };
+      if (fn.length === 0) {
+        return async (config?: Parameters<Fn>[0]): Promise<Awaited<ReturnType<Fn>>> => {
+          const basePromise = (fn as any)(injectHeaders(config))
+            .then((res: any) => handleResponse(res, opts))
+            .catch((e: any) => handleError(e, opts));
+          return applyToast(basePromise, opts?.toast);
+        };
+      }
+      else {
+        return async (args: Parameters<Fn>[0], config?: Parameters<Fn>[1]): Promise<Awaited<ReturnType<Fn>>> => {
+          const basePromise = (fn as any)(args, injectHeaders(config))
+            .then((res: any) => handleResponse(res, opts))
+            .catch((e: any) => handleError(e, opts));
+          return applyToast(basePromise, opts?.toast);
+        };
+      }
+    } as {
+      <Config, Res>(fn: ConfigOnlyFunction<Config, Res>, opts?: TOpts<Res>): (config?: Config) => Promise<Res>;
+      <Args, Config, Res>(fn: ArgsFunction<Args, Config, Res>, opts?: TOpts<Res>): (args: Args, config?: Config) => Promise<Res>;
     },
   };
 }

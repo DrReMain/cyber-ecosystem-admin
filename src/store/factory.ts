@@ -15,16 +15,14 @@ export function createPersistentAtom<T>(
     get => get(immerAtomic),
     (get, set, update: T | ((draft: Draft<T>) => void)) => {
       set(immerAtomic, update);
-      setTimeout(() => {
-        const newValue = get(immerAtomic);
-        if (newValue !== undefined) {
-          void setCookieAction(
-            key,
-            serialize(newValue),
-            { secure: process.env.NEXT_PUBLIC_APP_URL?.startsWith('https://') },
-          );
-        }
-      }, 0);
+      const newValue = get(immerAtomic);
+      if (newValue !== undefined) {
+        void setCookieAction(
+          key,
+          serialize(newValue),
+          { secure: process.env.NEXT_PUBLIC_APP_URL?.startsWith('https://') },
+        );
+      }
     },
   );
 

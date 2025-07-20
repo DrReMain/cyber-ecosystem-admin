@@ -1,0 +1,1 @@
+{ "type": "object", "required": ["email", "name", "nickname", "phone", "avatar"], "properties": { "email": { "type": "string" }, "name": { "type": "string" }, "nickname": { "type": "string" }, "phone": { "type": "string" }, "avatar": { "type": "string" } }, "x-readme-ref-name": "accountInfoRes" }

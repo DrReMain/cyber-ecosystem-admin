@@ -9,7 +9,7 @@ export default function useMode() {
   const { resolvedTheme, setTheme } = useTheme();
   const [isReady, setIsReady] = useState(false);
   useEffect(() => {
-    setIsReady(true);
+    setIsReady(true);// eslint-disable-line react-hooks-extra/no-direct-set-state-in-use-effect
   }, []);
 
   const toggle = useCallback((e: ReactMouseEvent<Element, MouseEvent>, t: string) => {

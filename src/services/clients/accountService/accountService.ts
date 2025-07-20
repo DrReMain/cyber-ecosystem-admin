@@ -3,9 +3,11 @@
  * Do not edit manually.
  */
 
+import { accountInfo } from './accountInfo';
 import { accountLoginPassword } from './accountLoginPassword';
+import { accountLogout } from './accountLogout';
 import { accountRefresh } from './accountRefresh';
 
 export function accountService() {
-  return { accountLoginPassword, accountRefresh };
+  return { accountLoginPassword, accountRefresh, accountLogout, accountInfo };
 }

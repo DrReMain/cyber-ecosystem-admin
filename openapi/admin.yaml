@@ -179,6 +179,21 @@ components:
 
     ####################################################################################################################
 
+    accountInfoRes:
+      type: object
+      required: [ email, name, nickname, phone, avatar ]
+      properties:
+        email:
+          type: string
+        name:
+          type: string
+        nickname:
+          type: string
+        phone:
+          type: string
+        avatar:
+          type: string
+
     menuRes:
       type: object
       required: [ id, created_at, updated_at, sort, status, title, icon, code, code_path, parent_id, menu_type, menu_path, level, properties, resources, children ]
@@ -471,6 +486,52 @@ paths:
                     properties:
                       result:
                         $ref: "#/components/schemas/jwtResponse"
+
+  /api/v1/admin_system/account/logout:
+    post:
+      tags: [ account ]
+      summary: 登出
+      description: ""
+      operationId: accountLogout
+      security:
+        - BearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/emptyRes"
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/commonRes"
+
+  /api/v1/admin_system/account/info:
+    get:
+      tags: [ account ]
+      summary: 获取账号信息
+      description: ""
+      operationId: accountInfo
+      security:
+        - BearerAuth: [ ]
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/commonRes"
+                  - type: object
+                    required: [ result ]
+                    properties:
+                      result:
+                        $ref: "#/components/schemas/accountInfoRes"
+
+
 
   # 菜单管理
   /api/v1/admin_system/menu:

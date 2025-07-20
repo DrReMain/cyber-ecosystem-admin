@@ -1,13 +1,11 @@
 import type { PropsWithChildren } from 'react';
 
-import Base from '@/features/(admin)/base';
+import Guard from '@/features/(admin)/guard';
 
 export default async function Layout({ children }: Readonly<PropsWithChildren>) {
   return (
-    <Base>
+    <Guard auth={false}>
       {children}
-    </Base>
+    </Guard>
   );
 }
-
-export const dynamic = 'force-dynamic';

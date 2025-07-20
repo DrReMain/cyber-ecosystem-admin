@@ -1,4 +1,6 @@
+export { accountInfoHandler } from './accountController/accountInfoHandler';
 export { accountLoginPasswordHandler } from './accountController/accountLoginPasswordHandler';
+export { accountLogoutHandler } from './accountController/accountLogoutHandler';
 export { accountRefreshHandler } from './accountController/accountRefreshHandler';
 export { adminSystemDepartmentDeleteHandler } from './departmentController/adminSystemDepartmentDeleteHandler';
 export { adminSystemDepartmentGetHandler } from './departmentController/adminSystemDepartmentGetHandler';

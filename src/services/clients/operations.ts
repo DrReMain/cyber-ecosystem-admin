@@ -16,6 +16,14 @@ export const operations = {
     path: '/api/v1/admin_system/account/refresh',
     method: 'post',
   },
+  accountLogout: {
+    path: '/api/v1/admin_system/account/logout',
+    method: 'post',
+  },
+  accountInfo: {
+    path: '/api/v1/admin_system/account/info',
+    method: 'get',
+  },
   adminSystemMenuPost: {
     path: '/api/v1/admin_system/menu',
     method: 'post',

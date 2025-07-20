@@ -23,7 +23,7 @@ let configWithPlugins = baseConfig;
 configWithPlugins = createNextIntlPlugin({
   requestConfig: './src/i18n/request.ts',
   experimental: {
-    createMessagesDeclaration: `./messages/@target/${process.env.NEXT_PUBLIC_I18N_DEFAULT}.json`,
+    createMessagesDeclaration: `./messages/@target/${process.env.NEXT_I18N_DEFAULT}.json`,
   },
 })(configWithPlugins);
 

@@ -4,7 +4,7 @@ import type { IStoreSetting } from './store';
 
 import { KEY_SETTING_COLOR } from './store';
 
-export default async function jtSettingHydrate(): Promise<IStoreSetting> {
+export default async function settingFromCookie(): Promise<IStoreSetting> {
   const result: IStoreSetting = {};
   const [color] = await Promise.all([
     getCookieAction(KEY_SETTING_COLOR),

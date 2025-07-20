@@ -3,7 +3,9 @@
  * Do not edit manually.
  */
 
+import { accountInfoHandler } from './accountController/accountInfoHandler';
 import { accountLoginPasswordHandler } from './accountController/accountLoginPasswordHandler';
+import { accountLogoutHandler } from './accountController/accountLogoutHandler';
 import { accountRefreshHandler } from './accountController/accountRefreshHandler';
 import { adminSystemDepartmentDeleteHandler } from './departmentController/adminSystemDepartmentDeleteHandler';
 import { adminSystemDepartmentGetHandler } from './departmentController/adminSystemDepartmentGetHandler';
@@ -42,6 +44,8 @@ export const handlers = [
   baseInitHandler(),
   accountLoginPasswordHandler(),
   accountRefreshHandler(),
+  accountLogoutHandler(),
+  accountInfoHandler(),
   adminSystemMenuPostHandler(),
   adminSystemMenusQueryHandler(),
   adminSystemMenusDeleteHandler(),

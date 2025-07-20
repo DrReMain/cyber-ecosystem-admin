@@ -6,7 +6,7 @@ import type { IStoreUser } from './store';
 
 import { KEY_USER_TOKEN } from './store';
 
-export default async function jtUserHydrate(): Promise<IStoreUser> {
+export default async function userFromCookie(): Promise<IStoreUser> {
   const result: IStoreUser = {};
   const [token] = await Promise.all([
     getCookieAction(KEY_USER_TOKEN),

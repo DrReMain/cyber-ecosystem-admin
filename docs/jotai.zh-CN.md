@@ -12,13 +12,13 @@
 ```typescript jsx
 import type { PropsWithChildren } from 'react';
 import JotaiProvider from '@/providers/jotai.provider';
-import jtSettingHydrate from '@/store/setting/hydrate';
-import jtUserHydrate from '@/store/user/hydrate';
+import settingFromCookie from '@/store/setting/from-cookie';
+import userFromCookie from '@/store/user/from-cookie';
 
 export default async function Layout({ children }: PropsWithChildren) {
   const [setting, user] = await Promise.all([
-    jtSettingHydrate(),
-    jtUserHydrate(),
+    settingFromCookie(),
+    userFromCookie(),
   ]);
   return (
     <JotaiProvider initialData={{ setting, user }}>

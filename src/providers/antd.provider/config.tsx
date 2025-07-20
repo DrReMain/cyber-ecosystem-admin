@@ -12,11 +12,13 @@ import { useAtomValue } from 'jotai';
 import { AnimatePresence, motion } from 'motion/react';
 import { useTheme } from 'next-themes';
 import { useEffect, useMemo, useState } from 'react';
+import { getLangDir } from 'rtl-detect';
 
 import Loading from '@/components/base/loading';
-import useI18n from '@/providers/antd.provider/i18n.hook';
 import { setting_colorAtom } from '@/store/setting/store';
 
+import { components } from './components.style';
+import useI18n from './i18n.hook';
 import showInsetEffect from './showInsetEffect';
 
 import('dayjs/locale/zh-cn');
@@ -47,7 +49,7 @@ export default function AntdConfig({ children, locale, theme }: Readonly<PropsWi
 
   const [needMask, setNeedMask] = useState(theme === undefined || theme === 'system');
   useEffect(() => {
-    resolvedTheme && setNeedMask(false);
+    resolvedTheme && setNeedMask(false); // eslint-disable-line react-hooks-extra/no-direct-set-state-in-use-effect
   }, [resolvedTheme]);
 
   return (
@@ -60,28 +62,19 @@ export default function AntdConfig({ children, locale, theme }: Readonly<PropsWi
             form={{ requiredMark: 'optional' }}
             input={{ autoComplete: 'off', allowClear: true }}
             locale={antdLocale}
+            direction={getLangDir(locale)}
             theme={{
               hashed: false,
               algorithm,
               token: {
                 wireframe: true,
-                borderRadius: 12,
                 ...(
                   color
                     ? { colorPrimary: color, colorLink: color }
                     : {}
                 ),
               },
-              components: {
-                Button: {
-                  defaultShadow: '',
-                  primaryShadow: '',
-                  dangerShadow: '',
-                  motionDurationFast: '',
-                  motionDurationMid: '',
-                  motionDurationSlow: '',
-                },
-              },
+              components,
             }}
           >
             <App component={false}>

@@ -9,12 +9,12 @@ import { setting_colorAtom } from '@/store/setting/store';
 
 interface IProps {
   logo: ReactElement;
+  setting: ReactElement;
   left: ReactElement;
-  config: ReactElement;
   right: ReactElement;
 }
 
-export default function Container({ logo, left, config, right }: Readonly<PropsWithChildren<IProps>>) {
+export default function Container({ logo, setting, left, right }: Readonly<PropsWithChildren<IProps>>) {
   const color = useAtomValue(setting_colorAtom);
   return (
     <main className="h-screen min-h-[720px] flex" style={{ background: color || '#1677ff' }}>
@@ -36,7 +36,7 @@ export default function Container({ logo, left, config, right }: Readonly<PropsW
         <header className="absolute start-4 top-4 flex items-center gap-2 scale-[66%] origin-top-left rtl:origin-top-right lg:hidden">
           {logo}
         </header>
-        {config}
+        {setting}
         {right}
       </section>
     </main>
