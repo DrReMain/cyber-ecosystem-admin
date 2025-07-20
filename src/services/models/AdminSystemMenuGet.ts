@@ -22,7 +22,7 @@ export type AdminSystemMenuGet200 = CommonRes & {
   /**
    * @type object
    */
-  data: MenuRes;
+  result: MenuRes;
 };
 
 export type AdminSystemMenuGetQueryResponse = AdminSystemMenuGet200;

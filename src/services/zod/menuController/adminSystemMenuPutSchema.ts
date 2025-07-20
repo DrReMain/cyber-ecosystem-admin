@@ -19,7 +19,7 @@ export type AdminSystemMenuPutPathParamsSchema = z.infer<typeof adminSystemMenuP
  */
 export const adminSystemMenuPut200Schema = commonResSchema.and(
   z.object({
-    data: z.string(),
+    result: z.string(),
   }),
 );
 

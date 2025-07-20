@@ -40,7 +40,7 @@ export interface AdminSystemPositionsQueryQueryParams {
  * @description success
  */
 export type AdminSystemPositionsQuery200 = CommonRes & {
-  data: CommonPageRes & {
+  result: CommonPageRes & {
     /**
      * @type array
      */

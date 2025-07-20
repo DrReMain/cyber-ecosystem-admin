@@ -16,12 +16,12 @@ import type {
 import { adminSystemMenuDeleteMutationRequestSchema, adminSystemMenuDeleteMutationResponseSchema } from '../../zod/menuController/adminSystemMenuDeleteSchema';
 
 export function getAdminSystemMenuDeleteUrl({ id }: { id: AdminSystemMenuDeletePathParams['id'] }) {
-  return `/api/v1/admin_system/manu/${id}` as const;
+  return `/api/v1/admin_system/menu/${id}` as const;
 }
 
 /**
  * @summary 删除单个菜单
- * {@link /api/v1/admin_system/manu/:id}
+ * {@link /api/v1/admin_system/menu/:id}
  */
 export async function adminSystemMenuDelete(
   { id, data }: { id: AdminSystemMenuDeletePathParams['id']; data?: AdminSystemMenuDeleteMutationRequest },

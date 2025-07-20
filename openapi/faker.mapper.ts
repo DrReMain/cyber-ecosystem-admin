@@ -16,4 +16,9 @@ export const mapper = {
     email: 'faker.internet.email()',
     phone: '"18688886666"',
     avatar: 'faker.image.avatar()',
+
+    access_token: '"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXBhcnRtZW50SUQiOiIiLCJleHAiOjE3NTMwNjI0ODQsImlhdCI6MTc1Mjk3NjA4NCwicG9zaXRpb25JRCI6IiIsInJvbGVDb2RlIjoiU1VQRVIiLCJ1c2VySUQiOiJkMDI1YXQ5c2liZnM3M2FmODhhZyJ9.eBSWn93KQORz14qzZuhwqycLo-o7l9Z8tgdRMMPhOTM"',
+    access_expire: '1753076493865',
+    refresh_token: '"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXBhcnRtZW50SUQiOiIiLCJleHAiOjE3NTMwNjI0ODQsImlhdCI6MTc1Mjk3NjA4NCwicG9zaXRpb25JRCI6IiIsInJvbGVDb2RlIjoiU1VQRVIiLCJ1c2VySUQiOiJkMDI1YXQ5c2liZnM3M2FmODhhZyJ9.eBSWn93KQORz14qzZuhwqycLo-o7l9Z8tgdRMMPhOTM"',
+    refresh_expire: '1753076493865'
 }

@@ -23,7 +23,7 @@ export type AdminSystemDepartmentsQueryQueryParamsSchema = z.infer<typeof adminS
  */
 export const adminSystemDepartmentsQuery200Schema = commonResSchema.and(
   z.object({
-    get data() {
+    get result() {
       return commonPageResSchema.and(
         z.object({
           get list() {

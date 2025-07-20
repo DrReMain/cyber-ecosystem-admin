@@ -24,7 +24,7 @@ export function createAdminSystemUserDeletePathParamsFaker(data?: Partial<AdminS
  */
 export function createAdminSystemUserDelete200Faker(data?: Partial<AdminSystemUserDelete200>): AdminSystemUserDelete200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: faker.string.alpha() });
+  return Object.assign({}, createCommonResFaker(), { result: faker.string.alpha() });
 }
 
 export function createAdminSystemUserDeleteMutationRequestFaker() {

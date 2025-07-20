@@ -40,7 +40,7 @@ export interface AdminSystemRolesQueryQueryParams {
  * @description success
  */
 export type AdminSystemRolesQuery200 = CommonRes & {
-  data: CommonPageRes & {
+  result: CommonPageRes & {
     /**
      * @type array
      */

@@ -21,7 +21,7 @@ export type AdminSystemRolePut200 = CommonRes & {
   /**
    * @type string
    */
-  data: string;
+  result: string;
 };
 
 export interface AdminSystemRolePutMutationRequest {

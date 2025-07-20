@@ -12,12 +12,12 @@ import type { AdminSystemMenuGetPathParams, AdminSystemMenuGetQueryResponse } fr
 import { adminSystemMenuGetQueryResponseSchema } from '../../zod/menuController/adminSystemMenuGetSchema';
 
 export function getAdminSystemMenuGetUrl({ id }: { id: AdminSystemMenuGetPathParams['id'] }) {
-  return `/api/v1/admin_system/manu/${id}` as const;
+  return `/api/v1/admin_system/menu/${id}` as const;
 }
 
 /**
  * @summary 查询菜单
- * {@link /api/v1/admin_system/manu/:id}
+ * {@link /api/v1/admin_system/menu/:id}
  */
 export async function adminSystemMenuGet({ id }: { id: AdminSystemMenuGetPathParams['id'] }, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config;

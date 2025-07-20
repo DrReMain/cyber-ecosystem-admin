@@ -27,7 +27,7 @@ export type AdminSystemPositionsQueryQueryParamsSchema = z.infer<typeof adminSys
  */
 export const adminSystemPositionsQuery200Schema = commonResSchema.and(
   z.object({
-    get data() {
+    get result() {
       return commonPageResSchema.and(
         z.object({
           get list() {

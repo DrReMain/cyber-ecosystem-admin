@@ -24,7 +24,7 @@ export function createAdminSystemMenuDeletePathParamsFaker(data?: Partial<AdminS
  */
 export function createAdminSystemMenuDelete200Faker(data?: Partial<AdminSystemMenuDelete200>): AdminSystemMenuDelete200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: faker.string.alpha() });
+  return Object.assign({}, createCommonResFaker(), { result: faker.string.alpha() });
 }
 
 export function createAdminSystemMenuDeleteMutationRequestFaker() {

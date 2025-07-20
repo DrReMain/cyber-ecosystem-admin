@@ -13,7 +13,7 @@ export type AdminSystemMenusDelete200 = CommonRes & {
   /**
    * @type string
    */
-  data: string;
+  result: string;
 };
 
 export type AdminSystemMenusDeleteMutationRequest = IdsReq;

@@ -11,10 +11,12 @@ export function createJwtResponseFaker(data?: Partial<JwtResponse>): JwtResponse
   faker.seed([2021]);
   return {
     ...{
-      access_token: faker.string.alpha(),
-      access_expire: faker.number.float({ min: 0 }),
-      refresh_token: faker.string.alpha(),
-      refresh_expire: faker.number.float({ min: 0 }),
+      access_token:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXBhcnRtZW50SUQiOiIiLCJleHAiOjE3NTMwNjI0ODQsImlhdCI6MTc1Mjk3NjA4NCwicG9zaXRpb25JRCI6IiIsInJvbGVDb2RlIjoiU1VQRVIiLCJ1c2VySUQiOiJkMDI1YXQ5c2liZnM3M2FmODhhZyJ9.eBSWn93KQORz14qzZuhwqycLo-o7l9Z8tgdRMMPhOTM',
+      access_expire: 1753076493865,
+      refresh_token:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXBhcnRtZW50SUQiOiIiLCJleHAiOjE3NTMwNjI0ODQsImlhdCI6MTc1Mjk3NjA4NCwicG9zaXRpb25JRCI6IiIsInJvbGVDb2RlIjoiU1VQRVIiLCJ1c2VySUQiOiJkMDI1YXQ5c2liZnM3M2FmODhhZyJ9.eBSWn93KQORz14qzZuhwqycLo-o7l9Z8tgdRMMPhOTM',
+      refresh_expire: 1753076493865,
     },
     ...(data || {}),
   };

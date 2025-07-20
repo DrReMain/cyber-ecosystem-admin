@@ -33,7 +33,7 @@ export type AdminSystemUsersQueryQueryParamsSchema = z.infer<typeof adminSystemU
  */
 export const adminSystemUsersQuery200Schema = commonResSchema.and(
   z.object({
-    get data() {
+    get result() {
       return commonPageResSchema.and(
         z.object({
           get list() {

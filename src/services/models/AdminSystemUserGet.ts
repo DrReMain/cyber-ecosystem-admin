@@ -22,7 +22,7 @@ export type AdminSystemUserGet200 = CommonRes & {
   /**
    * @type object
    */
-  data: UserRes;
+  result: UserRes;
 };
 
 export type AdminSystemUserGetQueryResponse = AdminSystemUserGet200;

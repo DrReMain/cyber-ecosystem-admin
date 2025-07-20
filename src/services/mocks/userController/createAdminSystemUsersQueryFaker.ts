@@ -39,7 +39,7 @@ export function createAdminSystemUsersQueryQueryParamsFaker(data?: Partial<Admin
 export function createAdminSystemUsersQuery200Faker(data?: Partial<AdminSystemUsersQuery200>): AdminSystemUsersQuery200 {
   faker.seed([2021]);
   return Object.assign({}, createCommonResFaker(), {
-    data: Object.assign({}, createCommonPageResFaker(), { list: faker.helpers.multiple(() => createUserResFaker()) }),
+    result: Object.assign({}, createCommonPageResFaker(), { list: faker.helpers.multiple(() => createUserResFaker()) }),
   });
 }
 

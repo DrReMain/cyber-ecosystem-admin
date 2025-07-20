@@ -16,13 +16,16 @@ import { createJwtResponseFaker } from '../createJwtResponseFaker';
  */
 export function createAccountRefresh200Faker(data?: Partial<AccountRefresh200>): AccountRefresh200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: createJwtResponseFaker() });
+  return Object.assign({}, createCommonResFaker(), { result: createJwtResponseFaker() });
 }
 
 export function createAccountRefreshMutationRequestFaker(data?: Partial<AccountRefreshMutationRequest>): AccountRefreshMutationRequest {
   faker.seed([2021]);
   return {
-    ...{ refresh_token: faker.string.alpha() },
+    ...{
+      refresh_token:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXBhcnRtZW50SUQiOiIiLCJleHAiOjE3NTMwNjI0ODQsImlhdCI6MTc1Mjk3NjA4NCwicG9zaXRpb25JRCI6IiIsInJvbGVDb2RlIjoiU1VQRVIiLCJ1c2VySUQiOiJkMDI1YXQ5c2liZnM3M2FmODhhZyJ9.eBSWn93KQORz14qzZuhwqycLo-o7l9Z8tgdRMMPhOTM',
+    },
     ...(data || {}),
   };
 }

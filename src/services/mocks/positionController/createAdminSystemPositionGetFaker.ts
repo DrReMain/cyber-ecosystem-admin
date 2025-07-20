@@ -24,7 +24,7 @@ export function createAdminSystemPositionGetPathParamsFaker(data?: Partial<Admin
  */
 export function createAdminSystemPositionGet200Faker(data?: Partial<AdminSystemPositionGet200>): AdminSystemPositionGet200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: createPositionResFaker() });
+  return Object.assign({}, createCommonResFaker(), { result: createPositionResFaker() });
 }
 
 export function createAdminSystemPositionGetQueryResponseFaker(data?: Partial<AdminSystemPositionGetQueryResponse>): AdminSystemPositionGetQueryResponse {

@@ -29,15 +29,15 @@ export const operations = {
     method: 'post',
   },
   adminSystemMenuDelete: {
-    path: '/api/v1/admin_system/manu/:id',
+    path: '/api/v1/admin_system/menu/:id',
     method: 'delete',
   },
   adminSystemMenuPut: {
-    path: '/api/v1/admin_system/manu/:id',
+    path: '/api/v1/admin_system/menu/:id',
     method: 'put',
   },
   adminSystemMenuGet: {
-    path: '/api/v1/admin_system/manu/:id',
+    path: '/api/v1/admin_system/menu/:id',
     method: 'get',
   },
   adminSystemRolePost: {

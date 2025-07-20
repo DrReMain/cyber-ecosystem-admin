@@ -13,7 +13,7 @@ import { resourceSchema } from '../resourceSchema';
  */
 export const adminSystemMenuPost200Schema = commonResSchema.and(
   z.object({
-    data: z.string(),
+    result: z.string(),
   }),
 );
 

@@ -19,7 +19,7 @@ export type AdminSystemDepartmentGetPathParamsSchema = z.infer<typeof adminSyste
  */
 export const adminSystemDepartmentGet200Schema = commonResSchema.and(
   z.object({
-    get data() {
+    get result() {
       return departmentResSchema;
     },
   }),

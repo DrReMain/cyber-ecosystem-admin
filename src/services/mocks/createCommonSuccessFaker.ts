@@ -12,5 +12,5 @@ import { createCommonResFaker } from './createCommonResFaker';
 
 export function createCommonSuccessFaker(data?: Partial<CommonSuccess>): CommonSuccess {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: faker.string.alpha() });
+  return Object.assign({}, createCommonResFaker(), { result: faker.string.alpha() });
 }

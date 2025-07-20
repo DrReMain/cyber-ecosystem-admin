@@ -18,7 +18,7 @@ export type AdminSystemDepartmentPutPathParamsSchema = z.infer<typeof adminSyste
  */
 export const adminSystemDepartmentPut200Schema = commonResSchema.and(
   z.object({
-    data: z.string(),
+    result: z.string(),
   }),
 );
 

@@ -22,7 +22,7 @@ export type AdminSystemRoleDelete200 = CommonRes & {
   /**
    * @type string
    */
-  data: string;
+  result: string;
 };
 
 export type AdminSystemRoleDeleteMutationRequest = EmptyRes;

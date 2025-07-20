@@ -19,7 +19,7 @@ export type AdminSystemMenuGetPathParamsSchema = z.infer<typeof adminSystemMenuG
  */
 export const adminSystemMenuGet200Schema = commonResSchema.and(
   z.object({
-    get data() {
+    get result() {
       return menuResSchema;
     },
   }),

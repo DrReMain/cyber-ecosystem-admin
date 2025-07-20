@@ -13,7 +13,7 @@ export type AccountLoginPassword200 = CommonRes & {
   /**
    * @type object
    */
-  data: JwtResponse;
+  result: JwtResponse;
 };
 
 export interface AccountLoginPasswordMutationRequest {

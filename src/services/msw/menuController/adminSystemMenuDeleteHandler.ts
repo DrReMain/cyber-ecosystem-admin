@@ -12,7 +12,7 @@ import { createAdminSystemMenuDeleteMutationResponseFaker } from '../../mocks/me
 export function adminSystemMenuDeleteHandler(
   data?: AdminSystemMenuDeleteMutationResponse | ((info: Parameters<Parameters<typeof http.delete>[1]>[0]) => Response),
 ) {
-  return http.delete('/api/v1/admin_system/manu/:id', (info) => {
+  return http.delete('/api/v1/admin_system/menu/:id', (info) => {
     if (typeof data === 'function')
       return data(info);
 

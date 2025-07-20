@@ -15,6 +15,11 @@ declare const messages: {
       "emailPlaceholder": "邮箱",
       "passwdPlaceholder": "密码",
       "submit": "登录"
+    },
+    "toast": {
+      "email": "邮箱",
+      "passwd": "密码",
+      "loginSuccess": "登录成功"
     }
   },
   "app": {
@@ -44,7 +49,7 @@ declare const messages: {
       "timeout": "网络请求超时",
       "http": "未知请求错误",
       "zod": "参数或返回值校验失败",
-      "zodField": "以下字段校验失败: {fields}"
+      "zodField": "{fields}: 校验失败"
     },
     "request_toast": {
       "loading": "请求中...",

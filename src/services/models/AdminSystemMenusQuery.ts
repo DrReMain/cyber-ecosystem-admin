@@ -13,7 +13,7 @@ export type AdminSystemMenusQuery200 = CommonRes & {
   /**
    * @type object
    */
-  data: {
+  result: {
     /**
      * @type array | undefined
      */

@@ -13,7 +13,7 @@ import { jwtResponseSchema } from '../jwtResponseSchema';
  */
 export const accountLoginPassword200Schema = commonResSchema.and(
   z.object({
-    get data() {
+    get result() {
       return jwtResponseSchema;
     },
   }),

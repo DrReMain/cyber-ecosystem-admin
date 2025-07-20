@@ -28,7 +28,7 @@ export function createAdminSystemPositionDeletePathParamsFaker(data?: Partial<Ad
  */
 export function createAdminSystemPositionDelete200Faker(data?: Partial<AdminSystemPositionDelete200>): AdminSystemPositionDelete200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: faker.string.alpha() });
+  return Object.assign({}, createCommonResFaker(), { result: faker.string.alpha() });
 }
 
 export function createAdminSystemPositionDeleteMutationRequestFaker() {

@@ -13,7 +13,7 @@ import { menuResSchema } from '../menuResSchema';
  */
 export const adminSystemMenusQuery200Schema = commonResSchema.and(
   z.object({
-    data: z.object({
+    result: z.object({
       get list() {
         return z.array(menuResSchema).optional();
       },

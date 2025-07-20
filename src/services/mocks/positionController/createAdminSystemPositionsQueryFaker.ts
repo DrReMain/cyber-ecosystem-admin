@@ -37,7 +37,7 @@ export function createAdminSystemPositionsQueryQueryParamsFaker(data?: Partial<A
 export function createAdminSystemPositionsQuery200Faker(data?: Partial<AdminSystemPositionsQuery200>): AdminSystemPositionsQuery200 {
   faker.seed([2021]);
   return Object.assign({}, createCommonResFaker(), {
-    data: Object.assign({}, createCommonPageResFaker(), { list: faker.helpers.multiple(() => createPositionResFaker()) }),
+    result: Object.assign({}, createCommonPageResFaker(), { list: faker.helpers.multiple(() => createPositionResFaker()) }),
   });
 }
 

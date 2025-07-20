@@ -24,7 +24,7 @@ export function createAdminSystemRoleGetPathParamsFaker(data?: Partial<AdminSyst
  */
 export function createAdminSystemRoleGet200Faker(data?: Partial<AdminSystemRoleGet200>): AdminSystemRoleGet200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: createRoleResFaker() });
+  return Object.assign({}, createCommonResFaker(), { result: createRoleResFaker() });
 }
 
 export function createAdminSystemRoleGetQueryResponseFaker(data?: Partial<AdminSystemRoleGetQueryResponse>): AdminSystemRoleGetQueryResponse {

@@ -13,7 +13,7 @@ import { idsReqSchema } from '../idsReqSchema';
  */
 export const adminSystemRolesDelete200Schema = commonResSchema.and(
   z.object({
-    data: z.string(),
+    result: z.string(),
   }),
 );
 

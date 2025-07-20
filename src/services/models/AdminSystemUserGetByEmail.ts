@@ -20,7 +20,7 @@ export type AdminSystemUserGetByEmail200 = CommonRes & {
   /**
    * @type object
    */
-  data: UserRes;
+  result: UserRes;
 };
 
 export type AdminSystemUserGetByEmailQueryResponse = AdminSystemUserGetByEmail200;

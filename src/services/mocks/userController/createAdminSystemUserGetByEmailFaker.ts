@@ -28,7 +28,7 @@ export function createAdminSystemUserGetByEmailQueryParamsFaker(data?: Partial<A
  */
 export function createAdminSystemUserGetByEmail200Faker(data?: Partial<AdminSystemUserGetByEmail200>): AdminSystemUserGetByEmail200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: createUserResFaker() });
+  return Object.assign({}, createCommonResFaker(), { result: createUserResFaker() });
 }
 
 export function createAdminSystemUserGetByEmailQueryResponseFaker(

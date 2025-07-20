@@ -16,7 +16,7 @@ import { createResourceFaker } from '../createResourceFaker';
  */
 export function createAdminSystemMenuPost200Faker(data?: Partial<AdminSystemMenuPost200>): AdminSystemMenuPost200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: faker.string.alpha() });
+  return Object.assign({}, createCommonResFaker(), { result: faker.string.alpha() });
 }
 
 export function createAdminSystemMenuPostMutationRequestFaker(data?: Partial<AdminSystemMenuPostMutationRequest>): AdminSystemMenuPostMutationRequest {

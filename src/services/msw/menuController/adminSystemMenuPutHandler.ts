@@ -10,7 +10,7 @@ import type { AdminSystemMenuPutMutationResponse } from '../../models/AdminSyste
 import { createAdminSystemMenuPutMutationResponseFaker } from '../../mocks/menuController/createAdminSystemMenuPutFaker';
 
 export function adminSystemMenuPutHandler(data?: AdminSystemMenuPutMutationResponse | ((info: Parameters<Parameters<typeof http.put>[1]>[0]) => Response)) {
-  return http.put('/api/v1/admin_system/manu/:id', (info) => {
+  return http.put('/api/v1/admin_system/menu/:id', (info) => {
     if (typeof data === 'function')
       return data(info);
 

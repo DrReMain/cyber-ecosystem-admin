@@ -12,7 +12,7 @@ export type AdminSystemRolePost200 = CommonRes & {
   /**
    * @type string
    */
-  data: string;
+  result: string;
 };
 
 export interface AdminSystemRolePostMutationRequest {

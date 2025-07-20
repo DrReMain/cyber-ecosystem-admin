@@ -9,7 +9,7 @@ import { commonResSchema } from './commonResSchema';
 
 export const commonSuccessSchema = commonResSchema.and(
   z.object({
-    data: z.string(),
+    result: z.string(),
   }),
 );
 

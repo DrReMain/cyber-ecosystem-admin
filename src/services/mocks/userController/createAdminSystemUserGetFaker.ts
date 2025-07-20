@@ -24,7 +24,7 @@ export function createAdminSystemUserGetPathParamsFaker(data?: Partial<AdminSyst
  */
 export function createAdminSystemUserGet200Faker(data?: Partial<AdminSystemUserGet200>): AdminSystemUserGet200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: createUserResFaker() });
+  return Object.assign({}, createCommonResFaker(), { result: createUserResFaker() });
 }
 
 export function createAdminSystemUserGetQueryResponseFaker(data?: Partial<AdminSystemUserGetQueryResponse>): AdminSystemUserGetQueryResponse {

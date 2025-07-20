@@ -16,7 +16,7 @@ import { createMenuResFaker } from '../createMenuResFaker';
  */
 export function createAdminSystemMenusQuery200Faker(data?: Partial<AdminSystemMenusQuery200>): AdminSystemMenusQuery200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: { list: faker.helpers.multiple(() => createMenuResFaker()) } });
+  return Object.assign({}, createCommonResFaker(), { result: { list: faker.helpers.multiple(() => createMenuResFaker()) } });
 }
 
 export function createAdminSystemMenusQueryQueryResponseFaker(data?: Partial<AdminSystemMenusQueryQueryResponse>): AdminSystemMenusQueryQueryResponse {

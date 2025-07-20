@@ -10,7 +10,7 @@ import type { AdminSystemMenuGetQueryResponse } from '../../models/AdminSystemMe
 import { createAdminSystemMenuGetQueryResponseFaker } from '../../mocks/menuController/createAdminSystemMenuGetFaker';
 
 export function adminSystemMenuGetHandler(data?: AdminSystemMenuGetQueryResponse | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Response)) {
-  return http.get('/api/v1/admin_system/manu/:id', (info) => {
+  return http.get('/api/v1/admin_system/menu/:id', (info) => {
     if (typeof data === 'function')
       return data(info);
 

@@ -22,7 +22,7 @@ export type AdminSystemRoleGet200 = CommonRes & {
   /**
    * @type object
    */
-  data: RoleRes;
+  result: RoleRes;
 };
 
 export type AdminSystemRoleGetQueryResponse = AdminSystemRoleGet200;

@@ -26,6 +26,7 @@ interface NormalizedToastOptions<Res> {
 
 interface TOpts<Res> {
   toast?: boolean | ToastOptions<Res>;
+  format?: Record<string, string>;
 }
 
 // ============================================================================
@@ -149,13 +150,14 @@ export default function useRequest() {
   /**
    * Handle and normalize various error types
    */
-  async function handleError(e: any, _opts?: TOpts<any>): Promise<never> {
+  async function handleError(e: any, opts?: TOpts<any>): Promise<never> {
     if (e instanceof ZodError) {
       if (e.issues.length > 0) {
         throw new Error(
-          t('error.zodField', {
-            fields: e.issues.map(({ path }) => path.join('.')).join(', '),
-          }),
+          t('error.zodField', { fields: e.issues.map(({ path }) => {
+            const p = path.join('.');
+            return opts?.format?.[p] ?? p;
+          }).join(', ') }),
         );
       }
       throw new Error(t('error.zod'));

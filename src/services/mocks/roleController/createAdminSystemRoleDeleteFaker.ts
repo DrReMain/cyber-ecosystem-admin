@@ -24,7 +24,7 @@ export function createAdminSystemRoleDeletePathParamsFaker(data?: Partial<AdminS
  */
 export function createAdminSystemRoleDelete200Faker(data?: Partial<AdminSystemRoleDelete200>): AdminSystemRoleDelete200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: faker.string.alpha() });
+  return Object.assign({}, createCommonResFaker(), { result: faker.string.alpha() });
 }
 
 export function createAdminSystemRoleDeleteMutationRequestFaker() {

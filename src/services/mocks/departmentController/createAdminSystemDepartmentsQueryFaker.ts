@@ -32,7 +32,7 @@ export function createAdminSystemDepartmentsQueryQueryParamsFaker(
 export function createAdminSystemDepartmentsQuery200Faker(data?: Partial<AdminSystemDepartmentsQuery200>): AdminSystemDepartmentsQuery200 {
   faker.seed([2021]);
   return Object.assign({}, createCommonResFaker(), {
-    data: Object.assign({}, createCommonPageResFaker(), { list: faker.helpers.multiple(() => createDepartmentResFaker()) }),
+    result: Object.assign({}, createCommonPageResFaker(), { list: faker.helpers.multiple(() => createDepartmentResFaker()) }),
   });
 }
 

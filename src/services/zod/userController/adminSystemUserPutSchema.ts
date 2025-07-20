@@ -18,7 +18,7 @@ export type AdminSystemUserPutPathParamsSchema = z.infer<typeof adminSystemUserP
  */
 export const adminSystemUserPut200Schema = commonResSchema.and(
   z.object({
-    data: z.string(),
+    result: z.string(),
   }),
 );
 

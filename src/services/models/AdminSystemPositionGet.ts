@@ -22,7 +22,7 @@ export type AdminSystemPositionGet200 = CommonRes & {
   /**
    * @type object
    */
-  data: PositionRes;
+  result: PositionRes;
 };
 
 export type AdminSystemPositionGetQueryResponse = AdminSystemPositionGet200;

@@ -28,7 +28,7 @@ export function createAdminSystemPositionPutPathParamsFaker(data?: Partial<Admin
  */
 export function createAdminSystemPositionPut200Faker(data?: Partial<AdminSystemPositionPut200>): AdminSystemPositionPut200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: faker.string.alpha() });
+  return Object.assign({}, createCommonResFaker(), { result: faker.string.alpha() });
 }
 
 export function createAdminSystemPositionPutMutationRequestFaker(data?: Partial<AdminSystemPositionPutMutationRequest>): AdminSystemPositionPutMutationRequest {

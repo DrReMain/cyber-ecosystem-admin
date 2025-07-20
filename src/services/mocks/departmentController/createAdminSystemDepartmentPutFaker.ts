@@ -28,7 +28,7 @@ export function createAdminSystemDepartmentPutPathParamsFaker(data?: Partial<Adm
  */
 export function createAdminSystemDepartmentPut200Faker(data?: Partial<AdminSystemDepartmentPut200>): AdminSystemDepartmentPut200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: faker.string.alpha() });
+  return Object.assign({}, createCommonResFaker(), { result: faker.string.alpha() });
 }
 
 export function createAdminSystemDepartmentPutMutationRequestFaker(

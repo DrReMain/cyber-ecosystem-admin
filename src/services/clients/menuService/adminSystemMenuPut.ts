@@ -12,12 +12,12 @@ import type { AdminSystemMenuPutMutationRequest, AdminSystemMenuPutMutationRespo
 import { adminSystemMenuPutMutationRequestSchema, adminSystemMenuPutMutationResponseSchema } from '../../zod/menuController/adminSystemMenuPutSchema';
 
 export function getAdminSystemMenuPutUrl({ id }: { id: AdminSystemMenuPutPathParams['id'] }) {
-  return `/api/v1/admin_system/manu/${id}` as const;
+  return `/api/v1/admin_system/menu/${id}` as const;
 }
 
 /**
  * @summary 修改菜单
- * {@link /api/v1/admin_system/manu/:id}
+ * {@link /api/v1/admin_system/menu/:id}
  */
 export async function adminSystemMenuPut(
   { id, data }: { id: AdminSystemMenuPutPathParams['id']; data?: AdminSystemMenuPutMutationRequest },

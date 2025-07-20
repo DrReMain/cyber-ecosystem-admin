@@ -28,7 +28,7 @@ export function createAdminSystemDepartmentGetPathParamsFaker(data?: Partial<Adm
  */
 export function createAdminSystemDepartmentGet200Faker(data?: Partial<AdminSystemDepartmentGet200>): AdminSystemDepartmentGet200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: createDepartmentResFaker() });
+  return Object.assign({}, createCommonResFaker(), { result: createDepartmentResFaker() });
 }
 
 export function createAdminSystemDepartmentGetQueryResponseFaker(data?: Partial<AdminSystemDepartmentGetQueryResponse>): AdminSystemDepartmentGetQueryResponse {

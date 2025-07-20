@@ -14,6 +14,12 @@
       "emailPlaceholder": "邮箱",
       "passwdPlaceholder": "密码",
       "submit": "登录"
+    },
+
+    "toast": {
+      "email": "邮箱",
+      "passwd": "密码",
+      "loginSuccess": "登录成功"
     }
   }
 }

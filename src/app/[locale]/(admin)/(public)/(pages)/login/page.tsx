@@ -8,6 +8,7 @@ import Form from '@/app/[locale]/(admin)/(public)/(pages)/login/_modules/form.cl
 import Left from '@/app/[locale]/(admin)/(public)/(pages)/login/_modules/left.client';
 import Logo from '@/app/[locale]/(admin)/(public)/(pages)/login/_modules/logo';
 import Right from '@/app/[locale]/(admin)/(public)/(pages)/login/_modules/right.client';
+import Guard from '@/app/[locale]/(admin)/_module/guard';
 
 export async function generateMetadata({ params }: Readonly<{ params: Promise<{ locale: Locale }> }>) {
   const { locale } = await params;
@@ -20,15 +21,17 @@ export async function generateMetadata({ params }: Readonly<{ params: Promise<{ 
 
 export default async function Page() {
   return (
-    <Container
-      logo={<Logo />}
-      left={<Left />}
-      config={<Config />}
-      right={(
-        <Right>
-          <Form />
-        </Right>
-      )}
-    />
+    <Guard auth={false}>
+      <Container
+        logo={<Logo />}
+        left={<Left />}
+        config={<Config />}
+        right={(
+          <Right>
+            <Form />
+          </Right>
+        )}
+      />
+    </Guard>
   );
 }

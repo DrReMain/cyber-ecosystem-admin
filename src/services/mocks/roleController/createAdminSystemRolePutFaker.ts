@@ -28,7 +28,7 @@ export function createAdminSystemRolePutPathParamsFaker(data?: Partial<AdminSyst
  */
 export function createAdminSystemRolePut200Faker(data?: Partial<AdminSystemRolePut200>): AdminSystemRolePut200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: faker.string.alpha() });
+  return Object.assign({}, createCommonResFaker(), { result: faker.string.alpha() });
 }
 
 export function createAdminSystemRolePutMutationRequestFaker(data?: Partial<AdminSystemRolePutMutationRequest>): AdminSystemRolePutMutationRequest {

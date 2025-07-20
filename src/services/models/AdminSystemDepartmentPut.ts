@@ -21,7 +21,7 @@ export type AdminSystemDepartmentPut200 = CommonRes & {
   /**
    * @type string
    */
-  data: string;
+  result: string;
 };
 
 export interface AdminSystemDepartmentPutMutationRequest {

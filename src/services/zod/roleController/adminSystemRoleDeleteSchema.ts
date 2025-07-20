@@ -19,7 +19,7 @@ export type AdminSystemRoleDeletePathParamsSchema = z.infer<typeof adminSystemRo
  */
 export const adminSystemRoleDelete200Schema = commonResSchema.and(
   z.object({
-    data: z.string(),
+    result: z.string(),
   }),
 );
 

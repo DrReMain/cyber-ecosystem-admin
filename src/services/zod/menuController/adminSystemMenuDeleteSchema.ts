@@ -19,7 +19,7 @@ export type AdminSystemMenuDeletePathParamsSchema = z.infer<typeof adminSystemMe
  */
 export const adminSystemMenuDelete200Schema = commonResSchema.and(
   z.object({
-    data: z.string(),
+    result: z.string(),
   }),
 );
 

@@ -14,6 +14,12 @@
       "emailPlaceholder": "البريد الإلكتروني",
       "passwdPlaceholder": "كلمة المرور",
       "submit": "تسجيل الدخول"
+    },
+
+    "toast": {
+      "email": "البريد الإلكتروني",
+      "passwd": "كلمة المرور",
+      "loginSuccess": "تم تسجيل الدخول بنجاح"
     }
   }
 }

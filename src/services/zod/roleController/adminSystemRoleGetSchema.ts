@@ -19,7 +19,7 @@ export type AdminSystemRoleGetPathParamsSchema = z.infer<typeof adminSystemRoleG
  */
 export const adminSystemRoleGet200Schema = commonResSchema.and(
   z.object({
-    get data() {
+    get result() {
       return roleResSchema;
     },
   }),

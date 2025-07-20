@@ -21,7 +21,7 @@ export type AdminSystemPositionPut200 = CommonRes & {
   /**
    * @type string
    */
-  data: string;
+  result: string;
 };
 
 export interface AdminSystemPositionPutMutationRequest {

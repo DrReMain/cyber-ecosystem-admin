@@ -16,7 +16,7 @@ import { createIdsReqFaker } from '../createIdsReqFaker';
  */
 export function createAdminSystemDepartmentsDelete200Faker(data?: Partial<AdminSystemDepartmentsDelete200>): AdminSystemDepartmentsDelete200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: faker.string.alpha() });
+  return Object.assign({}, createCommonResFaker(), { result: faker.string.alpha() });
 }
 
 export function createAdminSystemDepartmentsDeleteMutationRequestFaker() {

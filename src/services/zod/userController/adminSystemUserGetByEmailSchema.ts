@@ -19,7 +19,7 @@ export type AdminSystemUserGetByEmailQueryParamsSchema = z.infer<typeof adminSys
  */
 export const adminSystemUserGetByEmail200Schema = commonResSchema.and(
   z.object({
-    get data() {
+    get result() {
       return userResSchema;
     },
   }),

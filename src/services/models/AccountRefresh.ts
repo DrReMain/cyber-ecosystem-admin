@@ -13,7 +13,7 @@ export type AccountRefresh200 = CommonRes & {
   /**
    * @type object
    */
-  data: JwtResponse;
+  result: JwtResponse;
 };
 
 export interface AccountRefreshMutationRequest {

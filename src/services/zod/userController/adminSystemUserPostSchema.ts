@@ -12,7 +12,7 @@ import { commonResSchema } from '../commonResSchema';
  */
 export const adminSystemUserPost200Schema = commonResSchema.and(
   z.object({
-    data: z.string(),
+    result: z.string(),
   }),
 );
 

@@ -72,7 +72,7 @@ export interface AdminSystemUsersQueryQueryParams {
  * @description success
  */
 export type AdminSystemUsersQuery200 = CommonRes & {
-  data: CommonPageRes & {
+  result: CommonPageRes & {
     /**
      * @type array
      */

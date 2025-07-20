@@ -19,7 +19,7 @@ export type AdminSystemDepartmentDeletePathParamsSchema = z.infer<typeof adminSy
  */
 export const adminSystemDepartmentDelete200Schema = commonResSchema.and(
   z.object({
-    data: z.string(),
+    result: z.string(),
   }),
 );
 

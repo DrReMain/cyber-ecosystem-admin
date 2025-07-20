@@ -9,5 +9,5 @@ export type CommonSuccess = CommonRes & {
   /**
    * @type string
    */
-  data: string;
+  result: string;
 };

@@ -18,7 +18,7 @@ export type AdminSystemPositionPutPathParamsSchema = z.infer<typeof adminSystemP
  */
 export const adminSystemPositionPut200Schema = commonResSchema.and(
   z.object({
-    data: z.string(),
+    result: z.string(),
   }),
 );
 

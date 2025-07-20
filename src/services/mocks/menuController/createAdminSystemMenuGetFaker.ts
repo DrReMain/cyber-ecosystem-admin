@@ -24,7 +24,7 @@ export function createAdminSystemMenuGetPathParamsFaker(data?: Partial<AdminSyst
  */
 export function createAdminSystemMenuGet200Faker(data?: Partial<AdminSystemMenuGet200>): AdminSystemMenuGet200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: createMenuResFaker() });
+  return Object.assign({}, createCommonResFaker(), { result: createMenuResFaker() });
 }
 
 export function createAdminSystemMenuGetQueryResponseFaker(data?: Partial<AdminSystemMenuGetQueryResponse>): AdminSystemMenuGetQueryResponse {

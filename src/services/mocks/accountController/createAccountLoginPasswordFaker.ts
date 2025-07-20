@@ -16,7 +16,7 @@ import { createJwtResponseFaker } from '../createJwtResponseFaker';
  */
 export function createAccountLoginPassword200Faker(data?: Partial<AccountLoginPassword200>): AccountLoginPassword200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: createJwtResponseFaker() });
+  return Object.assign({}, createCommonResFaker(), { result: createJwtResponseFaker() });
 }
 
 export function createAccountLoginPasswordMutationRequestFaker(data?: Partial<AccountLoginPasswordMutationRequest>): AccountLoginPasswordMutationRequest {

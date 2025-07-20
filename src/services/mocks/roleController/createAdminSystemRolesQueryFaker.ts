@@ -33,7 +33,7 @@ export function createAdminSystemRolesQueryQueryParamsFaker(data?: Partial<Admin
 export function createAdminSystemRolesQuery200Faker(data?: Partial<AdminSystemRolesQuery200>): AdminSystemRolesQuery200 {
   faker.seed([2021]);
   return Object.assign({}, createCommonResFaker(), {
-    data: Object.assign({}, createCommonPageResFaker(), { list: faker.helpers.multiple(() => createRoleResFaker()) }),
+    result: Object.assign({}, createCommonPageResFaker(), { list: faker.helpers.multiple(() => createRoleResFaker()) }),
   });
 }
 

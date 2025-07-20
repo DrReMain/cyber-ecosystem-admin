@@ -19,7 +19,7 @@ export type AdminSystemPositionGetPathParamsSchema = z.infer<typeof adminSystemP
  */
 export const adminSystemPositionGet200Schema = commonResSchema.and(
   z.object({
-    get data() {
+    get result() {
       return positionResSchema;
     },
   }),

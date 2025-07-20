@@ -22,7 +22,7 @@ export type AdminSystemMenuPut200 = CommonRes & {
   /**
    * @type string
    */
-  data: string;
+  result: string;
 };
 
 export const adminSystemMenuPutMutationRequestStatusEnum = {

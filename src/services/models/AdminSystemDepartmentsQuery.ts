@@ -24,7 +24,7 @@ export interface AdminSystemDepartmentsQueryQueryParams {
  * @description success
  */
 export type AdminSystemDepartmentsQuery200 = CommonRes & {
-  data: CommonPageRes & {
+  result: CommonPageRes & {
     /**
      * @type array
      */

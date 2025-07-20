@@ -64,9 +64,9 @@ components:
             allOf:
               - $ref: "#/components/schemas/commonRes"
               - type: object
-                required: [ data ]
+                required: [ result ]
                 properties:
-                  data:
+                  result:
                     type: string
 
   parameters:
@@ -437,9 +437,9 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/commonRes"
                   - type: object
-                    required: [ data ]
+                    required: [ result ]
                     properties:
-                      data:
+                      result:
                         $ref: "#/components/schemas/jwtResponse"
 
   /api/v1/admin_system/account/refresh:
@@ -467,9 +467,9 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/commonRes"
                   - type: object
-                    required: [ data ]
+                    required: [ result ]
                     properties:
-                      data:
+                      result:
                         $ref: "#/components/schemas/jwtResponse"
 
   # 菜单管理
@@ -539,9 +539,9 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/commonRes"
                   - type: object
-                    required: [ data ]
+                    required: [ result ]
                     properties:
-                      data:
+                      result:
                         type: object
                         properties:
                           list:
@@ -567,7 +567,7 @@ paths:
         "200":
           $ref: "#/components/responses/commonSuccess"
 
-  /api/v1/admin_system/manu/{id}:
+  /api/v1/admin_system/menu/{id}:
     delete:
       tags: [ menu ]
       summary: 删除单个菜单
@@ -647,9 +647,9 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/commonRes"
                   - type: object
-                    required: [ data ]
+                    required: [ result ]
                     properties:
-                      data:
+                      result:
                         $ref: "#/components/schemas/menuRes"
 
   # 角色管理
@@ -719,9 +719,9 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/commonRes"
                   - type: object
-                    required: [ data ]
+                    required: [ result ]
                     properties:
-                      data:
+                      result:
                         allOf:
                           - $ref: "#/components/schemas/commonPageRes"
                           - type: object
@@ -825,9 +825,9 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/commonRes"
                   - type: object
-                    required: [ data ]
+                    required: [ result ]
                     properties:
-                      data:
+                      result:
                         $ref: "#/components/schemas/roleRes"
 
   # 部门管理
@@ -884,9 +884,9 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/commonRes"
                   - type: object
-                    required: [ data ]
+                    required: [ result ]
                     properties:
-                      data:
+                      result:
                         allOf:
                           - $ref: "#/components/schemas/commonPageRes"
                           - type: object
@@ -987,9 +987,9 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/commonRes"
                   - type: object
-                    required: [ data ]
+                    required: [ result ]
                     properties:
-                      data:
+                      result:
                         $ref: "#/components/schemas/departmentRes"
 
   # 职位管理
@@ -1055,9 +1055,9 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/commonRes"
                   - type: object
-                    required: [ data ]
+                    required: [ result ]
                     properties:
-                      data:
+                      result:
                         allOf:
                           - $ref: "#/components/schemas/commonPageRes"
                           - type: object
@@ -1157,9 +1157,9 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/commonRes"
                   - type: object
-                    required: [ data ]
+                    required: [ result ]
                     properties:
-                      data:
+                      result:
                         $ref: "#/components/schemas/positionRes"
 
   # 用户管理
@@ -1282,9 +1282,9 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/commonRes"
                   - type: object
-                    required: [ data ]
+                    required: [ result ]
                     properties:
-                      data:
+                      result:
                         allOf:
                           - $ref: "#/components/schemas/commonPageRes"
                           - type: object
@@ -1412,9 +1412,9 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/commonRes"
                   - type: object
-                    required: [ data ]
+                    required: [ result ]
                     properties:
-                      data:
+                      result:
                         $ref: "#/components/schemas/userRes"
 
   /api/v1/admin_system/user/byemail:
@@ -1441,7 +1441,7 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/commonRes"
                   - type: object
-                    required: [ data ]
+                    required: [ result ]
                     properties:
-                      data:
+                      result:
                         $ref: "#/components/schemas/userRes"

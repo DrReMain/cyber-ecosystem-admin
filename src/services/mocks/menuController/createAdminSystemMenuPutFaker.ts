@@ -29,7 +29,7 @@ export function createAdminSystemMenuPutPathParamsFaker(data?: Partial<AdminSyst
  */
 export function createAdminSystemMenuPut200Faker(data?: Partial<AdminSystemMenuPut200>): AdminSystemMenuPut200 {
   faker.seed([2021]);
-  return Object.assign({}, createCommonResFaker(), { data: faker.string.alpha() });
+  return Object.assign({}, createCommonResFaker(), { result: faker.string.alpha() });
 }
 
 export function createAdminSystemMenuPutMutationRequestFaker(data?: Partial<AdminSystemMenuPutMutationRequest>): AdminSystemMenuPutMutationRequest {
