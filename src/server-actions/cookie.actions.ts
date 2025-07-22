@@ -48,7 +48,7 @@ export async function setCookieAction(
   try {
     const defaultOptions: CookieOptions = {
       path: '/',
-      secure: process.env.NODE_ENV === 'production',
+      secure: process.env.NEXT_PUBLIC_APP_URL?.startsWith('https://'),
       httpOnly: true,
       sameSite: 'strict',
       domain: process.env.NEXT_PUBLIC_APP_HOST,

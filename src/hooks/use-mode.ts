@@ -6,13 +6,13 @@ import { useCallback, useEffect, useState } from 'react';
 import { setCookieAction } from '@/server-actions/cookie.actions';
 
 export default function useMode() {
-  const { resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme, theme, setTheme } = useTheme();
   const [isReady, setIsReady] = useState(false);
   useEffect(() => {
     setIsReady(true);// eslint-disable-line react-hooks-extra/no-direct-set-state-in-use-effect
   }, []);
 
-  const toggle = useCallback((e: ReactMouseEvent<Element, MouseEvent>, t: string) => {
+  const toggle = useCallback((e: ReactMouseEvent<Element, MouseEvent> | undefined, t: string) => {
     if (!resolvedTheme)
       return;
 
@@ -27,7 +27,7 @@ export default function useMode() {
           // @ts-expect-error
           = document.startViewTransition
             && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!isAppearanceTransition || resolvedTheme === t)
+    if (e === undefined || !isAppearanceTransition || resolvedTheme === t)
       return applyTheme();
 
     const [x, y] = [e.nativeEvent.x, e.nativeEvent.y];
@@ -60,6 +60,7 @@ export default function useMode() {
 
   return {
     resolvedTheme: isReady ? resolvedTheme : undefined,
+    theme,
     toggle,
     isReady,
   };

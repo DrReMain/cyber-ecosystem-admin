@@ -5,7 +5,9 @@ import type { IStoreSetting } from './store';
 import { KEY_SETTING_COLOR } from './store';
 
 export default async function settingFromCookie(): Promise<IStoreSetting> {
-  const result: IStoreSetting = {};
+  const result: IStoreSetting = {
+    color: '#1677ff',
+  };
   const [color] = await Promise.all([
     getCookieAction(KEY_SETTING_COLOR),
   ]);

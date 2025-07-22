@@ -15,7 +15,7 @@ const baseConfig: NextConfig = {
     reactCompiler: true, // need babel-plugin-react-compiler
   },
   transpilePackages: ['jotai-devtools'],
-  allowedDevOrigins: process.env.NEXT_ALLOWED_DEV_ORIGINS?.split(','),
+  allowedDevOrigins: process.env.NEXT_PUBLIC_APP_HOST?.split(','),
 };
 
 let configWithPlugins = baseConfig;
