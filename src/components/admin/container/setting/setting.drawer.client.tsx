@@ -9,6 +9,9 @@ import { useImperativeHandle, useState } from 'react';
 import { getLangDir } from 'rtl-detect';
 
 import Segment1 from '@/components/admin/container/setting/segment1.client';
+import Segment2 from '@/components/admin/container/setting/segment2.client';
+import Segment3 from '@/components/admin/container/setting/segment3.client';
+import Segment4 from '@/components/admin/container/setting/segment4.client';
 
 export interface IRef {
   open: () => void;
@@ -64,6 +67,9 @@ export default function SettingDrawer({ ref }: Readonly<PropsWithChildren<IProps
           onChange={value => setSegment(value as typeof segments[number])}
         />
         {segment === segments[0] && <Segment1 />}
+        {segment === segments[1] && <Segment2 />}
+        {segment === segments[2] && <Segment3 />}
+        {segment === segments[3] && <Segment4 />}
       </Flex>
     </Drawer>
   );
