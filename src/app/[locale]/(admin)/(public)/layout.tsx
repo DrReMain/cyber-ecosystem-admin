@@ -9,3 +9,5 @@ export default async function Layout({ children }: Readonly<PropsWithChildren>) 
     </Guard>
   );
 }
+
+export const dynamic = 'force-dynamic';

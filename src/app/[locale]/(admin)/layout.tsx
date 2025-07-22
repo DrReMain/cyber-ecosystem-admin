@@ -9,5 +9,3 @@ export default async function Layout({ children }: Readonly<PropsWithChildren>) 
     </Entry>
   );
 }
-
-export const dynamic = 'force-dynamic';

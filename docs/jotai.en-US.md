@@ -13,15 +13,15 @@ Usage example:
 import type { PropsWithChildren } from 'react';
 import JotaiProvider from '@/providers/jotai.provider';
 import settingFromCookie from '@/store/setting/from-cookie';
-import userFromCookie from '@/store/user/from-cookie';
+import tokenFromCookie from '@/store/token/from-cookie';
 
 export default async function Layout({ children }: PropsWithChildren) {
-  const [setting, user] = await Promise.all([
-    settingFromCookie(),
-    userFromCookie(),
+  const [setting, token] = await Promise.all([
+    settingFromCookie(), 
+    tokenFromCookie(),
   ]);
   return (
-    <JotaiProvider initialData={{ setting, user }}>
+    <JotaiProvider initialData={{ setting, token }}>
       {children}
     </JotaiProvider>
   );

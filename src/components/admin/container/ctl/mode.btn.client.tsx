@@ -23,10 +23,10 @@ export default function Mode() {
       <Ctl onClick={handleToggle}>
         { resolvedTheme === 'dark'
           ? (
-              <Sun width={16} height={16} />
+              <Sun size={16} />
             )
           : (
-              <Moon width={16} height={16} />
+              <Moon size={16} />
             )}
       </Ctl>
     )

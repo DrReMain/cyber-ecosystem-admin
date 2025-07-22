@@ -15,7 +15,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { getLangDir } from 'rtl-detect';
 
 import Loading from '@/components/base/loading';
-import { setting_colorAtom } from '@/store/setting/store';
+import { setting_Atom } from '@/store/setting/store';
 
 import { components } from './components.style';
 import useI18n from './i18n.hook';
@@ -31,7 +31,7 @@ export default function AntdConfig({ children, locale, theme }: Readonly<PropsWi
   theme?: string;
 }>>) {
   const antdLocale = useI18n(locale);
-  const color = useAtomValue(setting_colorAtom);
+  const { color } = useAtomValue(setting_Atom);
   const { resolvedTheme } = useTheme();
   const algorithm = useMemo(() => {
     const target = resolvedTheme || theme;

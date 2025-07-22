@@ -7,13 +7,12 @@ import { useTranslations } from 'next-intl';
 
 import useMode from '@/hooks/use-mode';
 import colors from '@/lib/constant/colors';
-import { setting_colorAtom } from '@/store/setting/store';
+import { setting_Atom } from '@/store/setting/store';
 
 export default function Segment1() {
   const t = useTranslations('setting.drawer');
   const { isReady, theme, toggle } = useMode();
-  const [color, setColor] = useAtom(setting_colorAtom);
-
+  const [setting, setSetting] = useAtom(setting_Atom);
   return (
     <>
       <Card
@@ -27,10 +26,10 @@ export default function Segment1() {
               <button
                 type="button"
                 className="w-full flex items-center justify-center rounded-md py-2 cursor-pointer border border-gray-200 dark:border-gray-800"
-                style={(theme === 'light' ? { borderColor: color } : {})}
+                style={(theme === 'light' ? { borderColor: setting.color } : {})}
                 onClick={e => toggle(e, 'light')}
               >
-                <Sun width={16} height={16} />
+                <Sun size={16} />
               </button>
               <span>{t('light')}</span>
             </div>
@@ -39,10 +38,10 @@ export default function Segment1() {
               <button
                 type="button"
                 className="w-full flex items-center justify-center rounded-md py-2 cursor-pointer border border-gray-200 dark:border-gray-800"
-                style={(theme === 'dark' ? { borderColor: color } : {})}
+                style={(theme === 'dark' ? { borderColor: setting.color } : {})}
                 onClick={e => toggle(e, 'dark')}
               >
-                <Moon width={16} height={16} />
+                <Moon size={16} />
               </button>
               <span>{t('dark')}</span>
             </div>
@@ -51,10 +50,10 @@ export default function Segment1() {
               <button
                 type="button"
                 className="w-full flex items-center justify-center rounded-md py-2 cursor-pointer border border-gray-200 dark:border-gray-800"
-                style={(theme === 'system' ? { borderColor: color } : {})}
+                style={(theme === 'system' ? { borderColor: setting.color } : {})}
                 onClick={e => toggle(e, 'system')}
               >
-                <Monitor width={16} height={16} />
+                <Monitor size={16} />
               </button>
               <span>{t('system')}</span>
             </div>
@@ -62,12 +61,12 @@ export default function Segment1() {
 
           <div className="flex items-center justify-between">
             <span>{t('aside-dark')}</span>
-            <Switch />
+            <Switch value={setting.asideDark} onChange={_ => setSetting((s) => { s.asideDark = _; })} />
           </div>
 
           <div className="flex items-center justify-between">
             <span>{t('top-dark')}</span>
-            <Switch />
+            <Switch value={setting.topDark} onChange={_ => setSetting((s) => { s.topDark = _; })} />
           </div>
         </div>
       </Card>
@@ -82,31 +81,14 @@ export default function Segment1() {
               <button
                 type="button"
                 className="w-full flex items-center justify-center rounded-md py-2 cursor-pointer border border-gray-200 dark:border-gray-800"
-                style={(c === color ? { borderColor: color } : {})}
-                onClick={() => setColor(c)}
+                style={(c === setting.color ? { borderColor: setting.color } : {})}
+                onClick={() => setSetting((s) => { s.color = c; })}
               >
                 <div style={{ backgroundColor: c }} className="w-5 h-5 rounded-md" />
               </button>
               <span>{t(c)}</span>
             </div>
           ))}
-        </div>
-      </Card>
-
-      <Card
-        size="small"
-        title={t('other')}
-      >
-        <div className="flex flex-col gap-4 text-xs">
-          <div className="flex items-center justify-between">
-            <span>{t('cb-mode')}</span>
-            <Switch />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <span>{t('gray-mode')}</span>
-            <Switch />
-          </div>
         </div>
       </Card>
     </>

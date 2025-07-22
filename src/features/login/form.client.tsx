@@ -11,14 +11,14 @@ import { useState } from 'react';
 
 import useRequest from '@/hooks/use-request';
 import { accountLoginPassword } from '@/services/clients/accountService/accountLoginPassword';
-import { user_tokenAtom } from '@/store/user/store';
+import { token_Atom } from '@/store/token/store';
 
 interface IProps {
 }
 
 export default function Form(_props: Readonly<PropsWithChildren<IProps>>) {
   const t = useTranslations('login');
-  const [,setToken] = useAtom(user_tokenAtom);
+  const [,setToken] = useAtom(token_Atom);
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState('super@cyber-dancer.com');
   const [password, setPassword] = useState('123456');
@@ -95,7 +95,7 @@ export default function Form(_props: Readonly<PropsWithChildren<IProps>>) {
               className="rounded-full p-1.5  cursor-pointer text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
               onClick={() => setShow(_ => !_)}
             >
-              {show ? <Eye width={16} height={16} /> : <EyeOff width={16} height={16} />}
+              {show ? <Eye size={16} /> : <EyeOff size={16} />}
             </button>
           </span>
         </label>

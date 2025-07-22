@@ -123,7 +123,7 @@ export default async function RootPage() {
 通过 Jotai 状态管理设置自定义主色调:
 
 ```typescript jsx
-const color = useAtomValue(setting_colorAtom);
+const { color } = useAtomValue(setting_Atom);
 ```
 
 ## 特殊处理

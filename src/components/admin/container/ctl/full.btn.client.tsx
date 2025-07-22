@@ -10,8 +10,8 @@ export default function Full() {
   return (
     <Ctl onClick={() => toggle()}>
       {isFull
-        ? <Minimize width={16} height={16} />
-        : <Maximize width={16} height={16} />}
+        ? <Minimize size={16} />
+        : <Maximize size={16} />}
     </Ctl>
   );
 }

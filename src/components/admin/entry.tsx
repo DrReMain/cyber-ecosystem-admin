@@ -8,7 +8,7 @@ import NUQSProvider from '@/providers/nuqs.provider';
 import ReactQueryProvider from '@/providers/query.provider';
 import { getCookieAction } from '@/server-actions/cookie.actions';
 import settingFromCookie from '@/store/setting/from-cookie';
-import userFromCookie from '@/store/user/from-cookie';
+import tokenFromCookie from '@/store/token/from-cookie';
 
 interface IProps {
 }
@@ -16,14 +16,14 @@ interface IProps {
 export default async function Entry({ children }: Readonly<PropsWithChildren<IProps>>) {
   const locale = await getLocale();
   const theme = await getCookieAction('theme');
-  const [setting, user] = await Promise.all([
+  const [setting, token] = await Promise.all([
     settingFromCookie(),
-    userFromCookie(),
+    tokenFromCookie(),
   ]);
   return (
     <ReactQueryProvider>
       <NUQSProvider>
-        <JotaiProvider initialData={{ setting, user }}>
+        <JotaiProvider initialData={{ setting, token }}>
           <AntdProvider locale={locale} theme={theme.success ? theme.data : undefined}>
             {children}
           </AntdProvider>

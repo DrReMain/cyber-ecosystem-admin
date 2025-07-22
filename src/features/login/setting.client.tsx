@@ -12,7 +12,7 @@ import { useState } from 'react';
 import useLang from '@/hooks/use-lang';
 import useMode from '@/hooks/use-mode';
 import colors from '@/lib/constant/colors';
-import { setting_colorAtom } from '@/store/setting/store';
+import { setting_Atom } from '@/store/setting/store';
 
 interface IProps {
 }
@@ -21,7 +21,7 @@ export default function Config(_props: Readonly<PropsWithChildren<IProps>>) {
   const t = useTranslations('app.switcher');
   const { locales, submit } = useLang();
   const { resolvedTheme, toggle, isReady } = useMode();
-  const [color, setColor] = useAtom(setting_colorAtom);
+  const [setting, setSetting] = useAtom(setting_Atom);
 
   const [show, setShow] = useState(false);
 
@@ -43,16 +43,16 @@ export default function Config(_props: Readonly<PropsWithChildren<IProps>>) {
                   type="button"
                   className="w-4 h-4 flex items-center justify-center text-white rounded-full cursor-pointer hover:scale-110"
                   style={{ backgroundColor: c }}
-                  onClick={() => setColor(c)}
+                  onClick={() => setSetting((s) => { s.color = c; })}
                 >
-                  {color === c ? <Check width={12} height={12} /> : null}
+                  {setting.color === c ? <Check size={12} /> : null}
                 </button>
               ))}
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-      <Palette className="cursor-pointer hidden lg:block" width={14} height={14} onClick={() => setShow(_ => !_)} />
+      <Palette className="cursor-pointer hidden lg:block" size={14} onClick={() => setShow(_ => !_)} />
 
       <Dropdown
         trigger={['click']}
@@ -64,26 +64,16 @@ export default function Config(_props: Readonly<PropsWithChildren<IProps>>) {
           })),
         }}
       >
-        <Languages className="cursor-pointer" width={14} height={14} />
+        <Languages className="cursor-pointer" size={14} />
       </Dropdown>
 
       {isReady && (
         resolvedTheme === 'dark'
           ? (
-              <Sun
-                className="cursor-pointer"
-                width={14}
-                height={14}
-                onClick={e => toggle(e, 'light')}
-              />
+              <Sun className="cursor-pointer" size={14} onClick={e => toggle(e, 'light')} />
             )
           : (
-              <Moon
-                className="cursor-pointer"
-                width={14}
-                height={14}
-                onClick={e => toggle(e, 'dark')}
-              />
+              <Moon className="cursor-pointer" size={14} onClick={e => toggle(e, 'dark')} />
             )
       )}
     </div>

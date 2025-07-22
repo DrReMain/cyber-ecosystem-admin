@@ -2,8 +2,7 @@
 
 import type { PropsWithChildren, Ref } from 'react';
 
-import { Badge, Button, Drawer, Flex, Segmented, Space, Spin, Tooltip } from 'antd';
-import { Undo } from 'lucide-react';
+import { Drawer, Flex, Segmented } from 'antd';
 import { useLocale, useTranslations } from 'next-intl';
 import { useImperativeHandle, useState } from 'react';
 import { getLangDir } from 'rtl-detect';
@@ -42,22 +41,6 @@ export default function SettingDrawer({ ref }: Readonly<PropsWithChildren<IProps
       open={open}
       onClose={() => setOpen(false)}
       placement={dir === 'rtl' ? 'left' : 'right'}
-      extra={(
-        <Space>
-          <Spin size="small">
-            <Badge dot>
-              <Tooltip arrow={false} title={t('reset')}>
-                <Button
-                  size="small"
-                  color="default"
-                  variant="filled"
-                  icon={<Undo width={12} height={12} />}
-                />
-              </Tooltip>
-            </Badge>
-          </Spin>
-        </Space>
-      )}
     >
       <Flex vertical gap="middle">
         <Segmented<string>

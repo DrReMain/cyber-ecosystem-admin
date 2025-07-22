@@ -1,45 +1,45 @@
 import { createStore } from 'jotai';
 
 import type { IStoreSetting } from '@/store/setting/store';
-import type { IStoreUser } from '@/store/user/store';
+import type { IStoreToken } from '@/store/token/store';
 
-import { __settingColorImmerAtom, setting_colorAtom } from '@/store/setting/store';
-import { __userTokenImmerAtom, user_tokenAtom } from '@/store/user/store';
+import { __settingImmerAtom, setting_Atom } from '@/store/setting/store';
+import { __tokenImmerAtom, token_Atom } from '@/store/token/store';
 
 export function createMainStore(init?: {
   setting?: IStoreSetting;
-  user?: IStoreUser;
+  token?: IStoreToken;
 }) {
   const store = createStore();
 
   // setting -----------------------------------------------------------------------
 
-  if (init?.setting?.color !== undefined) {
-    store.set(__settingColorImmerAtom, init.setting.color);
+  if (init?.setting !== undefined) {
+    store.set(__settingImmerAtom, init.setting);
   }
-  const unsubSettingColor = store.sub(setting_colorAtom, () => {
+  const unsubSetting = store.sub(setting_Atom, () => {
     if (process.env.NODE_ENV === 'development') {
       // eslint-disable-next-line no-console
-      console.log('setting_ColorAtom value is changed to', store.get(setting_colorAtom));
+      console.log('setting_Atom value is changed to', store.get(setting_Atom));
     }
   });
 
-  // user --------------------------------------------------------------------------
+  // token --------------------------------------------------------------------------
 
-  if (init?.user?.token !== undefined) {
-    store.set(__userTokenImmerAtom, init.user.token);
+  if (init?.token !== undefined) {
+    store.set(__tokenImmerAtom, init.token);
   }
-  const unsubUserToken = store.sub(user_tokenAtom, () => {
+  const unsubToken = store.sub(token_Atom, () => {
     if (process.env.NODE_ENV === 'development') {
       // eslint-disable-next-line no-console
-      console.log('user_tokenAtom value is changed to', store.get(user_tokenAtom));
+      console.log('token_Atom value is changed to', store.get(token_Atom));
     }
   });
 
   // -------------------------------------------------------------------------------
   return {
     store,
-    unsubSettingColor,
-    unsubUserToken,
+    unsubSetting,
+    unsubToken,
   };
 }

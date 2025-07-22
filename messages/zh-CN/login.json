@@ -20,6 +20,11 @@
       "email": "邮箱",
       "passwd": "密码",
       "loginSuccess": "登录成功"
+    },
+
+    "menu": {
+      "lock": "锁定屏幕",
+      "logout": "退出登录"
     }
   }
 }

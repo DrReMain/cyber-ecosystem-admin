@@ -3,7 +3,7 @@ import type { PropsWithChildren } from 'react';
 import { getLocale } from 'next-intl/server';
 
 import { redirect } from '@/i18n/navigation';
-import userFromCookie from '@/store/user/from-cookie';
+import tokenFromCookie from '@/store/token/from-cookie';
 
 interface IProps {
   auth: boolean;
@@ -11,18 +11,18 @@ interface IProps {
 
 export default async function Guard({ children, auth }: Readonly<PropsWithChildren<IProps>>) {
   const locale = await getLocale();
-  const { token } = await userFromCookie();
+  const { access_token, access_expire } = await tokenFromCookie();
 
   if (
     auth
-    && (!token?.access_token || token.access_expire <= Date.now())
+    && (!access_token || !access_expire || access_expire <= Date.now())
   ) {
     redirect({ href: '/login', locale });
   }
 
   if (
     !auth
-    && (token?.access_token && token.access_expire > Date.now())
+    && (access_token && access_expire && access_expire > Date.now())
   ) {
     redirect({ href: '/', locale });
   }

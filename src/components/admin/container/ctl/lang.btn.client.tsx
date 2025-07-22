@@ -22,7 +22,7 @@ export default function Lang() {
           })),
         }}
       >
-        <Languages width={16} height={16} />
+        <Languages size={16} />
       </Dropdown>
     </Ctl>
   );

@@ -29,9 +29,21 @@
       "#c084fc": "兰花紫",
       "#ec4899": "洋红",
       "#94a3b8": "石板灰",
-      "other": "其他",
-      "cb-mode": "色弱模式",
-      "gray-mode": "灰色模式"
+      "layout": "布局",
+      "vertical": "垂直",
+      "two-vertical": "双列垂直",
+      "horizontal": "水平",
+      "aside-vertical": "侧边栏",
+      "mixed-vertical": "混合垂直",
+      "mixed-two-vertical": "混合双列",
+      "content": "内容",
+      "wide": "流式",
+      "fixed": "定宽",
+      "shortcut": "快捷键",
+      "shortcut-logout": "退出登录",
+      "shortcut-lock": "锁定屏幕",
+      "language": "语言",
+      "watermark": "水印"
     }
   },
   "login": {
@@ -52,6 +64,10 @@
       "email": "邮箱",
       "passwd": "密码",
       "loginSuccess": "登录成功"
+    },
+    "menu": {
+      "lock": "锁定屏幕",
+      "logout": "退出登录"
     }
   },
   "app": {

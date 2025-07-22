@@ -13,7 +13,7 @@ interface IProps {
 export default function Setting({ onClick }: Readonly<PropsWithChildren<IProps>>) {
   return (
     <Ctl onClick={onClick}>
-      <Settings width={16} height={16} />
+      <Settings size={16} />
     </Ctl>
   );
 }
