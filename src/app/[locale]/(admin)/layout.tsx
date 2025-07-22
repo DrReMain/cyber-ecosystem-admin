@@ -1,12 +1,12 @@
 import type { PropsWithChildren } from 'react';
 
-import Base from '@/features/(admin)/base';
+import Entry from '@/components/admin/entry';
 
 export default async function Layout({ children }: Readonly<PropsWithChildren>) {
   return (
-    <Base>
+    <Entry>
       {children}
-    </Base>
+    </Entry>
   );
 }
 

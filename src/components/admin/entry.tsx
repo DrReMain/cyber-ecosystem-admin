@@ -13,7 +13,7 @@ import userFromCookie from '@/store/user/from-cookie';
 interface IProps {
 }
 
-export default async function Base({ children }: Readonly<PropsWithChildren<IProps>>) {
+export default async function Entry({ children }: Readonly<PropsWithChildren<IProps>>) {
   const locale = await getLocale();
   const theme = await getCookieAction('theme');
   const [setting, user] = await Promise.all([

@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 
-import Guard from '@/features/(admin)/guard';
-import Container from '@/features/(private)/container.client';
+import Container from '@/components/admin/container/container.client';
+import Guard from '@/components/admin/guard';
 
 export default async function Layout({ children }: Readonly<PropsWithChildren>) {
   return (
