@@ -1,20 +1,37 @@
 'use client';
 
-import { Card, Switch } from 'antd';
+import { Card, Select, Switch } from 'antd';
 import { useAtom } from 'jotai';
 import { Monitor, Moon, Sun } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
+import useLang from '@/hooks/use-lang';
 import useMode from '@/hooks/use-mode';
 import colors from '@/lib/constant/colors';
 import { setting_Atom } from '@/store/setting/store';
 
 export default function Segment1() {
   const t = useTranslations('setting.drawer');
+  const t1 = useTranslations('app.switcher');
+  const { locales, submit } = useLang();
+  const locale = useLocale();
   const { isReady, theme, toggle } = useMode();
   const [setting, setSetting] = useAtom(setting_Atom);
   return (
     <>
+      <Card size="small" title={t('language')}>
+        <div className="flex flex-col gap-4 text-xs">
+          <Select
+            options={locales.map(({ origin, underscore }) => ({
+              value: origin,
+              label: t1('locale', { locale: underscore }),
+            }))}
+            value={locale}
+            onChange={submit}
+          />
+        </div>
+      </Card>
+
       <Card
         loading={!isReady}
         size="small"

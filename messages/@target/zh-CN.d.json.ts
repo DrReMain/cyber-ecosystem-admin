@@ -6,10 +6,11 @@ declare const messages: {
     "drawer": {
       "title": "偏好设置",
       "reset": "重置",
-      "segment1": "外观",
+      "segment1": "基本",
       "segment2": "布局",
       "segment3": "快捷键",
-      "segment4": "通用",
+      "segment4": "其他",
+      "language": "语言",
       "light-dark": "明暗模式",
       "light": "明亮",
       "dark": "暗黑",
@@ -45,7 +46,6 @@ declare const messages: {
       "shortcut": "快捷键",
       "shortcut-logout": "退出登录",
       "shortcut-lock": "锁定屏幕",
-      "language": "语言",
       "watermark": "水印"
     }
   },

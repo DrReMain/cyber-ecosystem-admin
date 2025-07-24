@@ -3,10 +3,11 @@
     "drawer": {
       "title": "إعدادات التفضيلات",
       "reset": "إعادة التعيين",
-      "segment1": "المظهر",
+      "segment1": "الأساسيات",
       "segment2": "التخطيط",
       "segment3": "الاختصارات",
-      "segment4": "عام",
+      "segment4": "أخرى",
+      "language": "اللغة",
       "light-dark": "وضع الفاتح/الداكن",
       "light": "فاتح",
       "dark": "داكن",
@@ -42,7 +43,6 @@
       "shortcut": "الاختصارات",
       "shortcut-logout": "تسجيل الخروج",
       "shortcut-lock": "قفل الشاشة",
-      "language": "اللغة",
       "watermark": "علامة مائية"
     }
   }
