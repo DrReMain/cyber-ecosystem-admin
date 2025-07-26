@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React from 'react';
 
-import { setting_Atom } from '@/store/setting/store';
+import { atom_setting } from '@/store/setting/store';
 
 const layouts = [
   { type: 'vertical' },
@@ -24,7 +24,7 @@ const contents = [
 
 export default function Segment2() {
   const t = useTranslations('setting.drawer');
-  const [setting, setSetting] = useAtom(setting_Atom);
+  const [setting, setSetting] = useAtom(atom_setting);
   return (
     <>
       <Card size="small" title={t('layout')}>

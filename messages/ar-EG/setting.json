@@ -41,6 +41,7 @@
       "wide": "متجاوب",
       "fixed": "عرض ثابت",
       "shortcut": "الاختصارات",
+      "enabled": "هل تم التفعيل؟",
       "shortcut-logout": "تسجيل الخروج",
       "shortcut-lock": "قفل الشاشة",
       "watermark": "علامة مائية"

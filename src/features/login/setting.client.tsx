@@ -12,7 +12,7 @@ import { useState } from 'react';
 import useLang from '@/hooks/use-lang';
 import useMode from '@/hooks/use-mode';
 import colors from '@/lib/constant/colors';
-import { setting_Atom } from '@/store/setting/store';
+import { atom_setting } from '@/store/setting/store';
 
 interface IProps {
 }
@@ -21,7 +21,7 @@ export default function Config(_props: Readonly<PropsWithChildren<IProps>>) {
   const t = useTranslations('app.switcher');
   const { locales, submit } = useLang();
   const { resolvedTheme, toggle, isReady } = useMode();
-  const [setting, setSetting] = useAtom(setting_Atom);
+  const [setting, setSetting] = useAtom(atom_setting);
 
   const [show, setShow] = useState(false);
 

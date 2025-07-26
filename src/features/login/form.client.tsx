@@ -11,14 +11,14 @@ import { useState } from 'react';
 
 import useRequest from '@/hooks/use-request';
 import { accountLoginPassword } from '@/services/clients/accountService/accountLoginPassword';
-import { token_Atom } from '@/store/token/store';
+import { atom_token } from '@/store/token/store';
 
 interface IProps {
 }
 
 export default function Form(_props: Readonly<PropsWithChildren<IProps>>) {
   const t = useTranslations('login');
-  const [,setToken] = useAtom(token_Atom);
+  const [,setToken] = useAtom(atom_token);
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState('super@cyber-dancer.com');
   const [password, setPassword] = useState('123456');

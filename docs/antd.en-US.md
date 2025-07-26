@@ -123,7 +123,7 @@ The project configures `holderRender` to support Antd's static method calls (suc
 Set custom primary color through Jotai state management:
 
 ```typescript jsx
-const { color } = useAtomValue(setting_Atom);
+const { color } = useAtomValue(atom_setting);
 ```
 
 ## Special Handling

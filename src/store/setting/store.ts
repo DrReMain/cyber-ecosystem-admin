@@ -40,8 +40,8 @@ export const initStoreSetting: IStoreSetting = {
 
 export const KEY_SETTING = 'JT_SETTING';
 export const {
-  immerAtomic: __settingImmerAtom,
-  atomic: setting_Atom,
+  immerAtomic: __immerAtom_setting,
+  atomic: atom_setting,
 } = createPersistentAtom<IStoreSetting>(
   KEY_SETTING,
   initStoreSetting,

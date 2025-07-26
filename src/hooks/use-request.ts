@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import toast from 'react-hot-toast';
 import { ZodError } from 'zod/v4';
 
-import { token_Atom } from '@/store/token/store';
+import { atom_token } from '@/store/token/store';
 
 // ============================================================================
 // Types
@@ -127,7 +127,7 @@ function normalizeToastOptions<Res>(
  */
 export default function useRequest() {
   const t = useTranslations('app');
-  const token = useAtomValue(token_Atom);
+  const token = useAtomValue(atom_token);
 
   /**
    * Inject authorization headers into request config

@@ -5,7 +5,7 @@ import type { PropsWithChildren, ReactElement } from 'react';
 import clsx from 'clsx';
 import { useAtomValue } from 'jotai';
 
-import { setting_Atom } from '@/store/setting/store';
+import { atom_setting } from '@/store/setting/store';
 
 interface IProps {
   logo: ReactElement;
@@ -15,7 +15,7 @@ interface IProps {
 }
 
 export default function Container({ logo, setting, left, right }: Readonly<PropsWithChildren<IProps>>) {
-  const { color } = useAtomValue(setting_Atom);
+  const { color } = useAtomValue(atom_setting);
   return (
     <main className="h-screen min-h-[720px] flex" style={{ background: color }}>
       <section className={clsx(

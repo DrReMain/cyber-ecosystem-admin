@@ -3,8 +3,8 @@ import { createStore } from 'jotai';
 import type { IStoreSetting } from '@/store/setting/store';
 import type { IStoreToken } from '@/store/token/store';
 
-import { __settingImmerAtom, setting_Atom } from '@/store/setting/store';
-import { __tokenImmerAtom, token_Atom } from '@/store/token/store';
+import { __immerAtom_setting, atom_setting } from '@/store/setting/store';
+import { __immerAtom_token, atom_token } from '@/store/token/store';
 
 export function createMainStore(init?: {
   setting?: IStoreSetting;
@@ -15,24 +15,24 @@ export function createMainStore(init?: {
   // setting -----------------------------------------------------------------------
 
   if (init?.setting !== undefined) {
-    store.set(__settingImmerAtom, init.setting);
+    store.set(__immerAtom_setting, init.setting);
   }
-  const unsubSetting = store.sub(setting_Atom, () => {
+  const unsubSetting = store.sub(atom_setting, () => {
     if (process.env.NODE_ENV === 'development') {
       // eslint-disable-next-line no-console
-      console.log('setting_Atom value is changed to', store.get(setting_Atom));
+      console.log('atom_setting value is changed to', store.get(atom_setting));
     }
   });
 
   // token --------------------------------------------------------------------------
 
   if (init?.token !== undefined) {
-    store.set(__tokenImmerAtom, init.token);
+    store.set(__immerAtom_token, init.token);
   }
-  const unsubToken = store.sub(token_Atom, () => {
+  const unsubToken = store.sub(atom_token, () => {
     if (process.env.NODE_ENV === 'development') {
       // eslint-disable-next-line no-console
-      console.log('token_Atom value is changed to', store.get(token_Atom));
+      console.log('atom_token value is changed to', store.get(atom_token));
     }
   });
 

@@ -14,8 +14,8 @@ export const initStoreToken: IStoreToken = {
 
 export const KEY_TOKEN = 'JT_TOKEN';
 export const {
-  immerAtomic: __tokenImmerAtom,
-  atomic: token_Atom,
+  immerAtomic: __immerAtom_token,
+  atomic: atom_token,
 } = createPersistentAtom<IStoreToken>(
   KEY_TOKEN,
   initStoreToken,

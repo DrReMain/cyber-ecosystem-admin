@@ -41,6 +41,7 @@
       "wide": "流式",
       "fixed": "定宽",
       "shortcut": "快捷键",
+      "enabled": "是否启用",
       "shortcut-logout": "退出登录",
       "shortcut-lock": "锁定屏幕",
       "watermark": "水印"

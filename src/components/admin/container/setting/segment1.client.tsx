@@ -8,7 +8,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import useLang from '@/hooks/use-lang';
 import useMode from '@/hooks/use-mode';
 import colors from '@/lib/constant/colors';
-import { setting_Atom } from '@/store/setting/store';
+import { atom_setting } from '@/store/setting/store';
 
 export default function Segment1() {
   const t = useTranslations('setting.drawer');
@@ -16,7 +16,7 @@ export default function Segment1() {
   const { locales, submit } = useLang();
   const locale = useLocale();
   const { isReady, theme, toggle } = useMode();
-  const [setting, setSetting] = useAtom(setting_Atom);
+  const [setting, setSetting] = useAtom(atom_setting);
   return (
     <>
       <Card size="small" title={t('language')}>

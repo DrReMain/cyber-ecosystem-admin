@@ -4,11 +4,11 @@ import { Card, Switch } from 'antd';
 import { useAtom } from 'jotai';
 import { useTranslations } from 'next-intl';
 
-import { setting_Atom } from '@/store/setting/store';
+import { atom_setting } from '@/store/setting/store';
 
 export default function Segment4() {
   const t = useTranslations('setting.drawer');
-  const [setting, setSetting] = useAtom(setting_Atom);
+  const [setting, setSetting] = useAtom(atom_setting);
   return (
     <Card size="small">
       <div className="flex flex-col gap-4 text-xs">

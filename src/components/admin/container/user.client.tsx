@@ -10,7 +10,7 @@ import { getLangDir } from 'rtl-detect';
 import useOS from '@/hooks/use-os';
 import useRequest from '@/hooks/use-request';
 import { accountLogout } from '@/services/clients/accountService/accountLogout';
-import { token_Atom } from '@/store/token/store';
+import { atom_token } from '@/store/token/store';
 
 interface IProps {
   avatar?: string;
@@ -22,7 +22,7 @@ export default function User({ avatar, name, email }: Readonly<IProps>) {
   const dir = getLangDir(useLocale());
   const t = useTranslations('login.menu');
   const os = useOS();
-  const [,setToken] = useAtom(token_Atom);
+  const [,setToken] = useAtom(atom_token);
 
   const { mutateHOF } = useRequest();
   const mutateLogout = useMutation({
@@ -40,19 +40,28 @@ export default function User({ avatar, name, email }: Readonly<IProps>) {
 
   return (
     <Popover
+      fresh
       trigger="click"
       placement={dir === 'rtl' ? 'bottomLeft' : 'bottomRight'}
       arrow={false}
       content={(
         <div className="-mx-4 -my-3 min-w-3xs max-w-xs flex flex-col">
-          <div className="p-2 flex flex-col gap-1">
-            <div className="font-black text-sm truncate">{name}</div>
-            <div className="font-thin text-xs truncate">
-              {email}
-            </div>
-          </div>
+          {
+            name && email && (
+              <>
+                <div className="p-2 flex flex-col gap-1">
+                  <div className="font-black text-sm truncate">
+                    {name}
+                  </div>
+                  <div className="font-thin text-xs truncate">
+                    {email}
+                  </div>
+                </div>
 
-          <div className="h-px bg-gray-200 dark:bg-gray-800" />
+                <div className="h-px bg-gray-200 dark:bg-gray-800" />
+              </>
+            )
+          }
 
           <div className="p-1">
             <button

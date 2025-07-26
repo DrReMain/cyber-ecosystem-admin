@@ -5,20 +5,20 @@ import { useAtom } from 'jotai/index';
 import { useTranslations } from 'next-intl';
 
 import useOS from '@/hooks/use-os';
-import { setting_Atom } from '@/store/setting/store';
+import { atom_setting } from '@/store/setting/store';
 
 // ⌘
 
 export default function Segment3() {
   const t = useTranslations('setting.drawer');
   const os = useOS();
-  const [setting, setSetting] = useAtom(setting_Atom);
+  const [setting, setSetting] = useAtom(atom_setting);
 
   return (
     <Card size="small">
       <div className="flex flex-col gap-4 text-xs">
         <div className="flex items-center justify-between">
-          <span>{t('shortcut')}</span>
+          <span>{t('enabled')}</span>
           <Switch
             value={setting.shortcuts.enable}
             onChange={_ => setSetting((s) => { s.shortcuts.enable = _; })}
