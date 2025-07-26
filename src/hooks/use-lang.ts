@@ -11,12 +11,8 @@ export default function useLang() {
   const pathname = usePathname();
   const params = useParams();
 
-  const locales = useMemo(() => {
-    return routing.locales.map(_ => ({
-      origin: _,
-      underscore: _.replace('-', '_'),
-    }));
-  }, []);
+  const locales = useMemo(() =>
+    routing.locales.map(l => ({ origin: l, underscore: l.replace('-', '_') })), []);
 
   return {
     locales,

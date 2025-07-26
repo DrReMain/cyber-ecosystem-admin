@@ -1,18 +1,27 @@
 import '@/styles/globals.css';
 
-import type { Viewport } from 'next';
+import type { Metadata, Viewport } from 'next';
 import type { Locale } from 'next-intl';
 import type { PropsWithChildren } from 'react';
 
 import clsx from 'clsx';
-import { GeistMono } from 'geist/font/mono';
-import { GeistSans } from 'geist/font/sans';
 import { hasLocale } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { getLangDir } from 'rtl-detect';
 
 import TailwindIndicator from '@/components/base/tailwind-indicator';
+import {
+  getFontClass,
+  notoAR,
+  notoHI,
+  notoJP,
+  notoKR,
+  notoLatin,
+  notoSC,
+  notoTC,
+  notoTH,
+} from '@/i18n/font';
 import { routing } from '@/i18n/routing';
 import MinimumProvider from '@/providers/minimum.provider';
 
@@ -24,7 +33,7 @@ interface IProps {
   params: Promise<{ locale: Locale }>;
 }
 
-export async function generateMetadata(props: Readonly<IProps>) {
+export async function generateMetadata(props: Readonly<IProps>): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({ locale, namespace: 'app' });
   return {
@@ -58,9 +67,24 @@ export default async function I18NLayout({ children, params }: Readonly<PropsWit
   if (!hasLocale(routing.locales, locale))
     notFound();
   setRequestLocale(locale);
+
+  const fontClass = getFontClass(locale);
+
   return (
     <html lang={locale} dir={getLangDir(locale)} suppressHydrationWarning>
-      <body className={clsx('antialiased', GeistSans.variable, GeistMono.variable)}>
+      <body
+        className={clsx(
+          notoLatin.variable,
+          notoSC.variable,
+          notoTC.variable,
+          notoJP.variable,
+          notoKR.variable,
+          notoAR.variable,
+          notoHI.variable,
+          notoTH.variable,
+          fontClass,
+        )}
+      >
         <TailwindIndicator />
         <MinimumProvider>
           {children}

@@ -17,9 +17,9 @@ interface IProps {
 export default function Container({ logo, setting, left, right }: Readonly<PropsWithChildren<IProps>>) {
   const { color } = useAtomValue(atom_setting);
   return (
-    <main className="h-screen min-h-[720px] flex" style={{ background: color }}>
+    <main className="h-screen min-h-[720px] flex overflow-x-hidden" style={{ background: color }}>
       <section className={clsx(
-        'flex-1 w-0 relative hidden lg:flex items-center justify-center overflow-hidden',
+        'flex-1 w-0 relative hidden lg:flex items-center justify-center',
         'bg-gradient-to-br from-20% via-48% to-75%',
         'from-white via-white/90 to-white',
         'dark:from-black dark:via-black/90 dark:to-black',

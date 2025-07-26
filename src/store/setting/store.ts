@@ -8,6 +8,10 @@ export interface IStoreSetting {
   topDark: boolean;
   layout: 'vertical' | 'two-vertical' | 'horizontal' | 'aside-vertical' | 'mixed-vertical' | 'mixed-two-vertical';
   content: 'wide' | 'fixed';
+  asideWidth: number;
+  showAside: boolean;
+  accordionMenu: boolean;
+  foldMenu: boolean;
   shortcuts: {
     enable: boolean;
     lock: boolean;
@@ -26,6 +30,10 @@ export const initStoreSetting: IStoreSetting = {
   topDark: false,
   layout: 'vertical',
   content: 'wide',
+  asideWidth: 250,
+  showAside: true,
+  accordionMenu: false,
+  foldMenu: false,
   shortcuts: {
     enable: true,
     lock: true,

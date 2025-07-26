@@ -14,7 +14,7 @@ export default function Page404() {
         <Image src="/images/404.svg" alt="404" width={400} height={400} priority />
       </section>
 
-      <section className="w-0 flex-1 flex flex-col items-start justify-center gap-2 mx-8 font-sans">
+      <section className="w-0 flex-1 flex flex-col items-start justify-center gap-2 mx-8">
         <h3 className="text-blue-500 font-black">
           404
         </h3>

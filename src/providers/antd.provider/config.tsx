@@ -58,15 +58,37 @@ export default function AntdConfig({ children, locale, theme }: Readonly<PropsWi
         <StyleProvider layer>
           <ConfigProvider
             // csp={{ nonce: '' }}
-            wave={{ showEffect: showInsetEffect }}
-            form={{ requiredMark: 'optional' }}
-            input={{ autoComplete: 'off', allowClear: true }}
             locale={antdLocale}
             direction={getLangDir(locale)}
+            variant="filled"
             theme={{
               hashed: false,
               algorithm,
               token: {
+                // Compatible with Tailwind
+                screenXSMin: 640,
+                screenXS: 640,
+                screenXSMax: 767,
+
+                screenSMMin: 768,
+                screenSM: 768,
+                screenSMMax: 1023,
+
+                screenMDMin: 1024,
+                screenMD: 1024,
+                screenMDMax: 1279,
+
+                screenLGMin: 1280,
+                screenLG: 1280,
+                screenLGMax: 1535,
+
+                screenXLMin: 1536,
+                screenXL: 1536,
+                screenXLMax: 1919,
+
+                screenXXLMin: 1920,
+                screenXXL: 1920,
+
                 wireframe: true,
                 ...(
                   color
@@ -76,6 +98,9 @@ export default function AntdConfig({ children, locale, theme }: Readonly<PropsWi
               },
               components,
             }}
+            form={{ requiredMark: 'optional' }}
+            input={{ autoComplete: 'off', allowClear: true }}
+            wave={{ showEffect: showInsetEffect }}
           >
             <App component={false}>
               {children}

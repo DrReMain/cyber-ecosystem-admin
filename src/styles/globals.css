@@ -11,3 +11,14 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @plugin "@tailwindcss/forms";
+
+@theme {
+  --font-latin: var(--font-latin), sans-serif;
+  --font-sc: var(--font-sc), sans-serif;
+  --font-tc: var(--font-tc), sans-serif;
+  --font-jp: var(--font-jp), sans-serif;
+  --font-kr: var(--font-kr), sans-serif;
+  --font-ar: var(--font-ar), sans-serif;
+  --font-hi: var(--font-hi), sans-serif;
+  --font-th: var(--font-th), sans-serif;
+}

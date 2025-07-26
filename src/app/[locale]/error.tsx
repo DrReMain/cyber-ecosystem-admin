@@ -11,7 +11,7 @@ export default function Error({ error, reset }: Readonly<{
   // console.error('Application error:', error);
   // }, [error]);
   return (
-    <div className="w-screen h-screen flex flex-col items-center justify-center">
+    <div className="w-full h-screen flex flex-col items-center justify-center">
       <Page500 error={error} reset={reset} />
     </div>
   );

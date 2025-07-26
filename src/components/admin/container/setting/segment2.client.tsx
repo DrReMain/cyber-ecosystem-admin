@@ -1,6 +1,6 @@
 'use client';
 
-import { Card } from 'antd';
+import { Card, InputNumber, Switch } from 'antd';
 import { useAtom } from 'jotai';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -64,6 +64,43 @@ export default function Segment2() {
               <span>{t(type)}</span>
             </div>
           ))}
+        </div>
+      </Card>
+
+      <Card size="small" title={t('aside')}>
+        <div className="flex flex-col gap-4 text-xs">
+          <div className="flex items-center justify-between">
+            <span>{t('aside-width')}</span>
+            <InputNumber
+              className="w-1/2"
+              max={320}
+              min={250}
+              step={10}
+              value={setting.asideWidth}
+              onChange={v => v && setSetting((s) => { s.asideWidth = v; })}
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <span>{t('show-aside')}</span>
+            <Switch
+              value={setting.showAside}
+              onChange={_ => setSetting((s) => { s.showAside = _; })}
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <span>{t('fold-menu')}</span>
+            <Switch
+              value={setting.foldMenu}
+              onChange={_ => setSetting((s) => { s.foldMenu = _; })}
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <span>{t('accordion-menu')}</span>
+            <Switch
+              value={setting.accordionMenu}
+              onChange={_ => setSetting((s) => { s.accordionMenu = _; })}
+            />
+          </div>
         </div>
       </Card>
     </>

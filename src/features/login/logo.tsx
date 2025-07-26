@@ -8,7 +8,7 @@ export default async function Logo(_props: Readonly<PropsWithChildren>) {
       <div className="relative w-12 h-12">
         <Image src="/images/logo.png" alt="logo" priority fill sizes="48px" className="object-contain" />
       </div>
-      <h1 className="font-sans font-black text-2xl">CYBER ECOSYSTEM</h1>
+      <h1 className="font-black text-2xl">CYBER ECOSYSTEM</h1>
     </div>
   );
 }

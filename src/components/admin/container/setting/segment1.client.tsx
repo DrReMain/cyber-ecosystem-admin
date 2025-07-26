@@ -38,7 +38,7 @@ export default function Segment1() {
         title={t('light-dark')}
       >
         <div className="flex flex-col gap-4 text-xs">
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-2">
             <div className="flex-1 flex flex-col items-center gap-2">
               <button
                 type="button"

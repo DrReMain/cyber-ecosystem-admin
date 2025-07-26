@@ -2,17 +2,17 @@
 
 import type { PropsWithChildren, Ref } from 'react';
 
-import { Badge, Button, Drawer, Flex, Segmented, Space, Tooltip } from 'antd';
+import { Badge, Button, Drawer, Segmented, Space, Tooltip } from 'antd';
 import { useAtom } from 'jotai';
 import { Undo } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useImperativeHandle, useState } from 'react';
-import { getLangDir } from 'rtl-detect';
 
 import Segment1 from '@/components/admin/container/setting/segment1.client';
 import Segment2 from '@/components/admin/container/setting/segment2.client';
 import Segment3 from '@/components/admin/container/setting/segment3.client';
 import Segment4 from '@/components/admin/container/setting/segment4.client';
+import useRTL from '@/hooks/use-rtl';
 import { atom_setting, initStoreSetting } from '@/store/setting/store';
 
 export interface IRef {
@@ -24,7 +24,7 @@ interface IProps {
 }
 
 export default function SettingDrawer({ ref }: Readonly<PropsWithChildren<IProps>>) {
-  const dir = getLangDir(useLocale());
+  const isRTL = useRTL();
   const t = useTranslations('setting.drawer');
 
   const [setting, setSetting] = useAtom(atom_setting);
@@ -45,7 +45,7 @@ export default function SettingDrawer({ ref }: Readonly<PropsWithChildren<IProps
       title={t('title')}
       open={open}
       onClose={() => setOpen(false)}
-      placement={dir === 'rtl' ? 'left' : 'right'}
+      placement={isRTL ? 'left' : 'right'}
       extra={(
         <Space>
           <Badge dot={JSON.stringify(setting) !== JSON.stringify(initStoreSetting)}>
@@ -62,7 +62,7 @@ export default function SettingDrawer({ ref }: Readonly<PropsWithChildren<IProps
         </Space>
       )}
     >
-      <Flex vertical gap="middle">
+      <div className="flex flex-col gap-2">
         <Segmented<string>
           block
           value={segment}
@@ -73,7 +73,7 @@ export default function SettingDrawer({ ref }: Readonly<PropsWithChildren<IProps
         {segment === segments[1] && <Segment2 />}
         {segment === segments[2] && <Segment3 />}
         {segment === segments[3] && <Segment4 />}
-      </Flex>
+      </div>
     </Drawer>
   );
 }

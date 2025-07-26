@@ -11,6 +11,10 @@ export const components = {
     borderRadiusLG: 12,
     borderRadiusSM: 12,
   },
+  Menu: {
+    // algorithm: true,
+    // subMenuItemBg: 'transparent',
+  },
 };
 
 export default components;

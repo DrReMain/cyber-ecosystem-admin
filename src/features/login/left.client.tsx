@@ -27,7 +27,7 @@ export default function Left(_props: Readonly<PropsWithChildren<IProps>>) {
         <Image src="/images/login.svg" alt="cyber ecosystem" priority fill sizes="256px" className="object-contain" />
       </motion.div>
 
-      <div className="flex flex-col items-center gap-2 font-sans">
+      <div className="flex flex-col items-center gap-2">
         <h2 className="font-bold text-3xl">{t('h1')}</h2>
         <p className="text-sm text-gray-500">{t('sub')}</p>
       </div>
