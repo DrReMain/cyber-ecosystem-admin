@@ -3,8 +3,8 @@ import type { Locale } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { startTransition, useMemo } from 'react';
 
-import { usePathname, useRouter } from '@/i18n/navigation';
-import { routing } from '@/i18n/routing';
+import { usePathname, useRouter } from '@/lib/i18n/navigation';
+import { routing } from '@/lib/i18n/routing';
 
 export default function useLang() {
   const router = useRouter();

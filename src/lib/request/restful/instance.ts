@@ -2,7 +2,7 @@ import type { KyInstance } from 'ky';
 
 import ky from 'ky';
 
-import { defaultHeaders } from '@/request/restful/default-headers';
+import { defaultHeaders } from '@/lib/request/restful/default-headers';
 
 export const kyInstance: KyInstance = ky.create({
   prefixUrl: process.env.NEXT_PUBLIC_API_URL || '/',

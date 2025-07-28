@@ -9,7 +9,7 @@ const MESSAGES_DIR = nodePath.resolve(process.cwd(), 'messages');
 const TARGET_DIR = nodePath.resolve(process.cwd(), 'messages', '@target');
 const DEFAULT_LOCALE = process.env.NEXT_I18N_DEFAULT || '';
 const SUPPORTED_LOCALES = process.env.NEXT_I18N_LOCALES?.split(',') || [];
-const ROUTING_FILE = nodePath.resolve(process.cwd(), 'src', 'i18n', 'routing.ts');
+const ROUTING_FILE = nodePath.resolve(process.cwd(), 'src', 'lib', 'i18n', 'routing.ts');
 
 const COLORS = {
   reset: '\x1B[0m',

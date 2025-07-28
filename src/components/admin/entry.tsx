@@ -2,11 +2,11 @@ import type { PropsWithChildren } from 'react';
 
 import { getLocale } from 'next-intl/server';
 
+import { getCookieAction } from '@/lib/server-actions/cookie.actions';
 import AntdProvider from '@/providers/antd.provider';
 import JotaiProvider from '@/providers/jotai.provider';
 import NUQSProvider from '@/providers/nuqs.provider';
 import ReactQueryProvider from '@/providers/query.provider';
-import { getCookieAction } from '@/server-actions/cookie.actions';
 import settingFromCookie from '@/store/setting/from-cookie';
 import tokenFromCookie from '@/store/token/from-cookie';
 

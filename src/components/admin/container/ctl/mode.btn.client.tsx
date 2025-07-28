@@ -5,7 +5,7 @@ import type { MouseEventHandler } from 'react';
 import { Moon, Sun } from 'lucide-react';
 
 import Ctl from '@/components/admin/container/ctl/ctl.client';
-import useMode from '@/hooks/use-mode';
+import useMode from '@/lib/hooks/use-mode';
 
 export default function Mode() {
   const { resolvedTheme, toggle, isReady } = useMode();

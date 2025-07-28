@@ -1,18 +1,20 @@
 'use client';
 
-import type { MouseEventHandler, PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
+import { useAtom } from 'jotai';
 import { Settings } from 'lucide-react';
 
 import Ctl from '@/components/admin/container/ctl/ctl.client';
+import { atom_global } from '@/store/global/store';
 
 interface IProps {
-  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export default function Setting({ onClick }: Readonly<PropsWithChildren<IProps>>) {
+export default function Setting(_props: Readonly<PropsWithChildren<IProps>>) {
+  const [,setGlobal] = useAtom(atom_global);
   return (
-    <Ctl onClick={onClick}>
+    <Ctl onClick={() => setGlobal((g) => { g.openSetting = true; })}>
       <Settings size={16} />
     </Ctl>
   );

@@ -5,7 +5,7 @@ import { Languages } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import Ctl from '@/components/admin/container/ctl/ctl.client';
-import useLang from '@/hooks/use-lang';
+import useLang from '@/lib/hooks/use-lang';
 
 export default function Lang() {
   const t = useTranslations('app.switcher');

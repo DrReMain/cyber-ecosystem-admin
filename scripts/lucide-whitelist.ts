@@ -13,5 +13,6 @@ fs.writeFileSync(
  */
 
 export const LucideIconNames = ${JSON.stringify(iconNames, null, 2)};
+export const LucideIconSet = new Set<string>([...LucideIconNames]);
 `,
 );

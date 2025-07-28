@@ -3,7 +3,7 @@ import type { Draft } from 'immer';
 import { atom } from 'jotai';
 import { atomWithImmer } from 'jotai-immer';
 
-import { setCookieAction } from '@/server-actions/cookie.actions';
+import { setCookieAction } from '@/lib/server-actions/cookie.actions';
 
 export function createPersistentAtom<T>(
   key: string,

@@ -9,9 +9,9 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
-import useLang from '@/hooks/use-lang';
-import useMode from '@/hooks/use-mode';
 import colors from '@/lib/constant/colors';
+import useLang from '@/lib/hooks/use-lang';
+import useMode from '@/lib/hooks/use-mode';
 import { atom_setting } from '@/store/setting/store';
 
 interface IProps {

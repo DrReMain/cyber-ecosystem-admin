@@ -2,7 +2,7 @@ import type { PropsWithChildren } from 'react';
 
 import { getLocale } from 'next-intl/server';
 
-import { redirect } from '@/i18n/navigation';
+import { redirect } from '@/lib/i18n/navigation';
 import tokenFromCookie from '@/store/token/from-cookie';
 
 interface IProps {

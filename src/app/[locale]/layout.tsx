@@ -21,8 +21,8 @@ import {
   notoSC,
   notoTC,
   notoTH,
-} from '@/i18n/font';
-import { routing } from '@/i18n/routing';
+} from '@/lib/i18n/font';
+import { routing } from '@/lib/i18n/routing';
 import MinimumProvider from '@/providers/minimum.provider';
 
 export function generateStaticParams() {

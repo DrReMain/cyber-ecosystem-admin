@@ -8,7 +8,7 @@ import { useAtom } from 'jotai';
 import { ArrowLeftFromLine } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
-import useRTL from '@/hooks/use-rtl';
+import useRTL from '@/lib/hooks/use-rtl';
 import { atom_setting } from '@/store/setting/store';
 
 interface IProps {

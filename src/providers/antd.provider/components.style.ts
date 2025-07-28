@@ -6,6 +6,10 @@ export const components = {
     primaryShadow: '',
     dangerShadow: '',
   },
+  Input: {
+    algorithm: true,
+    borderRadius: 12,
+  },
   Dropdown: {
     algorithm: true,
     borderRadiusLG: 12,

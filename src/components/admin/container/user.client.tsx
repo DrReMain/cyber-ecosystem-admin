@@ -1,18 +1,11 @@
 'use client';
 
-import { useMutation } from '@tanstack/react-query';
 import { Avatar, Popover, Space, Spin } from 'antd';
-import { useAtom, useAtomValue } from 'jotai';
 import { Lock, LogOut, User as UserIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-import useOS from '@/hooks/use-os';
-import useRequest from '@/hooks/use-request';
-import useRTL from '@/hooks/use-rtl';
-import { useShortcuts } from '@/hooks/use-shortcuts';
-import { accountLogout } from '@/services/clients/accountService/accountLogout';
-import { atom_setting } from '@/store/setting/store';
-import { atom_token } from '@/store/token/store';
+import useRTL from '@/lib/hooks/use-rtl';
+import { useShortcuts } from '@/lib/hooks/use-shortcuts';
 
 interface IProps {
   isPending: boolean;
@@ -24,44 +17,8 @@ interface IProps {
 export default function User({ isPending, avatar, name, email }: Readonly<IProps>) {
   const isRTL = useRTL();
   const t = useTranslations('login.menu');
-  const os = useOS();
-  const setting = useAtomValue(atom_setting);
-  const [, setToken] = useAtom(atom_token);
 
-  const { mutateHOF } = useRequest();
-  const mutateLogout = useMutation({
-    mutationKey: [accountLogout.name],
-    mutationFn: mutateHOF(accountLogout, {
-      toast: {
-        loading: true,
-        error: true,
-      },
-    })(),
-    onSuccess: () => {
-      setToken({});
-    },
-  });
-
-  useShortcuts(setting.shortcuts.enable, [
-    {
-      code: 'KeyL',
-      altKey: true,
-      handler: () => {
-        if (setting.shortcuts.lock) {
-          console.error('🔒 Lock'); // TODO
-        }
-      },
-    },
-    {
-      code: 'KeyQ',
-      altKey: true,
-      handler: () => {
-        if (setting.shortcuts.logout) {
-          mutateLogout.mutate({ data: {} });
-        }
-      },
-    },
-  ]);
+  const { lock, logout } = useShortcuts();
 
   return (
     <Spin size="small" spinning={isPending}>
@@ -86,12 +43,13 @@ export default function User({ isPending, avatar, name, email }: Readonly<IProps
               <button
                 type="button"
                 className="w-full rounded-md cursor-pointer py-1 px-2 flex items-center justify-between hover:bg-black/5"
+                onClick={() => lock.cb(true)}
               >
                 <Space>
                   <Lock size={14} />
                   <span className="text-sm">{t('lock')}</span>
                 </Space>
-                <span className="font-mono">{os === 'macos' ? '⌥ + l' : 'Alt + l'}</span>
+                <span className="font-mono">{lock.text}</span>
               </button>
             </div>
 
@@ -101,13 +59,13 @@ export default function User({ isPending, avatar, name, email }: Readonly<IProps
               <button
                 type="button"
                 className="w-full rounded-md cursor-pointer py-1 px-2 flex items-center justify-between hover:bg-black/5"
-                onClick={() => mutateLogout.mutate({ data: {} })}
+                onClick={() => logout.cb(true)}
               >
                 <Space>
                   <LogOut size={14} />
                   <span className="text-sm">{t('logout')}</span>
                 </Space>
-                <span className="font-mono">{os === 'macos' ? '⌥ + q' : 'Alt + q'}</span>
+                <span className="font-mono">{logout.text}</span>
               </button>
             </div>
           </div>

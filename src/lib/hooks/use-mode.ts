@@ -3,7 +3,7 @@ import type { MouseEvent as ReactMouseEvent } from 'react';
 import { useTheme } from 'next-themes';
 import { useCallback, useEffect, useState } from 'react';
 
-import { setCookieAction } from '@/server-actions/cookie.actions';
+import { setCookieAction } from '@/lib/server-actions/cookie.actions';
 
 export default function useMode() {
   const { resolvedTheme, theme, setTheme } = useTheme();

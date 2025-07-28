@@ -1,6 +1,6 @@
 import type messages from '@messages/@target/zh-CN.json';
 
-import type { routing } from '@/i18n/routing';
+import type { routing } from '@/lib/i18n/routing';
 
 declare module 'next-intl' {
 

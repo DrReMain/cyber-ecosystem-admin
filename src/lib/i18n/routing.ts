@@ -2,6 +2,8 @@ import { defineRouting } from 'next-intl/routing';
 
 export const routing = defineRouting({
   // ============ Required Configuration ============
+  // Do not edit manually
+  // use .env and exec scripts/locales-combine.ts
   locales: ['zh-CN', 'ar-EG'],
   defaultLocale: 'zh-CN',
 

@@ -3,9 +3,9 @@
  * Do not edit manually.
  */
 
-import type { RequestConfig, ResponseErrorConfig } from '@/request/restful/client';
+import type { RequestConfig, ResponseErrorConfig } from '@/lib/request/restful/client';
 
-import fetch from '@/request/restful/client';
+import fetch from '@/lib/request/restful/client';
 
 import type { AdminSystemMenuPostMutationRequest, AdminSystemMenuPostMutationResponse } from '../../models/AdminSystemMenuPost';
 

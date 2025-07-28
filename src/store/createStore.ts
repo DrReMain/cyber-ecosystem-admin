@@ -1,14 +1,17 @@
 import { createStore } from 'jotai';
 
+import type { IStoreGlobal } from '@/store/global/store';
 import type { IStoreSetting } from '@/store/setting/store';
 import type { IStoreToken } from '@/store/token/store';
 
+import { __immerAtom_global, atom_global } from '@/store/global/store';
 import { __immerAtom_setting, atom_setting } from '@/store/setting/store';
 import { __immerAtom_token, atom_token } from '@/store/token/store';
 
 export function createMainStore(init?: {
   setting?: IStoreSetting;
   token?: IStoreToken;
+  global?: IStoreGlobal;
 }) {
   const store = createStore();
 
@@ -36,10 +39,22 @@ export function createMainStore(init?: {
     }
   });
 
+  // global --------------------------------------------------------------------------
+  if (init?.global !== undefined) {
+    store.set(__immerAtom_global, init.global);
+  }
+  const unsubGlobal = store.sub(atom_global, () => {
+    if (process.env.NODE_ENV === 'development') {
+      // eslint-disable-next-line no-console
+      console.log('atom_global value is changed to', store.get(atom_global));
+    }
+  });
+
   // -------------------------------------------------------------------------------
   return {
     store,
     unsubSetting,
     unsubToken,
+    unsubGlobal,
   };
 }

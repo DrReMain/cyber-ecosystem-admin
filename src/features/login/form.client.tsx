@@ -9,7 +9,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
-import useRequest from '@/hooks/use-request';
+import useRequest from '@/lib/hooks/use-request';
 import { accountLoginPassword } from '@/services/clients/accountService/accountLoginPassword';
 import { atom_token } from '@/store/token/store';
 

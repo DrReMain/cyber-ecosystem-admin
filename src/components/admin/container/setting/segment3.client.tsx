@@ -4,15 +4,15 @@ import { Card, Space, Switch, Tag } from 'antd';
 import { useAtom } from 'jotai/index';
 import { useTranslations } from 'next-intl';
 
-import useOS from '@/hooks/use-os';
+import { useShortcuts } from '@/lib/hooks/use-shortcuts';
 import { atom_setting } from '@/store/setting/store';
 
 // ⌘
 
 export default function Segment3() {
   const t = useTranslations('setting.drawer');
-  const os = useOS();
   const [setting, setSetting] = useAtom(atom_setting);
+  const { lock, logout } = useShortcuts();
 
   return (
     <Card size="small">
@@ -30,7 +30,7 @@ export default function Segment3() {
 
           <Space>
             <Tag className="font-mono" bordered={false}>
-              {os === 'macos' ? '⌥ + l' : 'Alt + l'}
+              {lock.text}
             </Tag>
             <Switch
               disabled={!setting.shortcuts.enable}
@@ -45,7 +45,7 @@ export default function Segment3() {
 
           <Space>
             <Tag className="font-mono" bordered={false}>
-              {os === 'macos' ? '⌥ + q' : 'Alt + q'}
+              {logout.text}
             </Tag>
             <Switch
               disabled={!setting.shortcuts.enable}

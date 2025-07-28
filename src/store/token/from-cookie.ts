@@ -1,6 +1,6 @@
 import superjson from 'superjson';
 
-import { getCookieAction } from '@/server-actions/cookie.actions';
+import { getCookieAction } from '@/lib/server-actions/cookie.actions';
 
 import type { IStoreToken } from './store';
 

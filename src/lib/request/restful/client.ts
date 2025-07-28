@@ -1,6 +1,6 @@
 import type { Options as KyOptions } from 'ky';
 
-import kyInstance from '@/request/restful/instance';
+import kyInstance from '@/lib/request/restful/instance';
 
 export interface RequestConfig<TData = unknown> {
   baseURL?: string;

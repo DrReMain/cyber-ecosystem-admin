@@ -5,15 +5,16 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const baseConfig: NextConfig = {
   output: 'standalone',
-  productionBrowserSourceMaps: false,
-  images: {
-    remotePatterns: [],
-    unoptimized: false,
-  },
   experimental: {
     // ppr: true,
     reactCompiler: true, // need babel-plugin-react-compiler
   },
+  images: {
+    remotePatterns: [],
+    unoptimized: false,
+  },
+  poweredByHeader: false,
+  productionBrowserSourceMaps: false,
   transpilePackages: ['jotai-devtools'],
   allowedDevOrigins: process.env.NEXT_PUBLIC_APP_HOST?.split(','),
 };
@@ -21,7 +22,7 @@ const baseConfig: NextConfig = {
 let configWithPlugins = baseConfig;
 
 configWithPlugins = createNextIntlPlugin({
-  requestConfig: './src/i18n/request.ts',
+  requestConfig: './src/lib/i18n/request.ts',
   experimental: {
     createMessagesDeclaration: `./messages/@target/${process.env.NEXT_I18N_DEFAULT}.json`,
   },

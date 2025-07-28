@@ -10,11 +10,12 @@ import { atom_setting } from '@/store/setting/store';
 
 const layouts = [
   { type: 'vertical' },
-  { type: 'two-vertical' },
-  { type: 'horizontal' },
-  { type: 'aside-vertical' },
-  { type: 'mixed-vertical' },
-  { type: 'mixed-two-vertical' },
+  // TODO
+  // { type: 'two-vertical' },
+  // { type: 'horizontal' },
+  // { type: 'aside-vertical' },
+  // { type: 'mixed-vertical' },
+  // { type: 'mixed-two-vertical' },
 ] as const;
 
 const contents = [

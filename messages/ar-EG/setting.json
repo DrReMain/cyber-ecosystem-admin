@@ -51,6 +51,15 @@
       "shortcut-logout": "تسجيل الخروج",
       "shortcut-lock": "قفل الشاشة",
       "watermark": "علامة مائية"
+    },
+
+    "lock": {
+      "unlock-error": "كلمة مرور القفل غير صحيحة",
+      "modal-title": "قفل الشاشة",
+      "info": "يرجى إدخال كلمة مرور القفل",
+      "lock-btn": "قفل",
+      "unlock-btn": "فتح القفل",
+      "logout": "تسجيل الخروج"
     }
   }
 }
