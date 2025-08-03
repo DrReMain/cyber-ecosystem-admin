@@ -1,39 +1,49 @@
 'use client';
 
-import type { PropsWithChildren } from 'react';
+import type { PropsWithChildren, Ref } from 'react';
 
 import { Badge, Button, Drawer, Segmented, Space, Tooltip } from 'antd';
 import { useAtom } from 'jotai';
 import { Undo } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useImperativeHandle, useState } from 'react';
 
 import Segment1 from '@/components/admin/container/setting/segment1.client';
 import Segment2 from '@/components/admin/container/setting/segment2.client';
 import Segment3 from '@/components/admin/container/setting/segment3.client';
 import Segment4 from '@/components/admin/container/setting/segment4.client';
 import useRTL from '@/lib/hooks/use-rtl';
-import { atom_global } from '@/store/global/store';
 import { atom_setting, initStoreSetting } from '@/store/setting/store';
 
-interface IProps {
+export interface IRef {
+  open: () => void;
 }
 
-export default function SettingDrawer(_props: Readonly<PropsWithChildren<IProps>>) {
+interface IProps {
+  ref: Ref<IRef>;
+}
+
+export default function SettingDrawer({ ref }: Readonly<PropsWithChildren<IProps>>) {
   const isRTL = useRTL();
   const t = useTranslations('setting.drawer');
 
   const [setting, setSetting] = useAtom(atom_setting);
-  const [global, setGlobal] = useAtom(atom_global);
 
   const segments = ['1', '2', '3', '4'] as const;
   const [segment, setSegment] = useState<typeof segments[number]>('1');
 
+  const [open, setOpen] = useState(false);
+  useImperativeHandle(ref, () => ({
+    open() {
+      setOpen(true);
+    },
+  }));
+
   return (
     <Drawer
       title={t('title')}
-      open={global.openSetting}
-      onClose={() => setGlobal((g) => { g.openSetting = false; })}
+      open={open}
+      onClose={() => setOpen(false)}
       placement={isRTL ? 'left' : 'right'}
       extra={(
         <Space>
@@ -43,7 +53,7 @@ export default function SettingDrawer(_props: Readonly<PropsWithChildren<IProps>
                 size="small"
                 color="default"
                 variant="filled"
-                icon={<Undo width={12} height={12} />}
+                icon={<Undo size={14} />}
                 onClick={() => setSetting(initStoreSetting)}
               />
             </Tooltip>

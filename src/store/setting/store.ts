@@ -40,7 +40,7 @@ export const initStoreSetting: IStoreSetting = {
     logout: true,
   },
   watermark: {
-    enable: true,
+    enable: false,
     content: ['Cyber Ecosystem', 'Dr.ReMain'],
     image: '',
   },

@@ -116,7 +116,7 @@ export default function AntdConfig({ children, locale, theme }: Readonly<PropsWi
         {needMask && (
           <motion.div
             key="mask"
-            className="fixed left-0 top-0 right-0 bottom-0 z-50 bg-gray-100 dark:bg-gray-900"
+            className="fixed inset-0 z-50 bg-gray-100 dark:bg-gray-900"
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{

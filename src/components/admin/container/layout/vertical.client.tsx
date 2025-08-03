@@ -2,7 +2,7 @@
 
 import type { PropsWithChildren, ReactNode } from 'react';
 
-import { Button } from 'antd';
+import { Button, Grid } from 'antd';
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { ArrowLeftFromLine } from 'lucide-react';
@@ -14,6 +14,8 @@ import { atom_setting } from '@/store/setting/store';
 interface IProps {
   asideTop?: ReactNode;
   asideMiddle?: ReactNode;
+  header?: ReactNode;
+  nav?: ReactNode;
 }
 
 const SCROLL_THRESHOLD = 5;
@@ -22,6 +24,8 @@ export default function Vertical({
   children,
   asideTop,
   asideMiddle,
+  header,
+  nav,
 }: Readonly<PropsWithChildren<IProps>>) {
   const isRTL = useRTL();
   const [setting, setSetting] = useAtom(atom_setting);
@@ -33,6 +37,14 @@ export default function Vertical({
     showBottomShadow: false,
     hasScrollbar: false,
   });
+
+  const [showHeaderShadow, setShowHeaderShadow] = useState(false);
+
+  const { xs } = Grid.useBreakpoint();
+  useEffect(() => {
+    if (xs)
+      setSetting((s) => { s.foldMenu = true; });
+  }, [xs, setSetting]);
 
   const asideWidth = !setting.showAside
     ? 0
@@ -103,8 +115,21 @@ export default function Vertical({
     return () => observer.disconnect();
   }, [asideMiddle]);
 
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      // eslint-disable-next-line react-hooks-extra/no-direct-set-state-in-use-effect
+      setShowHeaderShadow(scrollTop > SCROLL_THRESHOLD);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   const toggleFoldMenu = () => {
-    setSetting(prev => ({ ...prev, foldMenu: !prev.foldMenu }));
+    setSetting((s) => {
+      s.foldMenu = !s.foldMenu;
+    });
   };
 
   const renderShadow = (type: 'top' | 'bottom', show: boolean) => {
@@ -128,7 +153,7 @@ export default function Vertical({
       <section className="h-0 transition-all duration-200" style={asideStyle} />
 
       <aside
-        className="fixed start-0 top-0 bottom-0 overflow-hidden transition-all duration-200 border-e border-[#0505050f] dark:border-[#fdfdfd1f]"
+        className="bg-[hsl(var(--background))] fixed start-0 top-0 bottom-0 overflow-hidden transition-all duration-200 border-e border-[#0505050f] dark:border-[#fdfdfd1f]"
         style={{ ...asideStyle, zIndex: 10 }}
       >
         <div className="w-full h-full flex flex-col">
@@ -147,32 +172,48 @@ export default function Vertical({
             {renderShadow('bottom', scrollState.showBottomShadow)}
           </div>
 
-          <div
-            className={clsx(
-              'h-10 flex-none p-2 flex items-center border-t border-[#0505050f] dark:border-[#fdfdfd1f]',
-              setting.foldMenu ? 'justify-center' : 'justify-start',
-            )}
-          >
-            <Button
-              size="small"
-              color="default"
-              variant="filled"
-              icon={(
-                <ArrowLeftFromLine
-                  size={12}
+          {xs
+            ? null
+            : (
+                <div
                   className={clsx(
-                    'transform transition-transform duration-200',
-                    (isRTL ? !setting.foldMenu : setting.foldMenu) && 'rotate-180',
+                    'h-10 flex-none p-2 flex items-center border-t border-[#0505050f] dark:border-[#fdfdfd1f]',
+                    setting.foldMenu ? 'justify-center' : 'justify-start',
                   )}
-                />
+                >
+                  <Button
+                    size="small"
+                    color="default"
+                    variant="filled"
+                    icon={(
+                      <ArrowLeftFromLine
+                        size={14}
+                        className={clsx(
+                          'transform transition-transform duration-200',
+                          (isRTL ? !setting.foldMenu : setting.foldMenu) && 'rotate-180',
+                        )}
+                      />
+                    )}
+                    onClick={toggleFoldMenu}
+                  />
+                </div>
               )}
-              onClick={toggleFoldMenu}
-            />
-          </div>
         </div>
       </aside>
 
-      <section className="flex-1 min-h-screen">{children}</section>
+      <section className="flex-1 min-h-screen relative">
+        <div className="bg-[hsl(var(--background))] sticky inset-x-0 top-0 z-10">
+          <header>{header}</header>
+          <nav>{nav}</nav>
+          {showHeaderShadow && (
+            <div
+              className="pointer-events-none absolute inset-x-0 top-full z-10 bg-gradient-to-b from-black/5 dark:from-black/20 to-transparent"
+              style={{ height: 21 }}
+            />
+          )}
+        </div>
+        {children}
+      </section>
     </div>
   );
 }

@@ -3,13 +3,11 @@ import superjson from 'superjson';
 import { createPersistentAtom } from '@/store/factory';
 
 export interface IStoreGlobal {
-  openSetting: boolean;
   openLock: boolean;
   lockPW: string;
 }
 
 export const initStoreGlobal: IStoreGlobal = {
-  openSetting: false,
   openLock: false,
   lockPW: '',
 };
