@@ -23,6 +23,7 @@ export { createEmptyResFaker } from './mocks/createEmptyResFaker';
 export { createIdsReqFaker } from './mocks/createIdsReqFaker';
 export { createJwtResponseFaker } from './mocks/createJwtResponseFaker';
 export { createMenuResFaker } from './mocks/createMenuResFaker';
+export { createMenusResFaker } from './mocks/createMenusResFaker';
 export { createPositionResFaker } from './mocks/createPositionResFaker';
 export { createResourceFaker } from './mocks/createResourceFaker';
 export { createRoleResFaker } from './mocks/createRoleResFaker';
@@ -393,6 +394,7 @@ export type { EmptyRes } from './models/EmptyRes';
 export type { IdsReq } from './models/IdsReq';
 export type { JwtResponse } from './models/JwtResponse';
 export type { MenuRes } from './models/MenuRes';
+export type { MenusRes } from './models/MenusRes';
 export type { PositionRes } from './models/PositionRes';
 export type { Resource } from './models/Resource';
 export type { RoleRes } from './models/RoleRes';
@@ -601,6 +603,8 @@ export type { AdminSystemMenusQuery200Schema, AdminSystemMenusQueryQueryResponse
 export { adminSystemMenusQuery200Schema, adminSystemMenusQueryQueryResponseSchema } from './zod/menuController/adminSystemMenusQuerySchema';
 export type { MenuResSchema } from './zod/menuResSchema';
 export { menuResSchema } from './zod/menuResSchema';
+export type { MenusResSchema } from './zod/menusResSchema';
+export { menusResSchema } from './zod/menusResSchema';
 export type {
   AdminSystemPositionDelete200Schema,
   AdminSystemPositionDeleteMutationRequestSchema,

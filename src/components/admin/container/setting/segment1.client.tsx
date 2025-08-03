@@ -78,12 +78,20 @@ export default function Segment1() {
 
           <div className="flex items-center justify-between">
             <span>{t('aside-dark')}</span>
-            <Switch value={setting.asideDark} onChange={_ => setSetting((s) => { s.asideDark = _; })} />
+            <Switch
+              disabled
+              value={setting.asideDark}
+              onChange={_ => setSetting((s) => { s.asideDark = _; })}
+            />
           </div>
 
           <div className="flex items-center justify-between">
             <span>{t('top-dark')}</span>
-            <Switch value={setting.topDark} onChange={_ => setSetting((s) => { s.topDark = _; })} />
+            <Switch
+              disabled
+              value={setting.topDark}
+              onChange={_ => setSetting((s) => { s.topDark = _; })}
+            />
           </div>
         </div>
       </Card>

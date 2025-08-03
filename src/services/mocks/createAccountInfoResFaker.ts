@@ -7,10 +7,19 @@ import { faker } from '@faker-js/faker';
 
 import type { AccountInfoRes } from '../models/AccountInfoRes';
 
+import { createMenusResFaker } from './createMenusResFaker';
+
 export function createAccountInfoResFaker(data?: Partial<AccountInfoRes>): AccountInfoRes {
   faker.seed([2021]);
   return {
-    ...{ email: faker.internet.email(), name: faker.string.alpha(), nickname: faker.string.alpha(), phone: '18688886666', avatar: faker.image.avatar() },
+    ...{
+      email: faker.internet.email(),
+      name: faker.string.alpha(),
+      nickname: faker.string.alpha(),
+      phone: '18688886666',
+      avatar: faker.image.avatar(),
+      menus: faker.helpers.multiple(() => createMenusResFaker()),
+    },
     ...(data || {}),
   };
 }

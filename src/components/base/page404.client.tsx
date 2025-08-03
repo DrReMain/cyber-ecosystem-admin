@@ -3,7 +3,7 @@
 import { Home } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { useRouter } from 'nextjs-toploader/app';
+import { useRouter } from 'next/navigation';
 
 export default function Page404() {
   const t = useTranslations('app.404');

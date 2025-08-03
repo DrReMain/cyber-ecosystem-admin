@@ -2,7 +2,7 @@
 
 import type { PropsWithChildren, ReactNode } from 'react';
 
-import { Button, Grid } from 'antd';
+import { Button, Grid, Watermark } from 'antd';
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { ArrowLeftFromLine } from 'lucide-react';
@@ -44,7 +44,7 @@ export default function Vertical({
   useEffect(() => {
     if (xs)
       setSetting((s) => { s.foldMenu = true; });
-  }, [xs, setSetting]);
+  }, [xs]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const asideWidth = !setting.showAside
     ? 0
@@ -176,10 +176,7 @@ export default function Vertical({
             ? null
             : (
                 <div
-                  className={clsx(
-                    'h-10 flex-none p-2 flex items-center border-t border-[#0505050f] dark:border-[#fdfdfd1f]',
-                    setting.foldMenu ? 'justify-center' : 'justify-start',
-                  )}
+                  className={clsx('h-10 flex-none p-2 flex items-center justify-start border-t border-[#0505050f] dark:border-[#fdfdfd1f]')}
                 >
                   <Button
                     size="small"
@@ -212,7 +209,27 @@ export default function Vertical({
             />
           )}
         </div>
-        {children}
+        <Watermark
+          {...(
+            setting.watermark.enable
+              ? setting.watermark.image
+                ? {
+                    image: setting.watermark.image,
+                    width: setting.watermark.imageWidth,
+                    height: setting.watermark.imageHeight,
+                  }
+                : { content: setting.watermark.content }
+              : {}
+          )}
+        >
+          <main className={clsx({
+            'w-full mx-auto': setting.content === 'wide',
+            'container mx-auto': setting.content === 'fixed',
+          })}
+          >
+            {children}
+          </main>
+        </Watermark>
       </section>
     </div>
   );

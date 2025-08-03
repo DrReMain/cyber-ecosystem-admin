@@ -156,6 +156,8 @@ export type { AdminSystemMenusQuery200Schema, AdminSystemMenusQueryQueryResponse
 export { adminSystemMenusQuery200Schema, adminSystemMenusQueryQueryResponseSchema } from './menuController/adminSystemMenusQuerySchema';
 export type { MenuResSchema } from './menuResSchema';
 export { menuResSchema } from './menuResSchema';
+export type { MenusResSchema } from './menusResSchema';
+export { menusResSchema } from './menusResSchema';
 export type {
   AdminSystemPositionDelete200Schema,
   AdminSystemPositionDeleteMutationRequestSchema,

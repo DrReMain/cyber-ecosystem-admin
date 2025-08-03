@@ -12,7 +12,6 @@ import Lang from '@/components/admin/container/ctl/lang.btn.client';
 import Mode from '@/components/admin/container/ctl/mode.btn.client';
 import Notice from '@/components/admin/container/ctl/notice.btn.client';
 import Setting from '@/components/admin/container/ctl/setting.btn.client';
-import DemoMenu from '@/components/admin/container/demo-menu';
 import AsideVertical from '@/components/admin/container/layout/aside-vertical.client';
 import Horizontal from '@/components/admin/container/layout/horizontal.client';
 import MixedTwoVertical from '@/components/admin/container/layout/mixed-two-vertical.client';
@@ -20,12 +19,14 @@ import MixedVertical from '@/components/admin/container/layout/mixed-vertical.cl
 import TwoVertical from '@/components/admin/container/layout/two-vertical.client';
 import Vertical from '@/components/admin/container/layout/vertical.client';
 import LockScreen from '@/components/admin/container/lockscreen.client';
+import Menus from '@/components/admin/container/menus';
 import Header from '@/components/admin/container/sections/header.client';
 import Logo from '@/components/admin/container/sections/logo.client';
 import Nav from '@/components/admin/container/sections/nav.client';
 import SettingDrawer from '@/components/admin/container/setting/setting.drawer.client';
 import Shortcuts from '@/components/admin/container/shortcuts.client';
 import User from '@/components/admin/container/user.client';
+import Loader from '@/components/base/loader';
 import useRequest from '@/lib/hooks/use-request';
 import { accountInfo } from '@/services/clients/accountService/accountInfo';
 import { atom_setting } from '@/store/setting/store';
@@ -37,9 +38,10 @@ export default function Container({ children }: Readonly<PropsWithChildren<IProp
   const refSettingDrawer = useRef<IRefSettingDrawer>(null);
   const setting = useAtomValue(atom_setting);
   const { queryHOF } = useRequest();
-  const { isPending, data } = useQuery({
+  const { isPending, data, refetch } = useQuery({
     queryKey: [accountInfo.name],
-    queryFn: ctx => queryHOF(accountInfo)({ signal: ctx.signal }),
+    queryFn: () => queryHOF(accountInfo, { toast: { error: true } })(),
+    throwOnError: true,
   });
 
   const render = () => {
@@ -47,23 +49,25 @@ export default function Container({ children }: Readonly<PropsWithChildren<IProp
       return (
         <Vertical
           asideTop={<Logo />}
-          asideMiddle={<DemoMenu mode="inline" />}
+          asideMiddle={<Menus menus={data?.data.result.menus} />}
           header={(
-            <Header widgets={(
-              <>
-                <Setting onClick={() => refSettingDrawer.current?.open()} />
-                <Mode />
-                <Lang />
-                <Full />
-                <Notice />
-                <User
-                  isPending={isPending}
-                  avatar={data?.data.result.avatar}
-                  name={data?.data.result.name}
-                  email={data?.data.result.email}
-                />
-              </>
-            )}
+            <Header
+              refresh={() => refetch()}
+              widgets={(
+                <>
+                  <Setting onClick={() => refSettingDrawer.current?.open()} />
+                  <Mode />
+                  <Lang />
+                  <Full />
+                  <Notice />
+                  <User
+                    isPending={isPending}
+                    avatar={data?.data.result.avatar}
+                    name={data?.data.result.name}
+                    email={data?.data.result.email}
+                  />
+                </>
+              )}
             />
           )}
           nav={<Nav />}
@@ -84,6 +88,14 @@ export default function Container({ children }: Readonly<PropsWithChildren<IProp
       return <MixedTwoVertical>{children}</MixedTwoVertical>;
     return null;
   };
+
+  if (isPending) {
+    return (
+      <div className="w-screen h-screen">
+        <Loader type="rect" />
+      </div>
+    );
+  }
   return (
     <Shortcuts>
       {render()}

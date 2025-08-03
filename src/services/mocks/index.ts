@@ -23,6 +23,7 @@ export { createEmptyResFaker } from './createEmptyResFaker';
 export { createIdsReqFaker } from './createIdsReqFaker';
 export { createJwtResponseFaker } from './createJwtResponseFaker';
 export { createMenuResFaker } from './createMenuResFaker';
+export { createMenusResFaker } from './createMenusResFaker';
 export { createPositionResFaker } from './createPositionResFaker';
 export { createResourceFaker } from './createResourceFaker';
 export { createRoleResFaker } from './createRoleResFaker';

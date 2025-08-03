@@ -8,6 +8,7 @@ import clsx from 'clsx';
 import { hasLocale } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import NextTopLoader from 'nextjs-toploader';
 import { getLangDir } from 'rtl-detect';
 
 import TailwindIndicator from '@/components/base/tailwind-indicator';
@@ -86,6 +87,12 @@ export default async function I18NLayout({ children, params }: Readonly<PropsWit
         )}
       >
         <TailwindIndicator />
+        <NextTopLoader
+          height={2}
+          showSpinner={false}
+          shadow={false}
+          color="linear-gradient(to right, #9a16fd, #000af4, #1ee600)"
+        />
         <MinimumProvider>
           {children}
         </MinimumProvider>

@@ -1,13 +1,11 @@
 import type { PropsWithChildren } from 'react';
 
-import Guard from '@/components/admin/guard';
+import TokenGuard from '@/components/admin/token.guard';
 
 export default async function Layout({ children }: Readonly<PropsWithChildren>) {
   return (
-    <Guard auth={false}>
+    <TokenGuard needToken={false}>
       {children}
-    </Guard>
+    </TokenGuard>
   );
 }
-
-export const dynamic = 'force-dynamic';

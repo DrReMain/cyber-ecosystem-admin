@@ -2,7 +2,9 @@ import * as icons from 'lucide-react';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-const iconNames = Object.keys(icons).filter(name => /^[A-Z]/.test(name));
+const iconNames = Object.keys(icons).filter((name) => {
+  return /^[A-Z]/.test(name) && !name.endsWith('Icon');
+});
 
 fs.writeFileSync(
   path.resolve(__dirname, '../src/lib/constant/lucide.ts'),

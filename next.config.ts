@@ -16,6 +16,7 @@ const baseConfig: NextConfig = {
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   transpilePackages: ['jotai-devtools'],
+  devIndicators: false,
   allowedDevOrigins: process.env.NEXT_PUBLIC_APP_HOST?.split(','),
 };
 

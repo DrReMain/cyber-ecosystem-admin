@@ -15,7 +15,6 @@ export default function Segment4() {
         <div className="flex items-center justify-between">
           <span>{t('watermark')}</span>
           <Switch
-            disabled
             value={setting.watermark.enable}
             onChange={_ => setSetting((s) => { s.watermark.enable = _; })}
           />

@@ -24,7 +24,7 @@ export function useShortcuts() {
         error: true,
       },
     })(),
-    onSuccess: () => {
+    onSettled: () => {
       setToken({});
     },
   });

@@ -3,6 +3,8 @@
  * Do not edit manually.
  */
 
+import type { MenusRes } from './MenusRes';
+
 export interface AccountInfoRes {
   /**
    * @type string
@@ -24,4 +26,8 @@ export interface AccountInfoRes {
    * @type string
    */
   avatar: string;
+  /**
+   * @type array
+   */
+  menus: MenusRes[];
 }

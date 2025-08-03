@@ -64,6 +64,23 @@ declare const messages: {
       "logout": "退出登录"
     }
   },
+  "menus": {
+    "HOME": "首页",
+    "LOGIN": "登录",
+    "ACCOUNT": "我的账号",
+    "WORKSPACE": "工作台",
+    "SYSTEM": "系统管理",
+    "SYSTEM_MENU": "菜单管理",
+    "SYSTEM_ROLE": "角色管理",
+    "SYSTEM_DEPARTMENT": "部门管理",
+    "SYSTEM_POSITION": "职位管理",
+    "SYSTEM_USER": "用户管理",
+    "LOG": "日志管理",
+    "LOG_BIZ": "业务日志",
+    "ABOUT": "关于",
+    "ABOUT_INFO": "项目信息",
+    "ABOUT_DOCS": "项目文档"
+  },
   "login": {
     "meta": {
       "title": "登录",
@@ -89,9 +106,13 @@ declare const messages: {
     }
   },
   "app": {
+    "403": {
+      "title": "没有权限",
+      "content": "抱歉，您没有访问该页面的权限。"
+    },
     "404": {
       "title": "页面不存在",
-      "content": "抱歉，你访问的页面不存在或已被删除。",
+      "content": "抱歉，您访问的页面不存在或已被删除。",
       "home": "前往首页",
       "back": "返回"
     },

@@ -21,6 +21,8 @@ export interface IStoreSetting {
     enable: boolean;
     content: string | string[];
     image: string;
+    imageWidth: number;
+    imageHeight: number;
   };
 }
 
@@ -40,9 +42,11 @@ export const initStoreSetting: IStoreSetting = {
     logout: true,
   },
   watermark: {
-    enable: false,
+    enable: true,
     content: ['Cyber Ecosystem', 'Dr.ReMain'],
     image: '',
+    imageWidth: 0,
+    imageHeight: 0,
   },
 };
 

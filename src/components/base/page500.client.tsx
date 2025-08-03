@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'nextjs-toploader/app';
+import { useRouter } from 'next/navigation';
 
 export default function Page500(props: Readonly<{
   error: Error;

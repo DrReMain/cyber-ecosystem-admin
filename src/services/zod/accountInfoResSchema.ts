@@ -5,12 +5,17 @@
 
 import { z } from 'zod/v4';
 
+import { menusResSchema } from './menusResSchema';
+
 export const accountInfoResSchema = z.object({
   email: z.string(),
   name: z.string(),
   nickname: z.string(),
   phone: z.string(),
   avatar: z.string(),
+  get menus() {
+    return z.array(menusResSchema);
+  },
 });
 
 export type AccountInfoResSchema = z.infer<typeof accountInfoResSchema>;

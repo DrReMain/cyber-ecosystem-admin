@@ -2,7 +2,7 @@
 
 import type { LucideProps } from 'lucide-react';
 
-import { Loader, Square } from 'lucide-react';
+import { Square } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
 import { LucideIconSet } from '@/lib/constant/lucide';
@@ -21,7 +21,7 @@ export default function DynLucide({ title, ...props }: Readonly<IProps>) {
       }),
     {
       ssr: false,
-      loading: () => <Loader {...props} />,
+      loading: () => <Square {...props} />,
     },
   );
   return <Icon {...props} />;

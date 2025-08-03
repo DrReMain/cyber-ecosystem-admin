@@ -201,6 +201,7 @@ export type { EmptyRes } from './EmptyRes';
 export type { IdsReq } from './IdsReq';
 export type { JwtResponse } from './JwtResponse';
 export type { MenuRes } from './MenuRes';
+export type { MenusRes } from './MenusRes';
 export type { PositionRes } from './PositionRes';
 export type { Resource } from './Resource';
 export type { RoleRes } from './RoleRes';

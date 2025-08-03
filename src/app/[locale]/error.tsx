@@ -7,7 +7,7 @@ export default function Error({ error, reset }: Readonly<{
   reset: () => void;
 }>) {
   // useEffect(() => {
-  // 可选：将错误记录到错误报告服务
+  // report
   // console.error('Application error:', error);
   // }, [error]);
   return (

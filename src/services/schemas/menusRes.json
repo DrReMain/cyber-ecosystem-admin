@@ -1,0 +1,1 @@
+{ "type": "object", "required": ["code_path", "icon", "menu_type", "children"], "properties": { "code_path": { "type": "string" }, "icon": { "type": "string" }, "menu_type": { "type": "string" }, "children": { "type": "array", "items": { "$ref": "#/components/schemas/menusRes" } } }, "x-readme-ref-name": "menusRes" }

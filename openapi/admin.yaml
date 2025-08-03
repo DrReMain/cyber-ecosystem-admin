@@ -181,7 +181,7 @@ components:
 
     accountInfoRes:
       type: object
-      required: [ email, name, nickname, phone, avatar ]
+      required: [ email, name, nickname, phone, avatar, menus ]
       properties:
         email:
           type: string
@@ -193,6 +193,25 @@ components:
           type: string
         avatar:
           type: string
+        menus:
+          type: array
+          items:
+            $ref: "#/components/schemas/menusRes"
+
+    menusRes:
+      type: object
+      required: [ code_path, icon, menu_type, children ]
+      properties:
+        code_path:
+          type: string
+        icon:
+          type: string
+        menu_type:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: "#/components/schemas/menusRes"
 
     menuRes:
       type: object

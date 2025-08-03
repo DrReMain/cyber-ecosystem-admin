@@ -77,7 +77,10 @@ function normalizeToastOptions<Res>(
     return null;
   }
 
-  const result: NormalizedToastOptions<Res> = {};
+  // If toastInput exists, "loading" must show, so set the default
+  const result: NormalizedToastOptions<Res> = {
+    loading: defaults.loading,
+  };
 
   // Handle loading configuration
   if ('loading' in toastInput) {
