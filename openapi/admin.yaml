@@ -550,8 +550,6 @@ paths:
                       result:
                         $ref: "#/components/schemas/accountInfoRes"
 
-
-
   # 菜单管理
   /api/v1/admin_system/menu:
     post:
